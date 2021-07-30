@@ -12,6 +12,21 @@ import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { UserComponent } from './pages/user/user.component';
 
+//material
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatTableModule} from '@angular/material/table';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +41,21 @@ import { UserComponent } from './pages/user/user.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    //material
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatRadioModule,
+    MatSliderModule,
+    MatTableModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
