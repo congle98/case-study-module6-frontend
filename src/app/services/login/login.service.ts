@@ -9,21 +9,23 @@ import { Subject } from 'rxjs';
 })
 export class LoginService {
 
+  //lắng nghe những thay đổi khi login và logout
   loginStatusSubject = new Subject<Boolean>();
+
 
   constructor(private http:HttpClient) { }
 
   getCurrentUser(){
-    return this.http.get(`${environment.baseUrl}/current-user`);
+    return this.http.get(`${environment.baseUrl}/auth/current-user`);
   }
 
-  generateToken(user:any){
+  login(user:any){
   
     return this.http.post(`${environment.baseUrl}/auth/login`,user);
 
   }
 
-  loginUser(token:any){
+  setTokenToStorage(token:any){
   
     localStorage.setItem('token',token);
     return true;

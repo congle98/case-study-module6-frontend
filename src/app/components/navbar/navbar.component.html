@@ -1,1 +1,45 @@
 
+ <mat-toolbar  >
+    <!-- <button *ngIf="user&&user.roles[0].roleName=='ADMIN'" routerLink="/admin" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon style="font-size: 35px;">home</mat-icon>
+    </button> -->
+    <button routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon style="font-size: 35px;">home</mat-icon>
+    </button>
+    <!-- <button *ngIf="user&&user.roles[0].roleName=='USER'" routerLink="/user-dashboard" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon style="font-size: 35px;">home</mat-icon>
+    </button> -->
+  
+    <span class="example-spacer"></span>
+    <a 
+    *ngIf="!isLoggedIn"
+    [routerLink]="['/login']" mat-icon-button class="example-icon favorite-icon mr-20" aria-label="Example icon-button with heart icon">
+      Login
+    </a>
+    <a 
+    *ngIf="!isLoggedIn"
+    [routerLink]="['/signup']"  mat-icon-button class="example-icon mr-20" aria-label="Example icon-button with share icon">
+      Register
+    </a> 
+    <a 
+    *ngIf="isLoggedIn&&user!=null&&user.roles[0].name=='ADMIN'"
+      mat-icon-button  routerLink="/admin" class="example-icon mr-20" style="padding-right: 180px;" aria-label="Example icon-button with share icon">
+        Xin chào {{user.username}}
+        <img class="my-avatar" src="" alt="">
+    </a>
+    
+    <a 
+    *ngIf="isLoggedIn&&user!=null&&user.roles[0].name=='USER'"
+      mat-icon-button  routerLink="/user" class="example-icon mr-20" style="padding-right: 180px;" aria-label="Example icon-button with share icon">
+        Xin chào {{user.username}}
+        <img class="my-avatar" src="" alt="">
+    </a>
+    
+    
+
+     <a 
+    *ngIf="isLoggedIn"
+    (click)="logout()"  mat-icon-button class="example-icon mr-20 ml-20" aria-label="Example icon-button with share icon">
+      Logout
+    </a>
+    </mat-toolbar>
