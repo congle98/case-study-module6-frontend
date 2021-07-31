@@ -10,14 +10,15 @@
             <mat-label>Username</mat-label>
             <input matInput placeholder="UserName" name="username" formControlName="username">
             <mat-icon matSuffix>person</mat-icon>
-            <mat-hint>Hint</mat-hint>
+
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline"  class="full-width">
-            <mat-label>Fill form field</mat-label>
-            <input matInput placeholder="Password" name="password" formControlName="password">
-            <mat-icon matSuffix>vpn_key</mat-icon>
-            <mat-hint>Hint</mat-hint>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" name="password"  formControlname="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
           </mat-form-field>
           <br>
           <mat-form-field appearance="outline"  class="full-width">
@@ -31,7 +32,7 @@
             <mat-label>Fill form field</mat-label>
             <input matInput placeholder="phone" formControlName="phone">
             <mat-icon matSuffix>phone_iphone</mat-icon>
-            <mat-hint>Hint</mat-hint>
+
           </mat-form-field>
 
           <div class="example-button-container">
@@ -41,7 +42,7 @@
             </button>
           </div>
 
-<div>The config</div>
+
         </form>
       </mat-card>
 
