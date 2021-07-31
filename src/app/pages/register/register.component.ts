@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -7,10 +7,13 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  status ="Please fill in the Form";
+
+
   formRegister : FormGroup = new FormGroup({
     username: new FormControl(),
     password: new FormControl(),
-    email: new FormControl(),
+    email: new FormControl('bad@', Validators.email),
     phone: new FormControl(),
   })
 
