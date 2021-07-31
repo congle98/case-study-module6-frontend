@@ -29,6 +29,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ReactiveFormsModule} from "@angular/forms";
 
+//http client
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +61,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatRadioModule,
     MatSliderModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

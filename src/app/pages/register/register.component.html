@@ -1,34 +1,33 @@
 <div class="container">
-
   <div class="row">
-    <div class="col-12">
-      <mat-card style="margin: 50px 30px">
+    <div class="col-md-6 offset-md-3">
+      <mat-card style="margin-top: 50px;">
 
         <form [formGroup]="formRegister" (ngSubmit)="createAccount()" class="form-register">
           <h3>Form Đăng Ký </h3>
           <mat-error class="alert alert-primary">{{status}}</mat-error>
-          <mat-form-field appearance="outline" style="width: 400px">
+          <mat-form-field appearance="outline" class="full-width" >
             <mat-label>Username</mat-label>
             <input matInput placeholder="UserName" name="username" formControlName="username">
             <mat-icon matSuffix>person</mat-icon>
             <mat-hint>Hint</mat-hint>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline"  class="full-width">
             <mat-label>Fill form field</mat-label>
             <input matInput placeholder="Password" name="password" formControlName="password">
             <mat-icon matSuffix>vpn_key</mat-icon>
             <mat-hint>Hint</mat-hint>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline"  class="full-width">
             <mat-label>Fill form field</mat-label>
             <input matInput placeholder="email" formControlName="email" #email>
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="email.checkValidity()">Diền đúng định dạng email</mat-error>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline"  class="full-width" >
             <mat-label>Fill form field</mat-label>
             <input matInput placeholder="phone" formControlName="phone">
             <mat-icon matSuffix>phone_iphone</mat-icon>

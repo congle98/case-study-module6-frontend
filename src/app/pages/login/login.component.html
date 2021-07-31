@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <mat-card style="margin-top: 50px;">
+  
+          <form [formGroup]="formLogin" (ngSubmit)="login()" class="form-register">
+            <h3>Form Login </h3>
+            <mat-form-field appearance="outline" class="full-width" >
+              <mat-label>Username</mat-label>
+              <input matInput placeholder="UserName" name="username" formControlName="username">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline"  class="full-width">
+              <mat-label>Fill form field</mat-label>
+              <input matInput placeholder="Password" name="password" formControlName="password">
+              <mat-icon matSuffix>vpn_key</mat-icon>
+              <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+           
+  
+            <div class="example-button-container">
+              <button mat-flat-button color="primary"type="submit">
+                Đăng nhập
+                <mat-icon>login</mat-icon>
+              </button>
+            </div>
+  
+  
+          </form>
+        </mat-card>
+  
+      </div>
+    </div>
+  
+  </div>
+  
