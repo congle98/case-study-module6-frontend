@@ -10,12 +10,12 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit {
   status ="Please fill in the Form";
-
+  hide = true;
 
   formRegister : FormGroup = new FormGroup({
     username: new FormControl(),
     password: new FormControl(),
-    email: new FormControl('bad@', Validators.email),
+    email: new FormControl('', Validators.email),
     phone: new FormControl(),
   })
 
