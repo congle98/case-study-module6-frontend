@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   formRegister : FormGroup = new FormGroup({
     username: new FormControl(),
     password: new FormControl(),
-    email: new FormControl('', Validators.email),
+    email: new FormControl(),
     phone: new FormControl(),
   })
 
@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
   }
 
   createAccount() {
+    console.log(this.formRegister.value);
     this.loginService.addUser(this.formRegister.value).subscribe((success) => {
       Swal.fire("Thành công","Đã tạo tài khoản thành công","success");
     })

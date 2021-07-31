@@ -3,7 +3,7 @@
     <div class="col-md-6 offset-md-3">
       <mat-card style="margin-top: 50px;">
 
-        <form [formGroup]="formRegister" (ngSubmit)="createAccount()" class="form-register">
+        <form [formGroup]="formRegister" class="form-register">
           <h3>Form Đăng Ký </h3>
           <mat-error class="alert alert-primary">{{status}}</mat-error>
           <mat-form-field appearance="outline" class="full-width" >
@@ -15,7 +15,7 @@
           <br>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" name="password"  formControlname="password">
+            <input matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
@@ -23,7 +23,7 @@
           <br>
           <mat-form-field appearance="outline"  class="full-width">
             <mat-label>Fill form field</mat-label>
-            <input matInput placeholder="email" formControlName="email" #email>
+            <input matInput placeholder="email" formControlName="email" #email >
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="email.checkValidity()">Diền đúng định dạng email</mat-error>
           </mat-form-field>
@@ -36,7 +36,7 @@
           </mat-form-field>
 
           <div class="example-button-container">
-            <button mat-flat-button color="primary"type="submit">
+            <button mat-flat-button color="primary"type="submit" (click)="createAccount()">
               Add User
               <mat-icon>add</mat-icon>
             </button>
