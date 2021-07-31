@@ -28,9 +28,11 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 //http client
 import { HttpClientModule } from '@angular/common/http';
+import { authInterceptorProviders } from './guards/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    
     //material
     MatButtonModule,
     MatCardModule,
@@ -62,9 +65,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatSliderModule,
     MatTableModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [authInterceptorProviders],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
