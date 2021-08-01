@@ -1,0 +1,93 @@
+<div class=container>
+  <div class="row row-infor">
+    <div class="col-md-3 float-left">
+      <mat-card>
+        <div>
+          <img
+            src="https://1.bp.blogspot.com/-5n_rEz8D0b8/Xk556_wb4KI/AAAAAAAAVVM/Z-v6YSPT3swBVpUWfd7NOForHs-OYRHGACLcBGAsYHQ/s1600/Anh-Trai-Dep-20023456-Wap102%2B%25281%2529.jpg"
+            alt="" style="width:100%; height:auto">
+        </div>
+        <h3>{{userAccount.username}}</h3>
+        <div>
+          Trạng thái hoạt động
+          <mat-slide-toggle>Slide me!</mat-slide-toggle>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="col-md-9  float-left">
+
+      <div class="box">
+
+          <div>
+
+            <mat-card style="background-color: aquamarine"><h4>Thông tin tài khoản</h4></mat-card>
+
+            <ul class="scrolling">
+              <li>UserName: {{userAccount.username}}</li>
+              <li>Email: {{userAccount.email}}</li>
+              <li>Phone: {{userAccount.phone}}</li>
+              <li>Role: {{userAccount.role}}</li>
+              <li>Status: {{userAccount.status}}</li>
+              <li>IsProvider: {{userAccount.isprovider}}</li>
+            </ul>
+
+            <mat-card><h4>Change</h4></mat-card>
+          </div>
+
+          <div>
+            <mat-card><h4>Thông tin Cá nhân</h4></mat-card>
+            <ul class="scrolling">
+              <li>Họ Tên: {{userInformation.name}}</li>
+              <li>Email: {{userInformation.year}}</li>
+              <li>Giới tính: {{userInformation.gender}}</li>
+              <li>City : {{userInformation.city}} </li>
+              <li>Quốc gia : {{userInformation.country}} </li>
+              <li>Chiều cao: {{userInformation.height}} </li>
+              <li>Cân nặng: {{userInformation.weight}} </li>
+              <li>Sở thích: {{userInformation.favorite}} </li>
+              <li>Mô tả: {{userInformation.description}} </li>
+              <li>Yêu cầu: {{userInformation.requestion}} </li>
+              <li>facebook: {{userInformation.facebook}} </li>
+              <li>dayOfEvent: {{userInformation.date}} </li>
+            </ul>
+            <mat-card><h4>Change</h4></mat-card>
+          </div>
+
+          <div *ngIf="!userAccount.iprovider" >
+            <mat-card><h4>Thông tin đăng ký dịch vụ</h4></mat-card>
+            <ul class="scrolling">
+                <i>Dich vụ cơ bản</i>
+                <li *ngFor="let item of userService1">{{item.name}}</li>
+              <i>Dich vụ miễn phí</i>
+                <li *ngFor="let item of userService2">{{item.name}}</li>
+              <i>Dich vụ cơ bản</i>
+                <li *ngFor="let item of userService3">{{item.name}}</li>
+
+              </ul>
+            <mat-card><h4>Giá dịch vụ</h4></mat-card>
+          </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row-300">
+    <div > Ảnh chân dung </div>
+
+    <div class="image-chandung" >
+      <img *ngFor="let item of userImage"src="{{item}}"
+           style="width:100%; height:auto"   alt="anh">
+    </div>
+
+    <div >
+
+    </div>
+    <div >
+
+    </div>
+  </div>
+</div>
+
