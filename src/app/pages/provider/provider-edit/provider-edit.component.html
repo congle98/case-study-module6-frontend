@@ -7,7 +7,7 @@
             src="https://1.bp.blogspot.com/-5n_rEz8D0b8/Xk556_wb4KI/AAAAAAAAVVM/Z-v6YSPT3swBVpUWfd7NOForHs-OYRHGACLcBGAsYHQ/s1600/Anh-Trai-Dep-20023456-Wap102%2B%25281%2529.jpg"
             alt="" style="width:100%; height:auto">
         </div>
-        <h3>UserName</h3>
+        <h3>{{userAccount.username}}</h3>
         <div>
           Trạng thái hoạt động
           <mat-slide-toggle>Slide me!</mat-slide-toggle>
@@ -27,7 +27,9 @@
               <li>UserName: {{userAccount.username}}</li>
               <li>Email: {{userAccount.email}}</li>
               <li>Phone: {{userAccount.phone}}</li>
+              <li>Role: {{userAccount.role}}</li>
               <li>Status: {{userAccount.status}}</li>
+              <li>IsProvider: {{userAccount.isprovider}}</li>
             </ul>
 
             <mat-card><h4>Change</h4></mat-card>
@@ -52,7 +54,7 @@
             <mat-card><h4>Change</h4></mat-card>
           </div>
 
-          <div >
+          <div *ngIf="!userAccount.iprovider" >
             <mat-card><h4>Thông tin đăng ký dịch vụ</h4></mat-card>
             <ul class="scrolling">
                 <i>Dich vụ cơ bản</i>

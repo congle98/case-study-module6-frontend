@@ -11,7 +11,9 @@ export class ProviderEditComponent implements OnInit {
         username: "username1",
         email: "email1",
         phone: "phone1",
-        status: true
+        role: "USER",
+        status: true,
+        isprovider: true
     }
     userInformation:any={
       name: "name1",
