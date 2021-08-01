@@ -1,0 +1,18 @@
+.button-navbar{
+    border-radius: 20%;
+    min-width: 70px;
+    background-color: #f0f0f0;
+}
+.my-logo{
+    width: 50px;
+    height: 50px;
+}
+.logo-title{
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #ff7aa9;
+}
+.my-mat-menu{
+    width: 200px ;
+}

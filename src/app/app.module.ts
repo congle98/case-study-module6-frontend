@@ -11,7 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { UserComponent } from './pages/user/user.component';
+
 
 //material
 import {MatButtonModule} from '@angular/material/button';
@@ -33,6 +33,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 //http client
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './guards/auth.interceptor';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import { ErrorComponent } from './components/error/error.component';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { authInterceptorProviders } from './guards/auth.interceptor';
     RegisterComponent,
     HomeComponent,
     AdminComponent,
-    UserComponent
+    UserProfileComponent,
+    ErrorComponent,
+
+  
   ],
   imports: [
     BrowserModule,
