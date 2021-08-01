@@ -1,0 +1,59 @@
+
+.box {
+  border: 1px solid #ccc;
+  width: 100%;
+  display: flex;
+
+}
+.box div {
+  margin: 5px;
+  text-align: center;
+  background-color: yellowgreen;
+  line-break: auto;
+  line-height: 50px;
+
+}
+.box div:nth-child(1) {
+  width: 30%;
+
+}
+.box div:nth-child(2) {
+  width: 40%;
+
+}
+.box div:nth-child(3) {
+  width: 30%;
+
+
+}
+
+.col-md-9{
+  float: left;
+}
+.col-md-3{
+  float: left;
+}
+
+::-webkit-scrollbar{
+  width: 10px;
+  background-color: yellow;
+
+}
+::-webkit-scrollbar-thumb{
+  background-color: red;
+  border-radius: 5px;
+}
+.scrolling{
+  overflow-y: scroll;
+  height:270px;
+}
+.scrolling li{
+  height: 30px;
+  line-height: 30px;
+  width: auto;
+  text-align: left;
+  padding: 1px 1px;
+  margin: 1px 1px;
+}
+
+
