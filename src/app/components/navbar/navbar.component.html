@@ -17,41 +17,62 @@
       >
         Đăng nhập
       </a>
+      <div *ngIf="isLoggedIn && user != null && isAdmin">
+        <a
+          mat-button
+          routerLink="/admin"
+          mat-button
+          [matMenuTriggerFor]="menuAdmin"
+        >
+          Xin chào Admin: {{ user.username }}
 
-      <a
-        mat-button
-        *ngIf="isLoggedIn && user != null && isAdmin"
-        routerLink="/admin"
-        mat-button [matMenuTriggerFor]="menuAdmin"
-      >
-        Xin chào Admin: {{ user.username }}
+          <img
+            class="my-avatar"
+            src="{{ !user.avatar ? 'assets/avatarBase.jpg' : user.avatar.url }}"
+            alt=""
+          />
+        </a>
+        <mat-menu #menuAdmin="matMenu">
+          <button class="my-mat-menu text-center" mat-menu-item>Item 2</button>
+          <button
+            class="my-mat-menu text-center"
+            mat-menu-item
+            (click)="logout()"
+          >
+            Thoát
+          </button>
+        </mat-menu>
+      </div>
 
-        <img
-          class="my-avatar"
-          src="{{ !user.avatar ? 'assets/avatarBase.jpg' : user.avatar.url }}"
-          alt=""
-        />
-      </a>
-      <mat-menu #menuAdmin="matMenu">
-        <button class="my-mat-menu text-center" mat-menu-item>Item 2</button>
-        <button class="my-mat-menu text-center" mat-menu-item (click)="logout()">Thoát</button>
-      </mat-menu>
-
-      <a
-        *ngIf="isLoggedIn && user != null && isUser"
-        mat-button [matMenuTriggerFor]="menuUser"
-        mat-button
-      >  <mat-icon>paid</mat-icon> <span style="margin-right: 10px;">{{user.money?user.money:0}} đ</span>
-        <img
-          class="my-avatar"
-          src="{{ !user.avatar ? 'assets/avatarBase.jpg' : user.avatar.url }}"
-          alt=""
-        />
-      </a>
-      <mat-menu #menuUser="matMenu">
-        <button class="my-mat-menu text-center" mat-menu-item  routerLink="/user/{{user.id}}">{{user.username}}</button>
-        <button class="my-mat-menu text-center" mat-menu-item (click)="logout()">Thoát</button>
-      </mat-menu>
+      <div *ngIf="isLoggedIn && user != null && isUser">
+        <a mat-button [matMenuTriggerFor]="menuUser" mat-button>
+          <mat-icon>paid</mat-icon>
+          <span style="margin-right: 10px"
+            >{{ user.money ? user.money : 0 }} đ</span
+          >
+          <img
+            class="my-avatar"
+            src="{{ !user.avatar ? 'assets/avatarBase.jpg' : user.avatar.url }}"
+            alt=""
+          />
+        </a>
+        <mat-menu #menuUser="matMenu">
+          <button
+            class="my-mat-menu text-center"
+            mat-menu-item
+            routerLink="/user/{{ user.id }}"
+          >
+            {{ user.username }}
+          </button>
+          <button
+            class="my-mat-menu text-center"
+            mat-menu-item
+            (click)="logout()"
+          >
+            Thoát
+          </button>
+        </mat-menu>
+      </div>
     </div>
     <div class="mr-20">
       <a
