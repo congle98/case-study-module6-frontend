@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {OrderService} from "../../../services/order/order.service";
 import Swal from "sweetalert2";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {UserResponse} from "../../../interface/user-response";
 
 
 @Component({
@@ -13,11 +15,11 @@ export class OderCreateComponent implements OnInit {
   formOder: any = new FormGroup({
     id: new FormControl(),
     user: new FormGroup({
-      id: new FormControl(1)
+      id: new FormControl()
 
     }),
     provider: new FormGroup({
-      id: new FormControl(2)
+      id: new FormControl()
     }),
     address: new FormControl(),
     hour: new FormControl(),
@@ -28,10 +30,20 @@ export class OderCreateComponent implements OnInit {
     })
 
   })
+  id?: any;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+  )
+
+
+  { }
 
   ngOnInit(): void {
+    this.id= this.getUser();
+    this.getOrderByProvider();
+
   }
 
 
@@ -45,4 +57,27 @@ export class OderCreateComponent implements OnInit {
 
 
   }
+
+  getUser(){
+    let userStr = localStorage.getItem("user");
+    if(userStr!==null){
+      let user =JSON.parse(userStr)
+      console.log(user.id)
+      return user.id;
+
+    }
+    else{
+      // this.logout();
+      return null;
+    }
+  }
+
+  getOrderByProvider(){
+
+      this.orderService.getOrderByProvider(this.id).subscribe(data=>{
+        console.log(data);
+      })
+
+  }
+
 }

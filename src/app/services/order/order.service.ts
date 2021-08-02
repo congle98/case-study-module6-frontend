@@ -16,4 +16,7 @@ export class OrderService {
     return this.http.post<any>(this.url+"/createOrder", order);
 
   }
+  getOrderByProvider(id: any): Observable<any>{
+    return this.http.get<any>(this.url+ "/list/"+id);
+  }
 }
