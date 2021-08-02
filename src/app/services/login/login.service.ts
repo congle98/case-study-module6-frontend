@@ -68,6 +68,22 @@ export class LoginService {
     }
   }
 
+  setUserInformation(userInformation:any){
+    localStorage.setItem("userInformation",JSON.stringify(userInformation));
+  }
+  getUserInformation(){
+    
+      let userInformationStr = localStorage.getItem("userInformation");
+      if(userInformationStr!==null){
+        return JSON.parse(userInformationStr);
+      }
+      else{
+        // this.logout();
+        return null;
+      }
+
+  }
+
   getUserRole(){
     let user = this.getUser();
     return user.roles;

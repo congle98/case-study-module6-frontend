@@ -10,9 +10,17 @@ export class UserService {
   constructor(private httpClient:HttpClient) { }
 
   getUserInformation(userId:any){
-    return this.httpClient.get(`${environment.baseUrl}/profile/${userId}`);
+    return this.httpClient.get(`${environment.baseUrl}/profile/view/${userId}`);
   }
   setView(userInformationId:any){
-    return this.httpClient.put(`${environment.baseUrl}/profile/views`,userInformationId);
+    return this.httpClient.put(`${environment.baseUrl}/profile/addviews`,userInformationId);
+  }
+
+  updateInformation(userInformation: any){
+    return this.httpClient.put(`${environment.baseUrl}/profile`,userInformation);
+  }
+
+  getUserInfoUpdate(userId:any){
+    return this.httpClient.get(`${environment.baseUrl}/profile/userInfoUpdate/${userId}`);
   }
 }

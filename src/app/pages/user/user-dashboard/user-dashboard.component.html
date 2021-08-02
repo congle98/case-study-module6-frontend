@@ -1,23 +1,103 @@
-<div class="container-fluid" *ngIf="user">
-    <div class="row">
-        <div class="col-md-3 text-center">
-            <mat-card>          
-                  <h1>xin chào {{userInformation.fullName}}</h1>
-                  <mat-divider></mat-divider>
-                <img class="avatar-profile mt-10" [src]="user.avatar?user.avatar.url:'../assets/avatarBase.jpg'" >
-                <mat-card-content>
-                  <p *ngIf="userInformation">
-                    {{userInformation.description}}
-                  </p>
-                </mat-card-content>
-                <mat-card-actions>
-                  <button mat-raised-button color="primary">Thông tin chi tiết</button>
-                  <button mat-raised-button color="primary">Xin cung cấp dịch vụ</button>
-                </mat-card-actions>
-              </mat-card>
+<div class="container-fluid" *ngIf="userInformation">
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <mat-card class="my-card">
+        <img
+          class="avatar-profile mt-10"
+          [src]="userInformationAvatar ? userInformationAvatar : '../assets/avatarBase.jpg'"
+        />
+        <div class="text-status mt-20">
+          <p>
+            {{
+              userInformation.isProvider ? "Đã sẵn sàng" : "Người dùng thường"
+            }}
+          </p>
         </div>
-        <div class="col-md-9">
-            <router-outlet></router-outlet>
+        <div>
+          <a
+            mat-button
+            target="_blank"
+            [href]="
+              userInformation.facebookLink
+                ? userInformation.facebookLink
+                : 'https://www.facebook.com/coaisat.tra/'
+            "
+          >
+            <img class="facebook-icon" src="/assets/facebookIcon.png" alt="" />
+          </a>
         </div>
+      </mat-card>
     </div>
+    <div class="col-md-7">
+      <mat-card>
+        <h1 style="font-size: 1.5rem; font-weight: 500">
+          {{ userInformation.fullName }}
+        </h1>
+        <div class="my-flex">
+          <div>
+            <h3>
+              Lượt views:
+              <span class="text-count">{{
+                userInformation.numberOfViews
+              }}</span>
+            </h3>
+          </div>
+          <div class="ml-20" *ngIf="userInformation.isProvider">
+            <h3>
+              Lượt thuê:
+              <span class="text-count">{{
+                userInformation.numberOfRentals
+              }}</span>
+            </h3>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="mt-20">
+          <h1 style="font-size: 1.5rem; font-weight: 500">Thông tin</h1>
+          <p>
+            {{ userInformation.description ? userInformation.description : "" }}
+          </p>
+          <div
+            style="display: inline-block"
+            *ngFor="let img of userInformation.image"
+          >
+            <img class="image-infor" [src]="img.url" alt="" />
+          </div>
+          <div class="mt-20">
+            <h2>Sở thích</h2>
+            <p>
+              <img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="" />
+              {{ userInformation.hobbies ? userInformation.hobbies : "" }}
+            </p>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="text-center mt-20">
+          <button *ngIf="checkUser" mat-raised-button color="primary" routerLink="/user/update/{{user.id}}">Cập nhật thông tin</button>
+          <button
+            mat-raised-button
+            color="accent"
+            *ngIf="!userInformation.isProvider"
+          >
+            Đăng ký cung cấp dịch vụ
+          </button>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-2 text-center">
+      <mat-card>
+        <div *ngIf="userInformation.isProvider">
+          <h1 class="princeByHour">{{ userInformation.priceByHour }} đồng/h</h1>
+          <button *ngIf="!checkUser" class="full-width" mat-raised-button color="accent">
+            Thuê
+          </button>
+        </div>
+        <div class="mt-20">
+          <button mat-button>
+            <img src="/assets/messageIcon.png" class="facebook-icon" alt="" />
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
 </div>
