@@ -33,8 +33,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 //http client
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './guards/auth.interceptor';
-import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 import { ErrorComponent } from './components/error/error.component';
+import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+
 
 
 @NgModule({
@@ -46,8 +47,8 @@ import { ErrorComponent } from './components/error/error.component';
     RegisterComponent,
     HomeComponent,
     AdminComponent,
-    UserProfileComponent,
     ErrorComponent,
+    UserDashboardComponent
 
   
   ],

@@ -4,14 +4,14 @@ import { LoginService } from 'src/app/services/login/login.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css'],
+  selector: 'app-user-dashboard',
+  templateUrl: './user-dashboard.component.html',
+  styleUrls: ['./user-dashboard.component.css']
 })
-export class UserProfileComponent implements OnInit {
+export class UserDashboardComponent implements OnInit {
+
   user: any;
   userInformation: any;
-  isLogin = false;
   constructor(
     private loginService: LoginService,
     private activatedRoute: ActivatedRoute,
@@ -20,10 +20,10 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLogin = this.loginService.isLoggedIn();
     this.user = this.loginService.getUser();
     let id = this.activatedRoute.snapshot.params.userId;
     this.getUserInformation(id);
+    
     
   }
 
@@ -34,24 +34,15 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserInformation(id).subscribe(
       (userInformation) => {
         this.userInformation = userInformation;
-        console.log(this.userInformation);
+        console.log(this.user);
         if(this.userInformation == null){
           this.router.navigate(["/error"])
         }
-        this.setView();
+      
       },
       (error) => {
         this.router.navigate(["/error"])
       }
     );
-  }
-
-  setView(){
-    if(!this.user){
-      this.userService.setView(this.userInformation.id).subscribe();
-    }
-    else if(this.user.id!=this.userInformation.user.id){
-      this.userService.setView(this.userInformation.id).subscribe();
-    }
   }
 }

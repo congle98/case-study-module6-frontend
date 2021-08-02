@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   user:any;
   isUser=false;
   isAdmin=false;
-  isProvider=false;
+  
  
 
   
@@ -40,7 +40,6 @@ export class NavbarComponent implements OnInit {
     this.loginService.logout();
     this.isUser=false;
     this.isAdmin=false;
-    this.isProvider=false;
     this.router.navigate(["/login"]);
    
 
@@ -54,9 +53,6 @@ export class NavbarComponent implements OnInit {
       }
       if(role[i].name =="ADMIN"){
         this.isAdmin = true;
-      }
-      if(role[i].name =="PROVIDER"){
-        this.isProvider = true;
       }
     }
   }

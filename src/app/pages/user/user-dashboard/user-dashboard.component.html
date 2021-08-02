@@ -1,0 +1,23 @@
+<div class="container-fluid" *ngIf="user">
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <mat-card>          
+                  <h1>xin chào {{userInformation.fullName}}</h1>
+                  <mat-divider></mat-divider>
+                <img class="avatar-profile mt-10" [src]="user.avatar?user.avatar.url:'../assets/avatarBase.jpg'" >
+                <mat-card-content>
+                  <p *ngIf="userInformation">
+                    {{userInformation.description}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-raised-button color="primary">Thông tin chi tiết</button>
+                  <button mat-raised-button color="primary">Xin cung cấp dịch vụ</button>
+                </mat-card-actions>
+              </mat-card>
+        </div>
+        <div class="col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
