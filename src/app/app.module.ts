@@ -29,10 +29,18 @@ import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 //http client
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './guards/auth.interceptor';
+import { ProviderListComponent } from './pages/provider/provider-list/provider-list.component';
+import { ProviderCreateComponent } from './pages/provider/provider-create/provider-create.component';
+import { ProviderEditComponent } from './pages/provider/provider-edit/provider-edit.component';
+import { ProviderEditStatusComponent } from './pages/provider/provider-edit-status/provider-edit-status.component';
+import { ProviderEditPriceComponent } from './pages/provider/provider-edit-price/provider-edit-price.component';
+
 import { ErrorComponent } from './components/error/error.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 
@@ -47,6 +55,12 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
     RegisterComponent,
     HomeComponent,
     AdminComponent,
+
+    ProviderListComponent,
+    ProviderCreateComponent,
+    ProviderEditComponent,
+    ProviderEditStatusComponent,
+    ProviderEditPriceComponent,
     ErrorComponent,
     UserDashboardComponent
 
@@ -57,7 +71,7 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    
+
     //material
     MatButtonModule,
     MatCardModule,
@@ -73,7 +87,9 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
     MatTableModule,
     MatToolbarModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSlideToggleModule,
+    ScrollingModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
