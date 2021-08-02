@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <p *ngIf="userInformation">{{ userInformation|json}}</p>
+      <mat-card class="text-center">
+        <div class="col-md-6 offset-md-3">
+          <form >
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Tên đầy đủ</mat-label>
+              <input
+                matInput
+                name="fullName"
+                [(ngModel)]="userInformation.fullName"
+                placeholder="Placeholder"
+              />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Ngày sinh </mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                name="dateOfBirth"
+                [(ngModel)]="userInformation.dateOfBirth"
+                placeholder="Placeholder"
+              />
+
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div class="full-width mb-20" style="border: 2px solid #fc5394;">
+               <label class="mr-20">Giới tính: </label>
+            <mat-radio-group value="{{userInformation.gender}}" name="gender"
+            [(ngModel)]="userInformation.gender">
+              <mat-radio-button value="{{true}}">Nam</mat-radio-button>
+              <mat-radio-button  value="{{false}}">Nữ</mat-radio-button>
+            </mat-radio-group>
+            </div>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>{{userInformation.city?userInformation.city.name:"Nhập địa chỉ"}}</mat-label>
+              <mat-select  required name="city"
+              [(ngModel)]="userInformation.city" >
+                <mat-option *ngFor="let ct of cities" [value]="ct">{{ct.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Chiều cao</mat-label>
+              <input
+                matInput
+                name="height"
+                [(ngModel)]="userInformation.height"
+                placeholder="Placeholder"
+              />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Cân nặng</mat-label>
+              <input
+                matInput
+                name="weight"
+                [(ngModel)]="userInformation.weight"
+                placeholder="Placeholder"
+              />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Sở thích</mat-label>
+              <textarea
+              rows="4"
+                cols="50"
+                matInput
+                name="hobbies"
+                [(ngModel)]="userInformation.hobbies"
+                placeholder="Placeholder"
+              ></textarea>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Mô tả về bản thân</mat-label>
+              <textarea
+              cols="50"
+              rows="4"
+                matInput
+                name="description"
+                [(ngModel)]="userInformation.description"
+                placeholder="Placeholder"
+              ></textarea>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Link Facebook</mat-label>
+              <input
+                matInput
+                name="facebookLink"
+                [(ngModel)]="userInformation.facebookLink"
+                placeholder="Placeholder"
+              />
+            </mat-form-field>
+           
+          </form>
+          <button mat-raised-button color="primary" (click)="updateInformation()" >Cập nhật thông tin</button>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
