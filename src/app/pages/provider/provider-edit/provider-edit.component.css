@@ -8,7 +8,7 @@
 .box div {
   margin: 5px;
   text-align: center;
-  background-color: yellowgreen;
+  background-color: olivedrab;
   line-break: auto;
   line-height: 50px;
 
@@ -31,11 +31,11 @@
 
 ::-webkit-scrollbar{
   width: 10px;
-  background-color: yellow;
+  background-color: olivedrab;
 
 }
 ::-webkit-scrollbar-thumb{
-  background-color: red;
+  background-color: olive;
   border-radius: 5px;
 }
 .scrolling{
@@ -53,14 +53,13 @@
 .row-300 div:nth-child(1) {
   width: 100%;
   height: 40px;
-  background-color: blue;
+  background-color: pink;
   font-size: 25px;
   color: black;
   padding: 15px 15px;
 }
 .image-chandung{
   width:25%;
-  height: 300px;
   margin: 5px 5px;
   display: flex;
 }
