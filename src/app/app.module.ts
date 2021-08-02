@@ -40,8 +40,10 @@ import { ProviderCreateComponent } from './pages/provider/provider-create/provid
 import { ProviderEditComponent } from './pages/provider/provider-edit/provider-edit.component';
 import { ProviderEditStatusComponent } from './pages/provider/provider-edit-status/provider-edit-status.component';
 import { ProviderEditPriceComponent } from './pages/provider/provider-edit-price/provider-edit-price.component';
-import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+
 import { ErrorComponent } from './components/error/error.component';
+import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+
 
 
 @NgModule({
@@ -59,8 +61,8 @@ import { ErrorComponent } from './components/error/error.component';
     ProviderEditComponent,
     ProviderEditStatusComponent,
     ProviderEditPriceComponent,
-    UserProfileComponent,
     ErrorComponent,
+    UserDashboardComponent
 
   
   ],
