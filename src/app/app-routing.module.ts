@@ -9,6 +9,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { ErrorComponent } from './components/error/error.component';
 import {ProviderEditComponent} from "./pages/provider/provider-edit/provider-edit.component";
+import {OderCreateComponent} from "./pages/order/oder-create/oder-create.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'error', component: ErrorComponent },
   { path: '', component: HomeComponent },
   { path: 'provider', component: ProviderEditComponent},
+  { path: 'order', component: OderCreateComponent},
 ];
 
 @NgModule({
