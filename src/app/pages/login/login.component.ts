@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         this.loginService.setTokenToStorage(token.jwt);
         this.loginService.getCurrentUser().subscribe((user:any)=>{
            this.loginService.setUser(user);
-           console.log(user);
+        
            if(user.roles[0].authority=="USER"){
              this.router.navigate(["/user"]);
              this.loginService.loginStatusSubject.next(true);

@@ -70,7 +70,7 @@ export class LoginService {
 
   getUserRole(){
     let user = this.getUser();
-    return user.authorities[0].authority;
+    return user.roles;
   }
 
   addUser(user: any){

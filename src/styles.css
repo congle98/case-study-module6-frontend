@@ -12,6 +12,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .my-navbar{
+  
     position: fixed;
     top: 0;
     margin: 0;
@@ -47,4 +48,40 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .mr-10{
     margin-right: 10px;
+}
+.my-avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #4d465a;
+}
+.my-toolbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: 
+    #ffffff;
+    height:75px;
+    line-height: 75px;
+    box-shadow: 0 3px 10px rgb(94 113 131 / 0.8);
+}
+.mr-50{
+    margin-right: 50px;
+}
+.my-toolbar-items{
+    display: flex;
+}
+
+.my-login-background{
+    background-color: #d8dadb;
+}
+
+.magin-navbar{
+    margin-top:120px;
+}
+
+.avatar-profile{
+    width: 200px;
+    height: 220px;
+    border-radius: 50%;
+    border: 1px solid #4d465a;
 }

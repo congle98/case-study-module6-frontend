@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <mat-card style="margin-top: 50px;">
+    <div class="col-md-6"><img src="/assets/loginBackground.png" style="width:100%" alt=""></div>
+    <div class="col-md-6">
+      <mat-card >
 
         <form [formGroup]="formRegister" class="form-register">
-          <h3>Form Đăng Ký </h3>
-          <mat-error class="alert alert-primary">{{status}}</mat-error>
+          <h3> Đăng Ký </h3>
+          <!-- <mat-error class="alert alert-primary">{{status}}</mat-error> -->
           <mat-form-field appearance="outline" class="full-width" >
             <mat-label>Username</mat-label>
             <input matInput placeholder="UserName" name="username" formControlName="username">
@@ -36,9 +37,8 @@
           </mat-form-field>
 
           <div class="example-button-container">
-            <button mat-flat-button color="primary"type="submit" (click)="createAccount()">
-              Add User
-              <mat-icon>add</mat-icon>
+            <button mat-flat-button color="accent"type="submit" (click)="createAccount()">
+              Đăng ký
             </button>
           </div>
 

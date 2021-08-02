@@ -1,12 +1,13 @@
+import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-import { UserComponent } from './pages/user/user.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   {
@@ -19,19 +20,14 @@ const routes: Routes = [
     component: LoginComponent,
   },
 
-  { path: 'user',
-   component: UserComponent,
-   canActivate:[UserGuard]
-  },
-  { 
+  { path: 'user/:userId', component: UserDashboardComponent, canActivate:[UserGuard] },
+  {
     path: 'admin',
     component: AdminComponent,
-    canActivate:[AdminGuard]
-  
+    canActivate: [AdminGuard],
   },
-  { path: '',
-   component: HomeComponent 
-  },
+  { path: 'error', component: ErrorComponent },
+  { path: '', component: HomeComponent },
 ];
 
 @NgModule({

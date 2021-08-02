@@ -1,7 +1,8 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-4">
-        <mat-card style="margin-top: 50px;">
+    <div class="row" >
+      <div class="col-md-6"><img src="/assets/loginBackground.png" style="width:100%" alt=""></div>
+      <div class="col-md-6">
+        <mat-card class="text-center" >
   
           <form [formGroup]="formLogin" (ngSubmit)="login()" class="form-register">
             <h3>Form Login </h3>
@@ -21,7 +22,7 @@
            
   
             <div class="example-button-container">
-              <button mat-flat-button color="primary"type="submit">
+              <button mat-flat-button color="accent"type="submit">
                 Đăng nhập
                 <mat-icon>login</mat-icon>
               </button>

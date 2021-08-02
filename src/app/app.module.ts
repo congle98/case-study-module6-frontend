@@ -11,7 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { UserComponent } from './pages/user/user.component';
+
 
 //material
 import {MatButtonModule} from '@angular/material/button';
@@ -41,6 +41,11 @@ import { ProviderEditComponent } from './pages/provider/provider-edit/provider-e
 import { ProviderEditStatusComponent } from './pages/provider/provider-edit-status/provider-edit-status.component';
 import { ProviderEditPriceComponent } from './pages/provider/provider-edit-price/provider-edit-price.component';
 
+import { ErrorComponent } from './components/error/error.component';
+import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,12 +55,16 @@ import { ProviderEditPriceComponent } from './pages/provider/provider-edit-price
     RegisterComponent,
     HomeComponent,
     AdminComponent,
-    UserComponent,
+
     ProviderListComponent,
     ProviderCreateComponent,
     ProviderEditComponent,
     ProviderEditStatusComponent,
-    ProviderEditPriceComponent
+    ProviderEditPriceComponent,
+    ErrorComponent,
+    UserDashboardComponent
+
+  
   ],
   imports: [
     BrowserModule,
