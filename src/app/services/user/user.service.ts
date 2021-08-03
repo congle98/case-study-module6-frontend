@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  id: any;
 
   constructor(private httpClient:HttpClient) { }
 
@@ -24,6 +23,25 @@ export class UserService {
   getUserInfoUpdate(userId:any){
     return this.httpClient.get(`${environment.baseUrl}/profile/userInfoUpdate/${userId}`);
   }
+
+  providerStatusOff(userInformationId:any){
+    return this.httpClient.put(`${environment.baseUrl}/profile/providerStatusOff`,userInformationId);
+  }
+
+  updateAvatar(updateAvatarRequest:any){
+    return this.httpClient.put(`${environment.baseUrl}/profile/updateAvatar`,updateAvatarRequest);
+  }
+
+  deleteImage(imgId:any){
+    return this.httpClient.delete(`${environment.baseUrl}/profile/deleteImage/${imgId}`);
+  }
+  addImage(addAvatarRequest:any){
+    return this.httpClient.post(`${environment.baseUrl}/profile/addImage`,addAvatarRequest);
+  }
+  registerProvider(registerProviderRequest:any){
+    return this.httpClient.post(`${environment.baseUrl}/profile/providerRegister`,registerProviderRequest);
+  }
+
   getUserAccount(userId:any){
     return this.httpClient.get(`${environment.baseUrl}/user/view/${userId}`);
   }

@@ -53,8 +53,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-right: 10px;
 }
 .my-avatar{
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     border: 1px solid #4d465a;
 }
@@ -110,4 +110,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-weight: 500;
     font-size: 2rem;
     color: #fc5394;
+}
+.card-backround{
+    background-color:#fcd2e3;
+}
+
+.button-in-img{
+    position: absolute !important;
+    color: #f55193;
+    padding: 0px 0px !important;
+    bottom:10px;
+    right:10px;
+    background-color:rgba(219, 219, 219, 0.3);;
+  
+}
+
+.my-dialog{
+    width: 700px;
+    min-width: 200px;
+    font-size: 1.1rem;
+    font-weight: 500;
+  
+}
+.facebook-icon{
+    width: 40px;
+    height: 40px;
+}
+.info-icon{
+    width: 15px;
+    height: 15px;
 }
