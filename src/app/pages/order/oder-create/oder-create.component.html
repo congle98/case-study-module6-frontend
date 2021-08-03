@@ -1,0 +1,64 @@
+<div class="container">
+
+  <div class=" row">
+
+    <div class="col-md-6 offset-3">
+      <mat-card>
+        <mat-card><h3 style="text-align: center">Form tạo order</h3></mat-card>
+        <mat-card>
+          <form [formGroup]="formOder">
+            <div formGroupName="user" name="user">
+              <input type="text" style="width:100%; height: 25px" name="id" formControlName="id" hidden>
+            </div>
+
+            <div formGroupName="provider" name="provider">
+              <input type="text" style="width:100%; height: 25px" name="id" formControlName="id" hidden>
+            </div>
+
+            <div>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Địa điểm cuộc hẹn</mat-label>
+                <input matInput placeholder="address" name="address" formControlName="address">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Thơi gian thue</mat-label>
+              <input matInput placeholder="address" name="hour" type="number" formControlName="hour">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Thơi gian bắt đầu</mat-label>
+              <input matInput placeholder="address" name="startTime" type="time" formControlName="startTime">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Ngày Hẹn</mat-label>
+              <input matInput placeholder="address" name="day" type="date" formControlName="day" >
+            </mat-form-field>
+
+<!--            <mat-form-field appearance="outline" class="full-width" >-->
+<!--              <mat-label>Trạng thái</mat-label>-->
+<!--              <input matInput placeholder="address" name="status" type="date" formControlName="status" >-->
+<!--            </mat-form-field>-->
+
+            <div class="example-button-container" style="text-align: center">
+              <button mat-flat-button color="accent" type="submit" (click)="createOrder()">
+                Create Order
+              </button>
+            </div>
+
+          </form>
+        </mat-card>
+
+
+      </mat-card>
+    </div>
+
+  </div>
+
+
+</div>

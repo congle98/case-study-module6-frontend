@@ -36,7 +36,7 @@
           </div>
 
           <div>
-            <mat-card><h4>Thông tin Cá nhân</h4></mat-card>
+            <mat-card style="background-color: aquamarine"><h4>Thông tin Cá nhân</h4></mat-card>
             <ul class="scrolling">
               <li>Họ Tên: {{userInformation.name}}</li>
               <li>Email: {{userInformation.year}}</li>
@@ -51,11 +51,11 @@
               <li>facebook: {{userInformation.facebook}} </li>
               <li>dayOfEvent: {{userInformation.date}} </li>
             </ul>
-            <mat-card><h4>Change</h4></mat-card>
+            <mat-card ><h4>Change</h4></mat-card>
           </div>
 
           <div *ngIf="!userAccount.iprovider" >
-            <mat-card><h4>Thông tin đăng ký dịch vụ</h4></mat-card>
+            <mat-card style="background-color: aquamarine"><h4>Thông tin đăng ký dịch vụ</h4></mat-card>
             <ul class="scrolling">
                 <i>Dich vụ cơ bản</i>
                 <li *ngFor="let item of userService1">{{item.name}}</li>
@@ -79,7 +79,7 @@
 
     <div class="image-chandung" >
       <img *ngFor="let item of userImage"src="{{item}}"
-           style="width:100%; height:auto"   alt="anh">
+           style="width:100%; height:auto ; margin: 5px 5px; border-radius: 5px "   alt="anh">
     </div>
 
     <div >
