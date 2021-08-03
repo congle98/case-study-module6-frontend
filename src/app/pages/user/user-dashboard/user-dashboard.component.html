@@ -25,7 +25,7 @@
           </p>
         </div>
         <div>
-          <p>NGÀY THAM GIA: {{userInformation.user.joinDate}}</p> 
+          <p>NGÀY THAM GIA: {{userInformation.user.joinDate}}</p>
         </div>
         <div>
           <a
@@ -100,9 +100,9 @@
         </div>
         <mat-divider></mat-divider>
         <div class=" text-center mt-20">
-          
+
             <button
-        
+
               *ngIf="checkUser"
               mat-raised-button
               color="primary"
@@ -120,8 +120,8 @@
             >
               Đăng ký cung cấp dịch vụ
             </button>
-  
-         
+
+
             <button
               mat-raised-button
               color="warn"
@@ -130,7 +130,7 @@
             >
               Nhưng cung cấp dịch vụ
             </button>
-         
+
         </div>
       </mat-card>
     </div>
@@ -148,12 +148,12 @@
           </button>
         </div>
         <div class="mt-20">
-          <button mat-button>
+          <button mat-button (click)="createOrder()">
             <img src="/assets/messageIcon.png" class="facebook-icon" alt="" />
           </button>
         </div>
 
-        
+
       </mat-card>
     </div>
   </div>

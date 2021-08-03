@@ -36,7 +36,7 @@ export class UserUpdateProfileComponent implements OnInit {
     fullName:"",
     dateOfBirth:"",
     gender:"",
-    city:{ 
+    city:{
       id:"",
       name:"",
     },
@@ -61,6 +61,7 @@ export class UserUpdateProfileComponent implements OnInit {
     console.log(id);
     this.getUserInformation(id);
     this.getAllCities();
+
   }
 
   getAllCities(){
@@ -73,8 +74,8 @@ export class UserUpdateProfileComponent implements OnInit {
     this.userService.getUserInfoUpdate(id).subscribe(
       (userInformation:any) => {
         this.userInformation = userInformation;
-        
-       
+
+
       },
       (error) => {}
     );
@@ -87,7 +88,7 @@ export class UserUpdateProfileComponent implements OnInit {
       fullName:this.userInformation.fullName,
       dateOfBirth:this.userInformation.dateOfBirth,
       gender:this.userInformation.gender,
-      city:{ 
+      city:{
         id:this.userInformation.city.id,
       },
       height:this.userInformation.height,

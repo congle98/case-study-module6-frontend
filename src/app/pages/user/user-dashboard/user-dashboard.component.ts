@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 import { UserService } from 'src/app/services/user/user.service';
 import {finalize} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UserRegisterProviderDialogComponent } from '../user-register-provider-dialog/user-register-provider-dialog.component';
+import {OderCreateComponent} from "../../order/oder-create/oder-create.component";
 
 @Component({
   selector: 'app-user-dashboard',
@@ -21,6 +22,7 @@ export class UserDashboardComponent implements OnInit {
   avatarFile:any;
   imageFile:any;
   imageUrl:any;
+  providerId: any;
 
   constructor(
     private loginService: LoginService,
@@ -35,6 +37,7 @@ export class UserDashboardComponent implements OnInit {
     this.getUser();
     let id = this.activatedRoute.snapshot.params.userId;
     this.getUserInformation(id);
+    console.log(this.userInformation);
   }
 
   openDialogRegisterProvider(){
@@ -52,6 +55,7 @@ export class UserDashboardComponent implements OnInit {
     this.userService.getUserInformation(id).subscribe(
       (userInformation) => {
         this.userInformation = userInformation;
+        console.log(this.userInformation);
         if (userInformation == null) {
           this.router.navigate(['/error']);
         } else {
@@ -115,8 +119,8 @@ export class UserDashboardComponent implements OnInit {
        reader.readAsDataURL(event.target.files[0]);
       reader.onload = (e: any) =>  this.userInformationAvatar = e.target.result;
       this.avatarFile = event.target.files[0];
-     
-     
+
+
     } else {
       this.userInformationAvatar = null;
     }
@@ -129,11 +133,11 @@ export class UserDashboardComponent implements OnInit {
       this.storage.upload(filePath, this.avatarFile).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
-           
+
             this.userInformationAvatar = url;
-            
+
             this.updateAvatarToDatabase();
-           
+
           });
         })).subscribe();
     }
@@ -148,7 +152,7 @@ export class UserDashboardComponent implements OnInit {
     };
     updateAvatarRequest.userInformationId = this.userInformation.id;
     updateAvatarRequest.url =this.userInformationAvatar;
-   
+
     this.userService.updateAvatar(updateAvatarRequest).subscribe((userInformation:any)=>{
       let user = this.loginService.getUser();
       user.avatar.url = this.userInformationAvatar;
@@ -161,7 +165,7 @@ export class UserDashboardComponent implements OnInit {
 
     });
   }
-  
+
 
   cancelAvatar(){
     this.avatarFile=undefined;
@@ -172,7 +176,7 @@ export class UserDashboardComponent implements OnInit {
 
   deleteImage(imgId:any){
     this.userService.deleteImage(imgId).subscribe((succes)=>{
-      this.userInformation.image = this.userInformation.image.filter((img: any) => 
+      this.userInformation.image = this.userInformation.image.filter((img: any) =>
       img.id != imgId
     );
     });
@@ -197,7 +201,7 @@ export class UserDashboardComponent implements OnInit {
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
             this.imageUrl = url;
-            this.updateImgToDatabase();    
+            this.updateImgToDatabase();
           });
         })).subscribe();
     }
@@ -223,4 +227,15 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
+  createOrder() {
+
+    this.activatedRoute.paramMap.subscribe((p:ParamMap)=>{
+      this.providerId=p.get("userId")
+      console.log(p)
+      console.log(this.providerId);
+    })
+    this.dialog.open(OderCreateComponent,{
+      data: this.providerId
+    });
+  }
 }

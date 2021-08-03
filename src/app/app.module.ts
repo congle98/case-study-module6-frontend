@@ -86,6 +86,7 @@ import { UserRegisterProviderDialogComponent } from './pages/user/user-register-
     ListComponent
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -117,13 +118,15 @@ import { UserRegisterProviderDialogComponent } from './pages/user/user-register-
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-    MatDialogModule
+    MatDialogModule,
+
   ],
   entryComponents:[UserRegisterProviderDialogComponent],
   providers: [
     authInterceptorProviders,
     MatDatepickerModule,
     MatNativeDateModule,
+
   ],
   bootstrap: [AppComponent],
 })

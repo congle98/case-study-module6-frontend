@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {OrderService} from "../../../services/order/order.service";
 import Swal from "sweetalert2";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {UserResponse} from "../../../interface/user-response";
 
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-oder-create',
@@ -19,7 +20,7 @@ export class OderCreateComponent implements OnInit {
 
     }),
     provider: new FormGroup({
-      id: new FormControl(1)
+      id: new FormControl()
     }),
     address: new FormControl(),
     hour: new FormControl(),
@@ -30,23 +31,30 @@ export class OderCreateComponent implements OnInit {
     })
 
   })
-  id?: any;
+  userId?: any;
+  providerId: any;
 
   constructor(private orderService: OrderService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
+              @Inject(MAT_DIALOG_DATA) public provider_Id: any
   ) {
   }
 
   ngOnInit(): void {
-    this.id = this.getUser();
-    this.getOrderByProvider();
+    this.userId = this.getUser();
+    this.formOder.controls["user"].controls["id"].setValue(this.userId);
+    this.providerId= this.provider_Id;
+    console.log(this.providerId)
+    this.formOder.controls["provider"].controls["id"].setValue(this.providerId);
+
 
   }
 
 
   createOrder() {
-    this.formOder.controls["user"].controls["id"].setValue(this.id);
+    // this.formOder.controls["user"].controls["id"].setValue(this.id);
+    // this.formOder.controls["provider"].controls["id"].setValue(this.id);
     console.log(this.formOder.value);
 
     this.orderService.saveOrder(this.formOder.value).subscribe((data) => {
@@ -70,7 +78,7 @@ export class OderCreateComponent implements OnInit {
   }
 
   getOrderByProvider() {
-    this.orderService.getOrderByProvider(this.id).subscribe(data => {
+    this.orderService.getOrderByProvider(this.userId).subscribe(data => {
       console.log(data);
     })
 
