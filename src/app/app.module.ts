@@ -47,7 +47,6 @@ import {OderCreateComponent} from "./pages/order/oder-create/oder-create.compone
 import { ListComponent } from './pages/order/list/list.component';
 
 
-import { UserProfileDetailComponent } from './pages/user/user-profile-detail/user-profile-detail.component';
 
 import { UserUpdateProfileComponent } from './pages/user/user-update-profile/user-update-profile.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -80,8 +79,8 @@ import { UserRegisterProviderDialogComponent } from './pages/user/user-register-
     UserUpdateProfileComponent,
     UserRegisterProviderDialogComponent,
 
-    UserProfileDetailComponent,
-    UserUpdateProfileComponent
+
+    UserUpdateProfileComponent,
     UserDashboardComponent,
     OderCreateComponent,
     ListComponent
