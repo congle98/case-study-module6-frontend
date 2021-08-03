@@ -4,6 +4,8 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { ConnectableObservable } from 'rxjs';
 import { LoginService } from 'src/app/services/login/login.service';
 import { OrderProviderService } from 'src/app/services/order-provider/order-provider.service';
@@ -24,10 +26,10 @@ export class OrderDialogComponent implements OnInit {
     totalPrice:0
   }
   constructor(@Inject(MAT_DIALOG_DATA) public userInformation: any,private loginService:LoginService,
-  private orderProviderService:OrderProviderService) { }
+  private orderProviderService:OrderProviderService, private router: Router,private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.orderRequest.userId = this.loginService.getUser().id;
+      this.orderRequest.userId = this.loginService.getUser().id;
   }
 
   createOrder(){
