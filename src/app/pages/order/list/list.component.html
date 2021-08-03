@@ -1,0 +1,42 @@
+<div class="container">
+  <div class=" row">
+    <div class="col-md-10">
+      <mat-card>
+        <div>
+          <mat-card>Lịch hẹn của bản với người dùng</mat-card>
+        </div>
+        <div>
+          <mat-card>
+            <table class="table-order" >
+              <tr>
+                <th>STT</th>
+                <th>Tên Người Thuê</th>
+                <th>Tên Đơn Thuê</th>
+                <th>Địa Chỉ</th>
+                <th>Thời Gian Thuê</th>
+                <th>Giờ Bắt Đầu</th>
+                <th>Ngày Đặt Lịch</th>
+                <th>Thành Tiền</th>
+                <th>Trạng Thái</th>
+              </tr>
+              <tr *ngFor="let item of orderList, index as i">
+                <td>{{i+1}}</td>
+                <td>{{item.user.fullName}}</td>
+                <td>{{item.provider.fullName}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.hour}}</td>
+                <td>{{item.startTime}}</td>
+                <td>{{item.day}}</td>
+                <td>{{item.provider.priceByHour *item.hour}}</td>
+                <td>{{item.status.name}}</td>
+
+              </tr>
+            </table>
+          </mat-card>
+        </div>
+
+      </mat-card>
+    </div>
+  </div>
+
+</div>

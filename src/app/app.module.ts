@@ -43,6 +43,10 @@ import { ProviderEditPriceComponent } from './pages/provider/provider-edit-price
 
 import { ErrorComponent } from './components/error/error.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+import {OderCreateComponent} from "./pages/order/oder-create/oder-create.component";
+import { ListComponent } from './pages/order/list/list.component';
+
+
 import { UserProfileDetailComponent } from './pages/user/user-profile-detail/user-profile-detail.component';
 import { UserUpdateProfileComponent } from './pages/user/user-update-profile/user-update-profile.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -71,15 +75,18 @@ import {MatSelectModule} from '@angular/material/select';
     UserDashboardComponent,
     UserProfileDetailComponent,
     UserUpdateProfileComponent
+    UserDashboardComponent,
+    OderCreateComponent,
+    ListComponent
 
-  
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    
+
     //material
     MatButtonModule,
     MatCardModule,
