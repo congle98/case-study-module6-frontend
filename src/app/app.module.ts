@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-
+import { FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
+
 
 
 //material
@@ -47,6 +47,12 @@ import {OderCreateComponent} from "./pages/order/oder-create/oder-create.compone
 import { ListComponent } from './pages/order/list/list.component';
 
 
+import { UserProfileDetailComponent } from './pages/user/user-profile-detail/user-profile-detail.component';
+import { UserUpdateProfileComponent } from './pages/user/user-update-profile/user-update-profile.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -66,6 +72,9 @@ import { ListComponent } from './pages/order/list/list.component';
     ProviderEditStatusComponent,
     ProviderEditPriceComponent,
     ErrorComponent,
+    UserDashboardComponent,
+    UserProfileDetailComponent,
+    UserUpdateProfileComponent
     UserDashboardComponent,
     OderCreateComponent,
     ListComponent
@@ -95,9 +104,17 @@ import { ListComponent } from './pages/order/list/list.component';
     HttpClientModule,
     MatSnackBarModule,
     MatSlideToggleModule,
-    ScrollingModule
+    ScrollingModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    FormsModule
+
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   bootstrap: [AppComponent],
 
 })
