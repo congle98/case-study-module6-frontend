@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
+  id: any;
 
   constructor(private httpClient:HttpClient) { }
 
@@ -23,4 +24,24 @@ export class UserService {
   getUserInfoUpdate(userId:any){
     return this.httpClient.get(`${environment.baseUrl}/profile/userInfoUpdate/${userId}`);
   }
+  getUserAccount(userId:any){
+    return this.httpClient.get(`${environment.baseUrl}/user/view/${userId}`);
+  }
+  getServiceProvider(userId:any){
+    return this.httpClient.get(`${environment.baseUrl}/profile/service/${userId}`);
+  }
+  getId() {
+    let userStr = localStorage.getItem("user");
+    if (userStr !== null) {
+      let user = JSON.parse(userStr)
+      console.log(user.id)
+      return user.id;
+
+    } else {
+      // this.logout();
+      return null;
+    }
+  }
+
+
 }

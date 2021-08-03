@@ -74,7 +74,7 @@ import {MatSelectModule} from '@angular/material/select';
     ErrorComponent,
     UserDashboardComponent,
     UserProfileDetailComponent,
-    UserUpdateProfileComponent
+    UserUpdateProfileComponent,
     UserDashboardComponent,
     OderCreateComponent,
     ListComponent
