@@ -1,7 +1,19 @@
- <div class="my-navbar full-width ">
+<ngx-ui-loader
+fgsColor="#fc5397"
+text="Chờ chút nhé ❤"
+pbColor="#fc5397"
+textColor="#fc5397"
+[pbThickness]="6"
+[minTime]="100"
+></ngx-ui-loader>
+
+<div ngxUiLoaderBlurred [blur]="10">
+     <div class="my-navbar full-width ">
      <app-navbar></app-navbar>
 </div>
 <div class="magin-navbar">
     <router-outlet></router-outlet>
 </div>
+</div>
+
 

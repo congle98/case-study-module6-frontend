@@ -7,6 +7,7 @@ import {finalize} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UserRegisterProviderDialogComponent } from '../user-register-provider-dialog/user-register-provider-dialog.component';
+import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -40,6 +41,12 @@ export class UserDashboardComponent implements OnInit {
   openDialogRegisterProvider(){
     this.dialog.open(UserRegisterProviderDialogComponent,{
       data:this.userInformation.id
+    });
+  }
+
+  openOrderDialog(){
+    this.dialog.open(OrderDialogComponent,{
+      data:this.userInformation
     });
   }
 

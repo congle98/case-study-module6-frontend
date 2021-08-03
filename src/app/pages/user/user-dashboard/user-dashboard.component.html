@@ -1,6 +1,6 @@
 <div class="container-fluid" *ngIf="userInformation">
   <div class="row">
-    <div class="col-md-3 text-center">
+    <div class="col-md-3 text-center mb-20">
       <mat-card class="my-card card-backround">
         <img
           class="avatar-profile mt-10"
@@ -143,6 +143,7 @@
             class="full-width"
             mat-raised-button
             color="accent"
+            (click)="openOrderDialog()"
           >
             Thuê
           </button>
