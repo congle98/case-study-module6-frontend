@@ -1,17 +1,31 @@
 <div class="container-fluid" *ngIf="userInformation">
   <div class="row">
     <div class="col-md-3 text-center">
-      <mat-card class="my-card">
+      <mat-card class="my-card card-backround">
         <img
           class="avatar-profile mt-10"
-          [src]="userInformationAvatar ? userInformationAvatar : '../assets/avatarBase.jpg'"
+          [src]="
+            userInformationAvatar
+              ? userInformationAvatar
+              : '../assets/avatarBase.jpg'
+          "
         />
+        <div *ngIf="checkUser" class="mt-10">
+          <button mat-raised-button color="primary" (click)="csvInput.click()">Thay đổi Avatar</button><input (change)="setAvatar($event)" #csvInput hidden type="file">
+        </div>
+        <div *ngIf="avatarFile" class="mt-10">
+          <button mat-raised-button (click)="updateAvatarToFireBase()"  color="accent" >Update Avatar</button>
+          <span class="mr-20"></span><button mat-raised-button (click)="cancelAvatar()"  color="warn" >Huỷ thay đổi</button>
+        </div>
         <div class="text-status mt-20">
           <p>
             {{
               userInformation.isProvider ? "Đã sẵn sàng" : "Người dùng thường"
             }}
           </p>
+        </div>
+        <div>
+          <p>NGÀY THAM GIA: {{userInformation.user.joinDate}}</p> 
         </div>
         <div>
           <a
@@ -31,7 +45,7 @@
     <div class="col-md-7">
       <mat-card>
         <h1 style="font-size: 1.5rem; font-weight: 500">
-          {{ userInformation.fullName }}
+          <img src="/assets/nameIcon.png" class="facebook-icon" alt=""> {{ userInformation.fullName }}
         </h1>
         <div class="my-flex">
           <div>
@@ -53,34 +67,70 @@
         </div>
         <mat-divider></mat-divider>
         <div class="mt-20">
-          <h1 style="font-size: 1.5rem; font-weight: 500">Thông tin</h1>
+          <h1 style="font-size: 1.5rem; font-weight: 500"><img src="/assets/info2Icon.png" class="facebook-icon" alt="">Thông tin</h1>
           <p>
             {{ userInformation.description ? userInformation.description : "" }}
           </p>
           <div
-            style="display: inline-block"
+            style="display: inline-block; position: relative;"
             *ngFor="let img of userInformation.image"
           >
+            <button *ngIf="checkUser" mat-button class="button-in-img" (click)="deleteImage(img.id)">Xoá</button>
             <img class="image-infor" [src]="img.url" alt="" />
           </div>
+          <div *ngIf="checkUser" class="mt-10">
+            <button mat-stroked-button color="primary" (click)="imgInput.click()">Thêm ảnh</button><input (change)="setImg($event)" #imgInput hidden type="file">
+          </div>
+          <div *ngIf="imageFile" class="mt-10">
+            <button mat-stroked-button (click)="updateImgToFireBase()"  color="accent" >Update ảnh</button>
+            <span class="mr-20"></span><button mat-stroked-button (click)="cancelImg()"  color="warn" >Huỷ thay đổi</button>
+          </div>
           <div class="mt-20">
-            <h2>Sở thích</h2>
+            <h2><img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="">Sở thích</h2>
             <p>
-              <img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="" />
               {{ userInformation.hobbies ? userInformation.hobbies : "" }}
             </p>
           </div>
+          <div *ngIf="userInformation.isProvider" class="mt-20">
+            <h2>Dịch vụ đi kèm</h2>
+            <div *ngFor="let service of userInformation.services">
+                <p style="color:#ff4596"><img src="/assets/serviceIcon.png" class="facebook-icon" alt="">: {{service.name}}</p>
+            </div>
+          </div>
         </div>
         <mat-divider></mat-divider>
-        <div class="text-center mt-20">
-          <button *ngIf="checkUser" mat-raised-button color="primary" routerLink="/user/update/{{user.id}}">Cập nhật thông tin</button>
-          <button
-            mat-raised-button
-            color="accent"
-            *ngIf="!userInformation.isProvider"
-          >
-            Đăng ký cung cấp dịch vụ
-          </button>
+        <div class=" text-center mt-20">
+          
+            <button
+        
+              *ngIf="checkUser"
+              mat-raised-button
+              color="primary"
+              routerLink="/user/update/{{ user.id }}"
+            >
+              Cập nhật thông tin
+            </button>
+            <span class="ml-20"></span>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="openDialogRegisterProvider()"
+
+              *ngIf="!userInformation.isProvider&&checkUser"
+            >
+              Đăng ký cung cấp dịch vụ
+            </button>
+  
+         
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="providerStatusOff(userInformation.id)"
+              *ngIf="userInformation.isProvider&&checkUser"
+            >
+              Nhưng cung cấp dịch vụ
+            </button>
+         
         </div>
       </mat-card>
     </div>
@@ -88,7 +138,12 @@
       <mat-card>
         <div *ngIf="userInformation.isProvider">
           <h1 class="princeByHour">{{ userInformation.priceByHour }} đồng/h</h1>
-          <button *ngIf="!checkUser" class="full-width" mat-raised-button color="accent">
+          <button
+            *ngIf="!checkUser"
+            class="full-width"
+            mat-raised-button
+            color="accent"
+          >
             Thuê
           </button>
         </div>
@@ -97,6 +152,8 @@
             <img src="/assets/messageIcon.png" class="facebook-icon" alt="" />
           </button>
         </div>
+
+        
       </mat-card>
     </div>
   </div>
