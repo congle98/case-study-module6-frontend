@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {OrderService} from "../../../services/order/order.service";
 import Swal from "sweetalert2";
@@ -19,7 +19,7 @@ export class OderCreateComponent implements OnInit {
 
     }),
     provider: new FormGroup({
-      id: new FormControl()
+      id: new FormControl(1)
     }),
     address: new FormControl(),
     hour: new FormControl(),
@@ -35,48 +35,44 @@ export class OderCreateComponent implements OnInit {
   constructor(private orderService: OrderService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-  )
-
-
-  { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.id= this.getUser();
+    this.id = this.getUser();
     this.getOrderByProvider();
 
   }
 
 
   createOrder() {
-        console.log(this.formOder.value);
-        this.orderService.saveOrder(this.formOder.value).subscribe((data)=>{
-          Swal.fire("Thành Công","Bạn đã tạo một Order","success");
-        }, error => {
-          Swal.fire("Thất Bại","Order chưa được tạo","error");
-        })
+    this.formOder.controls["user"].controls["id"].setValue(this.id);
+    console.log(this.formOder.value);
+
+    this.orderService.saveOrder(this.formOder.value).subscribe((data) => {
+      Swal.fire("Thành Công", "Bạn đã tạo một Order", "success");
+    })
 
 
   }
 
-  getUser(){
+  getUser() {
     let userStr = localStorage.getItem("user");
-    if(userStr!==null){
-      let user =JSON.parse(userStr)
+    if (userStr !== null) {
+      let user = JSON.parse(userStr)
       console.log(user.id)
       return user.id;
 
-    }
-    else{
+    } else {
       // this.logout();
       return null;
     }
   }
 
-  getOrderByProvider(){
-
-      this.orderService.getOrderByProvider(this.id).subscribe(data=>{
-        console.log(data);
-      })
+  getOrderByProvider() {
+    this.orderService.getOrderByProvider(this.id).subscribe(data => {
+      console.log(data);
+    })
 
   }
 

@@ -44,6 +44,7 @@ import { ProviderEditPriceComponent } from './pages/provider/provider-edit-price
 import { ErrorComponent } from './components/error/error.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import {OderCreateComponent} from "./pages/order/oder-create/oder-create.component";
+import { ListComponent } from './pages/order/list/list.component';
 
 
 
@@ -66,7 +67,8 @@ import {OderCreateComponent} from "./pages/order/oder-create/oder-create.compone
     ProviderEditPriceComponent,
     ErrorComponent,
     UserDashboardComponent,
-    OderCreateComponent
+    OderCreateComponent,
+    ListComponent
 
 
   ],

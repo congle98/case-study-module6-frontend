@@ -19,4 +19,16 @@ export class OrderService {
   getOrderByProvider(id: any): Observable<any>{
     return this.http.get<any>(this.url+ "/list/"+id);
   }
+  getUser() {
+    let userStr = localStorage.getItem("user");
+    if (userStr !== null) {
+      let user = JSON.parse(userStr)
+      console.log(user.id)
+      return user.id;
+
+    } else {
+      // this.logout();
+      return null;
+    }
+  }
 }
