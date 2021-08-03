@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UserRegisterProviderDialogComponent } from '../user-register-provider-dialog/user-register-provider-dialog.component';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -29,7 +30,8 @@ export class UserDashboardComponent implements OnInit {
     private userService: UserService,
     private storage:AngularFireStorage,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -45,9 +47,18 @@ export class UserDashboardComponent implements OnInit {
   }
 
   openOrderDialog(){
-    this.dialog.open(OrderDialogComponent,{
+    if(this.loginService.getUser()){
+       this.dialog.open(OrderDialogComponent,{
       data:this.userInformation
     });
+    }
+    else{
+      this.router.navigate(["/login"]);
+      this.snackBar.open( "vui đăng nhập trước khi sử dụng vụ","x",{
+       duration:2000
+      })
+    }
+
   }
 
   getUser() {
