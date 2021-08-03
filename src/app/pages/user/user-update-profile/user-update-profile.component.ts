@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
-import { FormGroup, FormControl } from '@angular/forms';
 import { CityService } from 'src/app/services/city/city.service';
 import Swal from 'sweetalert2';
 

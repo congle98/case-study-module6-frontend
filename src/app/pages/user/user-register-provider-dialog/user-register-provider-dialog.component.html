@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <h2 style="font-weight: 500; color: #fc4ea5">Yêu cầu cập đầy đủ thông tin trước khi đăng ký</h2>
+      <div style="text-align: left; line-height: 20px">
+        <p><img class="info-icon" src="/assets/inforIcon.png" alt="">: Chiều cao</p>
+        <p><img  class="info-icon" src="/assets/inforIcon.png" alt="">: Cân nặng</p>
+        <p><img  class="info-icon" src="/assets/inforIcon.png" alt="">: Giới tính</p>
+        <p><img class="info-icon" src="/assets/inforIcon.png" alt="">: Ảnh avatar</p>
+        <p><img  class="info-icon" src="/assets/inforIcon.png" alt="">: 3 ảnh bất kỳ</p>
+      </div>
+      <mat-divider></mat-divider>
+      <form class="mt-20">
+        <div class="my-flex">
+          <div class="border-dialog">
+            <div>
+              <h2 style="font-weight: 500; color: #fc4ea5">
+                Giá : {{ userInformation.priceByHour }} đồng/h
+              </h2>
+            </div>
+
+            <mat-divider></mat-divider>
+            <input
+              type="range"
+              min="100000"
+              #pinceValue
+              max="500000"
+              name="priceByHour"
+              [(ngModel)]="userInformation.priceByHour"
+            />
+          </div>
+          <div class="border-dialog">
+            <div>
+              <h2 style="font-weight: 500; color: #fc4ea5">Dịch vụ cung cấp</h2>
+            </div>
+            <mat-divider></mat-divider>
+            <div
+              style="text-align: left; line-height: 20px"
+              *ngFor="let service of services; let i = index"
+            >
+              <div class="ml-10">
+                <input
+                  type="checkbox"
+                  (change)="selectServices($event, service.id)"
+                  name="{{ service.id }}"
+                  [value]="service.id"
+                />
+                <span class="ml-10" style="font-size: 1rem; font-weight: 500"
+                  >{{ service.name }} ({{ service.categoryService.name }})</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-20">
+          <button mat-raised-button color="accent" (click)="registerProvider()">Gửi yêu cầu </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,8 @@ import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { ErrorComponent } from './components/error/error.component';
 import { UserUpdateProfileComponent } from './pages/user/user-update-profile/user-update-profile.component';
-import { UserProfileDetailComponent } from './pages/user/user-profile-detail/user-profile-detail.component';
+
+
 
 const routes: Routes = [
   {
@@ -22,19 +23,13 @@ const routes: Routes = [
     component: LoginComponent,
   },
 
-  { path: 'user/:userId', component: UserDashboardComponent, 
-  // canActivate:[UserGuard],
-    children:[
-      {
-        path:"profile",
-        component: UserProfileDetailComponent
-      }]
-    
+  { path: 'user/:userId', component: UserDashboardComponent,     
   },
   { 
     path:"user/update/:userId",component: UserUpdateProfileComponent,
     canActivate:[UserGuard],
   },
+ 
   {
     path: 'admin',
     component: AdminComponent,
