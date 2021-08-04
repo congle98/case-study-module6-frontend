@@ -20,14 +20,15 @@
             </div>
 
             <mat-divider></mat-divider>
-            <input
-              type="range"
-              min="100000"
-              #pinceValue
-              max="500000"
+            <mat-form-field appearance="legacy">
+              <mat-label>Giá theo giờ</mat-label>
+               <input
+            matInput
               name="priceByHour"
               [(ngModel)]="userInformation.priceByHour"
             />
+            </mat-form-field>
+           
           </div>
           <div class="border-dialog">
             <div>

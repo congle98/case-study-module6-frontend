@@ -4,7 +4,7 @@
       <div class="col-md-6">
         <mat-card class="text-center" >
   
-          <form [formGroup]="formLogin" (ngSubmit)="login()" class="form-register">
+          <form [formGroup]="formLogin" class="form-register">
             <h3>Form Login </h3>
             <mat-form-field appearance="outline" class="full-width" >
               <mat-label>Username</mat-label>
@@ -15,14 +15,15 @@
             <br>
             <mat-form-field appearance="outline"  class="full-width">
               <mat-label>Fill form field</mat-label>
-              <input matInput placeholder="Password" name="password" formControlName="password">
-              <mat-icon matSuffix>vpn_key</mat-icon>
-              <mat-hint>Hint</mat-hint>
+              <input matInput matInput [type]="hide ? 'password' : 'text'" placeholder="Password" name="password" formControlName="password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
             </mat-form-field>
            
   
-            <div class="example-button-container">
-              <button mat-flat-button color="accent"type="submit">
+            <div class="example-button-container"> 
+              <button mat-flat-button color="accent"type="submit" (click)="login()">
                 Đăng nhập
                 <mat-icon>login</mat-icon>
               </button>

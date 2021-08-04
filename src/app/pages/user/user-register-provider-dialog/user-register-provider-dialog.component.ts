@@ -4,6 +4,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ServicesProviderService } from 'src/app/services/services-provider/services-provider.service';
 import { UserService } from 'src/app/services/user/user.service';
 import Swal from 'sweetalert2';
@@ -25,7 +26,8 @@ export class UserRegisterProviderDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public userId: any,
     private userService: UserService,
-    private servicesProviderService: ServicesProviderService
+    private servicesProviderService: ServicesProviderService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +55,7 @@ export class UserRegisterProviderDialogComponent implements OnInit {
     this.userInformation.services = this.pickService;
     this.userService.registerProvider(this.userInformation).subscribe((success)=>{
       Swal.fire("Thành công","Yêu cầu đã được gửi đi, vui lòng chờ phê duyệt","info")
+     
     })
   }
 }

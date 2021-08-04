@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 import { UserService } from 'src/app/services/user/user.service';
-import {finalize} from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { UserRegisterProviderDialogComponent } from '../user-register-provider-dialog/user-register-provider-dialog.component';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {OderCreateComponent} from "../../order/oder-create/oder-create.component";
+import { OderCreateComponent } from '../../order/oder-create/oder-create.component';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -21,16 +25,16 @@ export class UserDashboardComponent implements OnInit {
   userInformation: any;
   userInformationAvatar: any;
   checkUser = false;
-  avatarFile:any;
-  imageFile:any;
-  imageUrl:any;
+  avatarFile: any;
+  imageFile: any;
+  imageUrl: any;
   providerId: any;
 
   constructor(
     private loginService: LoginService,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private storage:AngularFireStorage,
+    private storage: AngularFireStorage,
     private router: Router,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
@@ -39,28 +43,27 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
     let id = this.activatedRoute.snapshot.params.userId;
+    console.log('id trên đường link' + id);
     this.getUserInformation(id);
   }
 
-  openDialogRegisterProvider(){
-    this.dialog.open(UserRegisterProviderDialogComponent,{
-      data:this.userInformation.id
+  openDialogRegisterProvider() {
+    this.dialog.open(UserRegisterProviderDialogComponent, {
+      data: this.userInformation.id,
     });
   }
 
-  openOrderDialog(){
-    if(this.loginService.getUser()){
-       this.dialog.open(OrderDialogComponent,{
-      data:this.userInformation
-    });
+  openOrderDialog() {
+    if (this.loginService.getUser()) {
+      this.dialog.open(OrderDialogComponent, {
+        data: this.userInformation,
+      });
+    } else {
+      this.router.navigate(['/login']);
+      this.snackBar.open('vui đăng nhập trước khi sử dụng vụ', 'x', {
+        duration: 2000,
+      });
     }
-    else{
-      this.router.navigate(["/login"]);
-      this.snackBar.open( "vui đăng nhập trước khi sử dụng vụ","x",{
-       duration:2000
-      })
-    }
-
   }
 
   getUser() {
@@ -70,16 +73,17 @@ export class UserDashboardComponent implements OnInit {
   }
   getUserInformation(id: any) {
     this.userService.getUserInformation(id).subscribe(
-      (userInformation:any) => {
+      (userInformation: any) => {
         this.userInformation = userInformation;
-        if (userInformation == null) {
-          this.router.navigate(['/error']);
-        } else {
-          console.log(userInformation);
+        console.log('id của userinformation' + this.userInformation.id);
 
-          this.checkUserInit();
-          this.getUserInformationAvatar(userInformation);
-        }
+        // if (userInformation == null) {
+        //   this.router.navigate(['/error']);
+        // } else {
+
+        this.checkUserInit();
+        this.getUserInformationAvatar(userInformation);
+        // }
       },
       (error) => {
         this.router.navigate(['/error']);
@@ -130,131 +134,146 @@ export class UserDashboardComponent implements OnInit {
   }
 
   ///thay đổi avatar
-  setAvatar(event:any){
+  setAvatar(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-       reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (e: any) =>  this.userInformationAvatar = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (e: any) =>
+        (this.userInformationAvatar = e.target.result);
       this.avatarFile = event.target.files[0];
-
-
     } else {
       this.userInformationAvatar = null;
     }
   }
 
-  updateAvatarToFireBase(){
+  updateAvatarToFireBase() {
     if (this.avatarFile != null) {
-      const filePath = `${this.avatarFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const filePath = `${this.avatarFile.name
+        .split('.')
+        .slice(0, -1)
+        .join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.avatarFile).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe(url => {
+      this.storage
+        .upload(filePath, this.avatarFile)
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              this.userInformationAvatar = url;
 
-            this.userInformationAvatar = url;
-
-            this.updateAvatarToDatabase();
-
-          });
-        })).subscribe();
+              this.updateAvatarToDatabase();
+            });
+          })
+        )
+        .subscribe();
     }
   }
 
-
-
-  updateAvatarToDatabase(){
-    let updateAvatarRequest={
-      userInformationId:"",
-      url:""
+  updateAvatarToDatabase() {
+    let updateAvatarRequest = {
+      userInformationId: '',
+      url: '',
     };
     updateAvatarRequest.userInformationId = this.userInformation.id;
-    updateAvatarRequest.url =this.userInformationAvatar;
+    updateAvatarRequest.url = this.userInformationAvatar;
 
-    this.userService.updateAvatar(updateAvatarRequest).subscribe((userInformation:any)=>{
-      let user = this.loginService.getUser();
+    this.userService.updateAvatar(updateAvatarRequest).subscribe(
+      (userInformation: any) => {
+        let user = this.loginService.getUser();
 
-      user.avatar.url = this.userInformationAvatar;
+        user.avatar.url = this.userInformationAvatar;
 
-      this.userInformation = userInformation;
-      this.loginService.setUser(user);
-      this.avatarFile=undefined;
-      Swal.fire('Thành công', 'Update thành công!', 'success');
-      this.loginService.loginStatusSubject.next(true);
-    },(error)=>{
-
-    });
+        this.userInformation = userInformation;
+        this.loginService.setUser(user);
+        this.avatarFile = undefined;
+        Swal.fire('Thành công', 'Update thành công!', 'success');
+        this.loginService.loginStatusSubject.next(true);
+      },
+      (error) => {}
+    );
   }
 
-
-  cancelAvatar(){
-    this.avatarFile=undefined;
+  cancelAvatar() {
+    this.avatarFile = undefined;
     this.getUserInformationAvatar(this.userInformation);
   }
 
   // xoá ảnh
 
-  deleteImage(imgId:any){
-    this.userService.deleteImage(imgId).subscribe((succes)=>{
-      this.userInformation.image = this.userInformation.image.filter((img: any) =>
-      img.id != imgId
-    );
+  deleteImage(imgId: any) {
+    this.userService.deleteImage(imgId).subscribe((succes) => {
+      this.userInformation.image = this.userInformation.image.filter(
+        (img: any) => img.id != imgId
+      );
     });
-
   }
 
   // thêm ảnh mới
 
-
-  setImg(event:any){
+  setImg(event: any) {
     if (event.target.files && event.target.files[0]) {
       this.imageFile = event.target.files[0];
     }
   }
 
-
-  updateImgToFireBase(){
+  updateImgToFireBase() {
     if (this.imageFile != null) {
-      const filePath = `${this.imageFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const filePath = `${this.imageFile.name
+        .split('.')
+        .slice(0, -1)
+        .join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.imageFile).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe(url => {
-            this.imageUrl = url;
-            this.updateImgToDatabase();
-          });
-        })).subscribe();
+      this.storage
+        .upload(filePath, this.imageFile)
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              this.imageUrl = url;
+              this.updateImgToDatabase();
+            });
+          })
+        )
+        .subscribe();
     }
   }
 
-
-  updateImgToDatabase(){
-    let addImageRequest={
-      userInformationId:"",
-      url:""
+  updateImgToDatabase() {
+    let addImageRequest = {
+      userInformationId: '',
+      url: '',
     };
-    addImageRequest.url =this.imageUrl;
+    addImageRequest.url = this.imageUrl;
     addImageRequest.userInformationId = this.userInformation.id;
-    this.userService.addImage(addImageRequest).subscribe((userInformation:any)=>{
-      this.userInformation = userInformation;
-      this.imageFile=undefined;
-    },(error)=>{
-
-    });
+    this.userService.addImage(addImageRequest).subscribe(
+      (userInformation: any) => {
+        this.userInformation = userInformation;
+        this.imageFile = undefined;
+      },
+      (error) => {}
+    );
   }
-  cancelImg(){
-    this.imageFile=undefined;
+  cancelImg() {
+    this.imageFile = undefined;
   }
-
 
   createOrder() {
-
-    this.activatedRoute.paramMap.subscribe((p:ParamMap)=>{
-      this.providerId=p.get("userId")
-      console.log(p)
-      console.log(this.providerId);
-    })
-    this.dialog.open(OderCreateComponent,{
-      data: this.providerId
-    });
+    if (this.user == null) {
+      this.router.navigate(['/login']);
+      Swal.fire(
+        'Chưa đăng nhập',
+        'Vui lòng đăng nhập trước khi thuê',
+        'warning'
+      );
+    } else {
+      this.activatedRoute.paramMap.subscribe((p: ParamMap) => {
+        this.providerId = p.get('userId');
+        console.log(p);
+        console.log(this.providerId);
+      });
+      this.dialog.open(OderCreateComponent, {
+        data: this.providerId,
+      });
+    }
   }
 }

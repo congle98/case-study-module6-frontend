@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit {
   // }
 
   userInformationPage(userInforId: any) {
-    this.router.navigate(['/user/' + userInforId]);
+    console.log(userInforId);
+    this.router.navigate(['/user/'+userInforId]);
   }
 
   getAllUserPageAll() {
