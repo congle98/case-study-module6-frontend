@@ -36,9 +36,9 @@
                 <td>
                   <button *ngIf="item.status.name=='WAITING'" class="button-color" (click)="accept(item.id, item.status.name)">Đồng ý</button>
                   <button *ngIf="item.status.name=='WAITING'" class="button-color" (click)="decline(item.id, item.status.name)">Từ chối</button>
-                  <button *ngIf="item.status.name=='RECEIVED'" class="button-color" (click)="decline(item.id, item.status.name)">Hoàn thành</button>
-                  <button *ngIf="item.status.name=='COMPLETE'" class="button-color">Nhận tiền</button>
-                  <button *ngIf="item.status.name=='COMPLETE'" class="button-color">Báo cáo</button>
+                  <button *ngIf="item.status.name=='RECEIVED'" class="button-color" (click)="accept(item.id, item.status.name)">Hoàn thành</button>
+                  <button *ngIf="item.status.name=='COMPLETE'" class="button-color" (click)="accept(item.id, item.status.name)">Nhận tiền</button>
+                  <button *ngIf="item.status.name=='COMPLETE'" class="button-color" (click)="accept(item.id, item.status.name)">Báo cáo</button>
 
                 </td>
 
