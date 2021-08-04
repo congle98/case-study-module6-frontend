@@ -11,8 +11,8 @@ export class ProviderHomeService {
 
   }
 
- getAllProviderHome(){
-    return this.httpClient.get(`${environment.baseUrl}/home/findAll`);
+ getAllProviderHome(page?:number){
+    return this.httpClient.get(`${environment.baseUrl}/home/findAll?page=`+page);
   }
 
   getAllProviderByViews(){

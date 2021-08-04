@@ -1,33 +1,60 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProviderHomeService } from 'src/app/services/provider-home/provider-home.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  allProvider:any;
-  allProviderByViews:any;
-  constructor(private providerHomeService: ProviderHomeService) { }
+  allProvider: any;
+  allProviderByViews: any;
+  pageAll = 0;
+  totalPagesAll = 0;
+  constructor(
+    private providerHomeService: ProviderHomeService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.getAllProvider();
-    // this.getAllProviderByVews();
+    this.getAllUserPageAll();
   }
 
-  getAllProvider(){
-    this.providerHomeService.getAllProviderHome().subscribe((providers:any)=>{
-      this.allProvider = providers.content;
-      console.log(this.allProvider);
-    })
+  // getAllProviderByVews() {
+  //   this.providerHomeService.getAllProviderByViews().subscribe((providers) => {
+  //     this.allProviderByViews = providers;
+  //   });
+  // }
+
+  userInformationPage(userInforId: any) {
+    this.router.navigate(['/user/' + userInforId]);
   }
 
-  getAllProviderByVews(){
-    this.providerHomeService.getAllProviderByViews().subscribe((providers)=>{
-      this.allProviderByViews = providers;
-      console.log(this.allProviderByViews);
-    })
+  getAllUserPageAll() {
+    //có paging thì phải .content
+    this.providerHomeService
+      .getAllProviderHome(this.pageAll)
+      .subscribe((data: any) => {
+        this.totalPagesAll = data.totalPages;
+        this.allProvider = data.content;
+      });
   }
 
+  nextPageAll(event: any) {
+    if (this.pageAll < this.totalPagesAll - 1) {
+      this.pageAll += 1;
+      this.getAllUserPageAll();
+    }
+
+    event.preventDefault();
+  }
+
+  backPageAll(event: any) {
+    if (this.pageAll > 0) {
+      this.pageAll -= 1;
+      this.getAllUserPageAll();
+    }
+    event.preventDefault();
+  }
 }

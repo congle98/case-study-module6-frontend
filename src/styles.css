@@ -146,3 +146,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 15px;
     height: 15px;
 }
+
+.infor-icon{
+    width: 25px;
+    height: 25px;
+}
+.my-card-home{
+    box-shadow:  0 3px 5px rgb(138 135 136 / 1) !important;
+    cursor: pointer;
+}
