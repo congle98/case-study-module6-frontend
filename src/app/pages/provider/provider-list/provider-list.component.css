@@ -1,0 +1,14 @@
+.column {
+  float: inside;
+  width: 33.3%;
+  padding: 10px 10px;
+}
+div.card {
+  padding: 10px;
+}
+.img {
+  border-bottom-right-radius: 8% 8%;
+  border-bottom-left-radius: 8% 8%;
+  border-top-left-radius: 8% 8%;
+  border-top-right-radius: 8% 8%;
+}

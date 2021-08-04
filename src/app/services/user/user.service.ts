@@ -41,5 +41,17 @@ export class UserService {
   registerProvider(registerProviderRequest:any){
     return this.httpClient.post(`${environment.baseUrl}/profile/providerRegister`,registerProviderRequest);
   }
-  
+  getAllProvidersByViews(request: any){
+    const params = request;
+    return this.httpClient.get(`${environment.baseUrl}/providersbyviews`, {params})
+  }
+  countProviders(){
+    return this.httpClient.get(`${environment.baseUrl}/count`)
+  }
+  getAllProvidersByPrice(request: any){
+    const params = request;
+    return this.httpClient.get(`${environment.baseUrl}/providersbyprice`, {params})
+  }
+
+
 }

@@ -59,6 +59,7 @@ import { environment } from 'src/environments/environment';
 import { UserRegisterProviderDialogComponent } from './pages/user/user-register-provider-dialog/user-register-provider-dialog.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
 import { OrderDialogComponent } from './pages/user/order-dialog/order-dialog.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { OrderDialogComponent } from './pages/user/order-dialog/order-dialog.com
     MatNativeDateModule,
     MatSelectModule,
     FormsModule,
+    MatPaginatorModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     MatDialogModule,

@@ -13,6 +13,7 @@ import { UserUpdateProfileComponent } from './pages/user/user-update-profile/use
 import {ProviderEditComponent} from "./pages/provider/provider-edit/provider-edit.component";
 import {OderCreateComponent} from "./pages/order/oder-create/oder-create.component";
 import {ListComponent} from "./pages/order/list/list.component";
+import {ProviderListComponent} from "./pages/provider/provider-list/provider-list.component";
 
 
 const routes: Routes = [
@@ -26,14 +27,17 @@ const routes: Routes = [
     component: LoginComponent,
   },
 
-  { path: 'user/:userId', component: UserDashboardComponent,     
+  { path: 'user/:userId', component: UserDashboardComponent,
+
+  },
+  { path: 'home', component: ProviderListComponent,
 
   },
   {
     path:"user/update/:userId",component: UserUpdateProfileComponent,
     canActivate:[UserGuard],
   },
- 
+
   {
     path: 'admin',
     component: AdminComponent,
