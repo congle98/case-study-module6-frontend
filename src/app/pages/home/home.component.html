@@ -1,20 +1,65 @@
 <div class="container">
   <div class="row">
-    <h1>Tất cả</h1>
-    <div class="col-md-2 mt-20" *ngFor="let provider of allProvider">
-      <mat-card class="my-card">
-        <img mat-card-image [src]="provider.avatar" />
+    <div style="display: flex; justify-content:space-between;">
+        <div>
+      <h1 style="color: #fc4786; font-weight: 500; font-size: 2rem">Tất cả</h1>
+    </div>
+    <div>
+            <a
+            mat-stroked-button color="accent"
+              (click)="backPageAll($event)"
+              aria-label="Previous"
+              *ngIf="pageAll>0"
+            > 
+            <img src="/assets/previous.png" class="infor-icon" alt=""> <span class="sr-only"> Quay lại</span>
+            </a>
+         
+            <a
+            mat-stroked-button color="accent"
+              (click)="nextPageAll($event)"
+              aria-label="Next"
+              *ngIf="pageAll<totalPagesAll-1"
+            >
+              <span class="sr-only">Xem tiếp </span> <img src="/assets/next.png" class="infor-icon" alt="">
+            </a>
+    </div>
+    </div>
+    <div class="col-md-3 mt-20" *ngFor="let provider of allProvider">
+      <mat-card
+        class="my-card-home"
+        (click)="userInformationPage(provider.userId)"
+      >
+        <img mat-card-image style="height: 300px" [src]="provider.avatar" />
         <mat-card-content>
-          <mat-card-title>{{ provider.name }}</mat-card-title>
+          <h2 style="color: #fc4786">
+            {{ provider.name }}
+            <span
+              ><img src="/assets/hearts.png" class="infor-icon" alt=""
+            /></span>
+          </h2>
           <mat-card-subtitle>
-            {{ provider.description }}
+            <span>
+              <img src="/assets/love.png" class="infor-icon" alt=""
+            /></span>
+            {{
+              provider.description
+                ? provider.description.substring(0, 20) + "..."
+                : ""
+            }}
           </mat-card-subtitle>
 
-          <span style="display: inline;" *ngFor="let service of provider.servicesName">
-              <mat-card-subtitle style="display: inline;"> {{service}},</mat-card-subtitle>
+          <span><img src="/assets/i1Icon.png" class="infor-icon" alt="" /></span
+          ><span
+            style="display: inline"
+            *ngFor="let service of provider.servicesName; let i = index"
+          >
+            <mat-card-subtitle *ngIf="i < 3" style="display: inline">
+              {{ service }},</mat-card-subtitle
+            >
           </span>
         </mat-card-content>
       </mat-card>
     </div>
+    
   </div>
 </div>
