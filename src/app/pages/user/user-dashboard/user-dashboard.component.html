@@ -154,8 +154,20 @@
           </button>
         </div>
 
+        <!-- đây là chỗ phá -->
+        <div class="mt-20" *ngIf="checkUser">
+          <button mat-button [routerLink]="['/order2']" routerLinkActive="router-link-active" >
+            list
+          </button>
+        </div>
+        <div class="mt-20" *ngIf="userInformation.provider && checkUser">
+          <button mat-button [routerLink]="['/order']" routerLinkActive="router-link-active" >
+            Xem danh sách đơn thuê
+          </button>
+        </div>
         
       </mat-card>
     </div>
   </div>
 </div>
+
