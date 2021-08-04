@@ -42,19 +42,14 @@ export class HomeComponent implements OnInit {
   }
 
   nextPageAll(event: any) {
-    if (this.pageAll < this.totalPagesAll - 1) {
       this.pageAll += 1;
       this.getAllUserPageAll();
-    }
-
     event.preventDefault();
   }
 
   backPageAll(event: any) {
-    if (this.pageAll > 0) {
       this.pageAll -= 1;
       this.getAllUserPageAll();
-    }
     event.preventDefault();
   }
 }
