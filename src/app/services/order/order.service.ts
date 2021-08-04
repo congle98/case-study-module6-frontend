@@ -8,6 +8,7 @@ import {environment} from "../../../environments/environment";
 })
 export class OrderService {
   url="http://localhost:8080"
+
   constructor(private http: HttpClient) { }
 
 
@@ -30,5 +31,17 @@ export class OrderService {
       // this.logout();
       return null;
     }
+  }
+
+  getPriceOfUser(userId:any){
+    return this.http.get(`${environment.baseUrl}/profile/getPrice/${userId}`);
+  }
+
+  acceptStatus(id:any, status: any){
+    return this.http.put(this.url + "/orders/accept/" +id, status);
+  }
+
+  cancelOrder(id:any, status: any){
+    return this.http.put(this.url + "/orders/decline/" +id, status);
   }
 }

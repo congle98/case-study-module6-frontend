@@ -28,11 +28,12 @@ export class OderCreateComponent implements OnInit {
     day: new FormControl(),
     status: new FormGroup({
       id: new FormControl(1)
-    })
-
+    }),
+    totalPrice: new FormControl()
   })
   userId?: any;
   providerId: any;
+  providerPrice: any;
 
   constructor(private orderService: OrderService,
               private router: Router,
@@ -47,15 +48,16 @@ export class OderCreateComponent implements OnInit {
     this.providerId= this.provider_Id;
     console.log(this.providerId)
     this.formOder.controls["provider"].controls["id"].setValue(this.providerId);
-
+    this.getPriceOfProvider(this.provider_Id);
 
   }
 
 
   createOrder() {
-    // this.formOder.controls["user"].controls["id"].setValue(this.id);
-    // this.formOder.controls["provider"].controls["id"].setValue(this.id);
-    console.log(this.formOder.value);
+
+    let total = this.providerPrice*this.formOder.controls["hour"].value
+    this.formOder.controls["totalPrice"].setValue(total);
+
 
     this.orderService.saveOrder(this.formOder.value).subscribe((data) => {
       Swal.fire("Thành Công", "Bạn đã tạo một Order", "success");
@@ -82,6 +84,14 @@ export class OderCreateComponent implements OnInit {
       console.log(data);
     })
 
+  }
+
+  getPriceOfProvider(id: any){
+    this.orderService.getPriceOfUser(id).subscribe(data=>{
+      console.log(data)
+      // let priceOfHour = parseInt(data);
+      this.providerPrice = parseInt(data.toString());
+    })
   }
 
 }
