@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+      <div class="text-center">
+        <h2 style="font-weight: 500; color: #fc4ea5">Yêu cầu cập đầy đủ thông tin trước khi đăng ký</h2>
+        <mat-divider></mat-divider>
+        <form class="mt-20">
+          <div class="my-dialog-order">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Địa điểm cuộc hẹn</mat-label>
+                <input name="address"
+                [(ngModel)]="orderRequest.address" matInput placeholder="Placeholder">
+              </mat-form-field>
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Thời gian cụ thể</mat-label>
+                <input name="startTime"
+                [(ngModel)]="orderRequest.startTime" matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Số giờ thuê</mat-label>
+                <input name="hour"
+                [(ngModel)]="orderRequest.hour" matInput placeholder="Placeholder">
+              </mat-form-field>
+              <div class="mb-20"><p >Thành tiền : {{orderRequest.hour*userInformation.priceByHour}} vnd</p></div>
+              <button mat-raised-button color="accent" (click)="createOrder()" >Đặt thuê</button>
+          </div>
+            
+        </form>
+        
+      </div>
+    </div>
+  </div>
+  

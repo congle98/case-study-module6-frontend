@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-html, body { height: 100%; background-color: #ffedf8; }
+html, body { height: 100%; background-color: #ffffff; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
@@ -131,6 +131,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 1.1rem;
     font-weight: 500;
   
+}
+.my-dialog-order{
+    width: 500px;
+    min-width: 200px;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 .facebook-icon{
     width: 40px;

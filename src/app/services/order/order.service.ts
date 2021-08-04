@@ -8,7 +8,6 @@ import {environment} from "../../../environments/environment";
 })
 export class OrderService {
   url="http://localhost:8080"
-
   constructor(private http: HttpClient) { }
 
 
@@ -32,6 +31,10 @@ export class OrderService {
       return null;
     }
   }
+  getOrderByUser(id: any): Observable<any>{
+    return this.http.get<any>(this.url+ "/list2/"+id);
+  }
+
 
   getPriceOfUser(userId:any){
     return this.http.get(`${environment.baseUrl}/profile/getPrice/${userId}`);

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -57,6 +57,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { UserRegisterProviderDialogComponent } from './pages/user/user-register-provider-dialog/user-register-provider-dialog.component';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
+import { OrderDialogComponent } from './pages/user/order-dialog/order-dialog.component';
+import { OrderUserComponent } from './pages/order/order-user/order-user.component';
+
 
 @NgModule({
   declarations: [
@@ -83,7 +87,10 @@ import { UserRegisterProviderDialogComponent } from './pages/user/user-register-
     UserUpdateProfileComponent,
     UserDashboardComponent,
     OderCreateComponent,
-    ListComponent
+    ListComponent,
+    OrderDialogComponent,
+    OrderUserComponent
+
 
 
 
@@ -119,15 +126,18 @@ import { UserRegisterProviderDialogComponent } from './pages/user/user-register-
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     MatDialogModule,
-
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground:true
+    }),
   ],
   entryComponents:[UserRegisterProviderDialogComponent],
   providers: [
     authInterceptorProviders,
     MatDatepickerModule,
     MatNativeDateModule,
-
   ],
   bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

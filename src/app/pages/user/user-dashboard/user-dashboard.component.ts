@@ -7,6 +7,8 @@ import {finalize} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UserRegisterProviderDialogComponent } from '../user-register-provider-dialog/user-register-provider-dialog.component';
+import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {OderCreateComponent} from "../../order/oder-create/oder-create.component";
 
 @Component({
@@ -30,20 +32,35 @@ export class UserDashboardComponent implements OnInit {
     private userService: UserService,
     private storage:AngularFireStorage,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.getUser();
     let id = this.activatedRoute.snapshot.params.userId;
     this.getUserInformation(id);
-    console.log(this.userInformation);
   }
 
   openDialogRegisterProvider(){
     this.dialog.open(UserRegisterProviderDialogComponent,{
       data:this.userInformation.id
     });
+  }
+
+  openOrderDialog(){
+    if(this.loginService.getUser()){
+       this.dialog.open(OrderDialogComponent,{
+      data:this.userInformation
+    });
+    }
+    else{
+      this.router.navigate(["/login"]);
+      this.snackBar.open( "vui đăng nhập trước khi sử dụng vụ","x",{
+       duration:2000
+      })
+    }
+
   }
 
   getUser() {
@@ -53,13 +70,13 @@ export class UserDashboardComponent implements OnInit {
   }
   getUserInformation(id: any) {
     this.userService.getUserInformation(id).subscribe(
-      (userInformation) => {
+      (userInformation:any) => {
         this.userInformation = userInformation;
-        console.log(this.userInformation);
         if (userInformation == null) {
           this.router.navigate(['/error']);
         } else {
           console.log(userInformation);
+
           this.checkUserInit();
           this.getUserInformationAvatar(userInformation);
         }
@@ -155,7 +172,9 @@ export class UserDashboardComponent implements OnInit {
 
     this.userService.updateAvatar(updateAvatarRequest).subscribe((userInformation:any)=>{
       let user = this.loginService.getUser();
+
       user.avatar.url = this.userInformationAvatar;
+
       this.userInformation = userInformation;
       this.loginService.setUser(user);
       this.avatarFile=undefined;

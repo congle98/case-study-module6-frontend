@@ -56,5 +56,8 @@ export class NavbarComponent implements OnInit {
       }
     }
   }
+  userDashboard(){
+    this.router.navigate(["/user/"+this.user.id]);
+  }
 
 }

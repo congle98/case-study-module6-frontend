@@ -1,6 +1,6 @@
 <div class="container-fluid" *ngIf="userInformation">
   <div class="row">
-    <div class="col-md-3 text-center">
+    <div class="col-md-3 text-center mb-20">
       <mat-card class="my-card card-backround">
         <img
           class="avatar-profile mt-10"
@@ -20,7 +20,7 @@
         <div class="text-status mt-20">
           <p>
             {{
-              userInformation.isProvider ? "Đã sẵn sàng" : "Người dùng thường"
+              userInformation.provider ? "Đã sẵn sàng" : "Người dùng thường"
             }}
           </p>
         </div>
@@ -56,7 +56,7 @@
               }}</span>
             </h3>
           </div>
-          <div class="ml-20" *ngIf="userInformation.isProvider">
+          <div class="ml-20" *ngIf="userInformation.provider">
             <h3>
               Lượt thuê:
               <span class="text-count">{{
@@ -91,7 +91,7 @@
               {{ userInformation.hobbies ? userInformation.hobbies : "" }}
             </p>
           </div>
-          <div *ngIf="userInformation.isProvider" class="mt-20">
+          <div *ngIf="userInformation.provider" class="mt-20">
             <h2>Dịch vụ đi kèm</h2>
             <div *ngFor="let service of userInformation.services">
                 <p style="color:#ff4596"><img src="/assets/serviceIcon.png" class="facebook-icon" alt="">: {{service.name}}</p>
@@ -116,7 +116,7 @@
               color="accent"
               (click)="openDialogRegisterProvider()"
 
-              *ngIf="!userInformation.isProvider&&checkUser"
+              *ngIf="!userInformation.provider&&checkUser"
             >
               Đăng ký cung cấp dịch vụ
             </button>
@@ -126,7 +126,7 @@
               mat-raised-button
               color="warn"
               (click)="providerStatusOff(userInformation.id)"
-              *ngIf="userInformation.isProvider&&checkUser"
+              *ngIf="userInformation.provider&&checkUser"
             >
               Nhưng cung cấp dịch vụ
             </button>
@@ -136,13 +136,14 @@
     </div>
     <div class="col-md-2 text-center">
       <mat-card>
-        <div *ngIf="userInformation.isProvider">
+        <div *ngIf="userInformation.provider">
           <h1 class="princeByHour">{{ userInformation.priceByHour }} đồng/h</h1>
           <button
             *ngIf="!checkUser"
             class="full-width"
             mat-raised-button
             color="accent"
+            (click)="openOrderDialog()"
           >
             Thuê
           </button>
@@ -153,6 +154,17 @@
           </button>
         </div>
 
+        <!-- đây là chỗ phá -->
+        <div class="mt-20" *ngIf="checkUser">
+          <button mat-button [routerLink]="['/order2']" routerLinkActive="router-link-active" >
+            list
+          </button>
+        </div>
+        <div class="mt-20" *ngIf="userInformation.provider && checkUser">
+          <button mat-button [routerLink]="['/order']" routerLinkActive="router-link-active" >
+            Xem danh sách đơn thuê
+          </button>
+        </div>
 
       </mat-card>
     </div>
