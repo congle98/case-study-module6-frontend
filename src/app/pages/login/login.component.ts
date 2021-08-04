@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
            this.loginService.setUser(user);
         
            if(user.roles[0].authority=="USER"){
-             this.router.navigate(["/user"]);
+             this.router.navigate(["/home"]);
              this.loginService.loginStatusSubject.next(true);
            }
            else if(user.roles[0].authority=="ADMIN"){

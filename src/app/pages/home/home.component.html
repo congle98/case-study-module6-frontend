@@ -1,1 +1,20 @@
-<p>home works!</p>
+<div class="container">
+  <div class="row">
+    <h1>Tất cả</h1>
+    <div class="col-md-2 mt-20" *ngFor="let provider of allProvider">
+      <mat-card class="my-card">
+        <img mat-card-image [src]="provider.avatar" />
+        <mat-card-content>
+          <mat-card-title>{{ provider.name }}</mat-card-title>
+          <mat-card-subtitle>
+            {{ provider.description }}
+          </mat-card-subtitle>
+
+          <span style="display: inline;" *ngFor="let service of provider.servicesName">
+              <mat-card-subtitle style="display: inline;"> {{service}},</mat-card-subtitle>
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
