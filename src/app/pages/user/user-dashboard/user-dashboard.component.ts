@@ -68,12 +68,13 @@ export class UserDashboardComponent implements OnInit {
   }
   getUserInformation(id: any) {
     this.userService.getUserInformation(id).subscribe(
-      (userInformation) => {
+      (userInformation:any) => {
         this.userInformation = userInformation;
         if (userInformation == null) {
           this.router.navigate(['/error']);
         } else {
           console.log(userInformation);
+         
           this.checkUserInit();
           this.getUserInformationAvatar(userInformation);
         }
@@ -169,7 +170,9 @@ export class UserDashboardComponent implements OnInit {
    
     this.userService.updateAvatar(updateAvatarRequest).subscribe((userInformation:any)=>{
       let user = this.loginService.getUser();
+     
       user.avatar.url = this.userInformationAvatar;
+      
       this.userInformation = userInformation;
       this.loginService.setUser(user);
       this.avatarFile=undefined;

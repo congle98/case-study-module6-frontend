@@ -17,9 +17,14 @@ import {ListComponent} from "./pages/order/list/list.component";
 
 const routes: Routes = [
   {
-    path: 'register',
+    path:'register',
     component: RegisterComponent,
   },
+  {
+    path:"home",
+    component:HomeComponent
+  }
+  ,
 
   {
     path: 'login',
@@ -40,9 +45,9 @@ const routes: Routes = [
     canActivate: [AdminGuard],
   },
   { path: 'error', component: ErrorComponent },
-  { path: '', component: HomeComponent },
   { path: 'provider', component: ProviderEditComponent},
   { path: 'order', component: ListComponent},
+  { path: '', component: HomeComponent },
 ];
 
 @NgModule({

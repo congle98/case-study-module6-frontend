@@ -61,7 +61,7 @@
           <button
             class="my-mat-menu text-center"
             mat-menu-item
-            routerLink="/user/{{ user.id }}"
+            (click)="userDashboard()"
           >
             {{ user.username }}
           </button>
