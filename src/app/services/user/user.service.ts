@@ -41,5 +41,25 @@ export class UserService {
   registerProvider(registerProviderRequest:any){
     return this.httpClient.post(`${environment.baseUrl}/profile/providerRegister`,registerProviderRequest);
   }
-  
+
+  getUserAccount(userId:any){
+    return this.httpClient.get(`${environment.baseUrl}/user/view/${userId}`);
+  }
+  getServiceProvider(userId:any){
+    return this.httpClient.get(`${environment.baseUrl}/profile/service/${userId}`);
+  }
+  getId() {
+    let userStr = localStorage.getItem("user");
+    if (userStr !== null) {
+      let user = JSON.parse(userStr)
+      console.log(user.id)
+      return user.id;
+
+    } else {
+      // this.logout();
+      return null;
+    }
+  }
+
+
 }

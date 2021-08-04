@@ -31,6 +31,20 @@ export class OrderService {
       return null;
     }
   }
+  getOrderByUser(id: any): Observable<any>{
+    return this.http.get<any>(this.url+ "/list2/"+id);
+  }
 
 
+  getPriceOfUser(userId:any){
+    return this.http.get(`${environment.baseUrl}/profile/getPrice/${userId}`);
+  }
+
+  acceptStatus(id:any, status: any){
+    return this.http.put(this.url + "/orders/accept/" +id, status);
+  }
+
+  cancelOrder(id:any, status: any){
+    return this.http.put(this.url + "/orders/decline/" +id, status);
+  }
 }

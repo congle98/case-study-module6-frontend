@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../../services/user/user.service";
+
 
 
 @Component({
@@ -8,12 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProviderEditComponent implements OnInit {
     userAccount:any ={
-        username: "username1",
-        email: "email1",
-        phone: "phone1",
-        role: "USER",
-        status: true,
-        isprovider: true
+        // username: "username1",
+        // email: "email1",
+        // phone: "phone1",
+        // role: "USER",
+        // status: true,
+        // isprovider: true
     }
     userInformation:any={
       name: "name1",
@@ -31,20 +33,20 @@ export class ProviderEditComponent implements OnInit {
 
 
     }
-    userService1:any=[
+    service1:any=[
       { name: "ra mắt người nhà"},
       { name: "Ra mắ bạn"},
       { name: "Du lịch chung cùng nhóm bạn"},
       { name: "Đi chơi chung"}
     ]
 
-  userService2:any=[
+  service2:any=[
     { name: " Nắm tay"},
     { name: "Nói yêu"},
     { name: "Nhìn mắt"}
 
   ]
-  userService3:any=[
+  service3:any=[
     { name: " Nắm tay"},
     { name: "Hôn tay"},
     { name: " Nhõng nhẽo"},
@@ -58,11 +60,38 @@ export class ProviderEditComponent implements OnInit {
     "https://1.bp.blogspot.com/-5n_rEz8D0b8/Xk556_wb4KI/AAAAAAAAVVM/Z-v6YSPT3swBVpUWfd7NOForHs-OYRHGACLcBGAsYHQ/s1600/Anh-Trai-Dep-20023456-Wap102%2B%25281%2529.jpg"
   ]
 
+id: any;
 
 
-
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.id = this.userService.getId()
+    this.setUserAccount();
+    this.setUserInformation();
+    this.setService();
+
   }
+
+  setUserAccount(){
+    this.userService.getUserAccount(this.id).subscribe((data)=>{
+      console.log(data);
+      this.userAccount= data;
+    })
+  }
+
+  setUserInformation(){
+    this.userService.getUserInformation(this.id).subscribe((data)=>{
+      console.log(data);
+      this.userInformation= data;
+    })
+  }
+
+  setService(){
+    this.userService.getServiceProvider(this.id).subscribe((data)=>{
+      console.log(data);
+    })
+  }
+
+
 }

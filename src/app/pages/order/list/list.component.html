@@ -1,13 +1,13 @@
 <div class="container">
   <div class=" row">
-    <div class="col-md-10">
+    <div class="col-md-12">
       <mat-card>
         <div>
           <mat-card>Lịch hẹn của bản với người dùng</mat-card>
         </div>
         <div>
           <mat-card>
-            <table class="table-order" >
+            <table class="table-responsive-md">
               <tr>
                 <th>STT</th>
                 <th>Tên Người Thuê</th>
@@ -18,17 +18,30 @@
                 <th>Ngày Đặt Lịch</th>
                 <th>Thành Tiền</th>
                 <th>Trạng Thái</th>
+                <th>Hoạt động</th>
               </tr>
               <tr *ngFor="let item of orderList, index as i">
-                <td>{{i+1}}</td>
-                <td>{{item.user.fullName}}</td>
+                <td>{{i + 1}}</td>
+                <td><a routerLink="/user/{{ item.user.id }}">{{item.user.fullName}}</a></td>
                 <td>{{item.provider.fullName}}</td>
                 <td>{{item.address}}</td>
                 <td>{{item.hour}}</td>
                 <td>{{item.startTime}}</td>
                 <td>{{item.day}}</td>
-                <td>{{item.provider.priceByHour *item.hour}}</td>
-                <td>{{item.status.name}}</td>
+                <td>{{item.provider.priceByHour * item.hour}}</td>
+                <td>
+                  {{item.status.name}}
+                </td>
+
+                <td>
+                  <button *ngIf="item.status.name=='WAITING'" class="button-color" (click)="accept(item.id, item.status.name)">Đồng ý</button>
+                  <button *ngIf="item.status.name=='WAITING'" class="button-color" (click)="decline(item.id, item.status.name)">Từ chối</button>
+                  <button *ngIf="item.status.name=='RECEIVED'" class="button-color" (click)="accept(item.id, item.status.name)">Hoàn thành</button>
+                  <button *ngIf="item.status.name=='COMPLETE'" class="button-color" (click)="accept(item.id, item.status.name)">Nhận tiền</button>
+                  <button *ngIf="item.status.name=='COMPLETE'" class="button-color" (click)="accept(item.id, item.status.name)">Báo cáo</button>
+
+                </td>
+
 
               </tr>
             </table>

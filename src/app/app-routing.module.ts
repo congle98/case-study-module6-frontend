@@ -13,6 +13,7 @@ import { UserUpdateProfileComponent } from './pages/user/user-update-profile/use
 import {ProviderEditComponent} from "./pages/provider/provider-edit/provider-edit.component";
 import {OderCreateComponent} from "./pages/order/oder-create/oder-create.component";
 import {ListComponent} from "./pages/order/list/list.component";
+import { OrderUserComponent } from './pages/order/order-user/order-user.component';
 
 
 const routes: Routes = [
@@ -31,14 +32,14 @@ const routes: Routes = [
     component: LoginComponent,
   },
 
-  { path: 'user/:userId', component: UserDashboardComponent,     
+  { path: 'user/:userId', component: UserDashboardComponent,
 
   },
   {
     path:"user/update/:userId",component: UserUpdateProfileComponent,
     canActivate:[UserGuard],
   },
- 
+
   {
     path: 'admin',
     component: AdminComponent,
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'error', component: ErrorComponent },
   { path: 'provider', component: ProviderEditComponent},
   { path: 'order', component: ListComponent},
+  { path: 'order2', component:OrderUserComponent},
   { path: '', component: HomeComponent },
 ];
 
