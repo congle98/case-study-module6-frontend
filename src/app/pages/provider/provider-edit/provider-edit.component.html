@@ -27,9 +27,9 @@
               <li>UserName: {{userAccount.username}}</li>
               <li>Email: {{userAccount.email}}</li>
               <li>Phone: {{userAccount.phone}}</li>
+              <li>Trạng thái: {{userAccount.accountStatus}}</li>
+              <li>Ngày tham gia: {{userAccount.joinDate}}</li>
               <li>Role: {{userAccount.role}}</li>
-              <li>Status: {{userAccount.status}}</li>
-              <li>IsProvider: {{userAccount.isprovider}}</li>
             </ul>
 
             <mat-card><h4>Change</h4></mat-card>
@@ -38,18 +38,19 @@
           <div>
             <mat-card style="background-color: aquamarine"><h4>Thông tin Cá nhân</h4></mat-card>
             <ul class="scrolling">
-              <li>Họ Tên: {{userInformation.name}}</li>
-              <li>Email: {{userInformation.year}}</li>
+              <li>Họ Tên: {{userInformation.fullName}}</li>
+              <li>Ngày sinh: {{userInformation.dateOfBirth}}</li>
+
               <li>Giới tính: {{userInformation.gender}}</li>
-              <li>City : {{userInformation.city}} </li>
-              <li>Quốc gia : {{userInformation.country}} </li>
+              <li>City : {{userInformation.city.name}} </li>
+              <li>Quốc gia : {{userInformation.city.country.name}} </li>
               <li>Chiều cao: {{userInformation.height}} </li>
               <li>Cân nặng: {{userInformation.weight}} </li>
-              <li>Sở thích: {{userInformation.favorite}} </li>
+              <li>Sở thích: {{userInformation.hobbies}} </li>
               <li>Mô tả: {{userInformation.description}} </li>
               <li>Yêu cầu: {{userInformation.requestion}} </li>
-              <li>facebook: {{userInformation.facebook}} </li>
-              <li>dayOfEvent: {{userInformation.date}} </li>
+              <li>facebook: {{userInformation.facebookLink}} </li>
+              <li>Ngày tham gia: {{userAccount.joinDate}} </li>
             </ul>
             <mat-card ><h4>Change</h4></mat-card>
           </div>
@@ -58,11 +59,11 @@
             <mat-card style="background-color: aquamarine"><h4>Thông tin đăng ký dịch vụ</h4></mat-card>
             <ul class="scrolling">
                 <i>Dich vụ cơ bản</i>
-                <li *ngFor="let item of userService1">{{item.name}}</li>
+                <li *ngFor="let item of service1">{{item.name}}</li>
               <i>Dich vụ miễn phí</i>
-                <li *ngFor="let item of userService2">{{item.name}}</li>
+                <li *ngFor="let item of service2">{{item.name}}</li>
               <i>Dich vụ cơ bản</i>
-                <li *ngFor="let item of userService3">{{item.name}}</li>
+                <li *ngFor="let item of service3">{{item.name}}</li>
 
               </ul>
             <mat-card><h4>Giá dịch vụ</h4></mat-card>

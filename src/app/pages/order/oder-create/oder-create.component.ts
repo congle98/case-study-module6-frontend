@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {OrderService} from "../../../services/order/order.service";
 import Swal from "sweetalert2";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {UserResponse} from "../../../interface/user-response";
 
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-oder-create',
@@ -19,7 +20,7 @@ export class OderCreateComponent implements OnInit {
 
     }),
     provider: new FormGroup({
-      id: new FormControl(1)
+      id: new FormControl()
     }),
     address: new FormControl(),
     hour: new FormControl(),
@@ -27,27 +28,36 @@ export class OderCreateComponent implements OnInit {
     day: new FormControl(),
     status: new FormGroup({
       id: new FormControl(1)
-    })
-
+    }),
+    totalPrice: new FormControl()
   })
-  id?: any;
+  userId?: any;
+  providerId: any;
+  providerPrice: any;
 
   constructor(private orderService: OrderService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
+              @Inject(MAT_DIALOG_DATA) public provider_Id: any
   ) {
   }
 
   ngOnInit(): void {
-    this.id = this.getUser();
-    this.getOrderByProvider();
+    this.userId = this.getUser();
+    this.formOder.controls["user"].controls["id"].setValue(this.userId);
+    this.providerId= this.provider_Id;
+    console.log(this.providerId)
+    this.formOder.controls["provider"].controls["id"].setValue(this.providerId);
+    this.getPriceOfProvider(this.provider_Id);
 
   }
 
 
   createOrder() {
-    this.formOder.controls["user"].controls["id"].setValue(this.id);
-    console.log(this.formOder.value);
+
+    let total = this.providerPrice*this.formOder.controls["hour"].value
+    this.formOder.controls["totalPrice"].setValue(total);
+
 
     this.orderService.saveOrder(this.formOder.value).subscribe((data) => {
       Swal.fire("Thành Công", "Bạn đã tạo một Order", "success");
@@ -70,10 +80,18 @@ export class OderCreateComponent implements OnInit {
   }
 
   getOrderByProvider() {
-    this.orderService.getOrderByProvider(this.id).subscribe(data => {
+    this.orderService.getOrderByProvider(this.userId).subscribe(data => {
       console.log(data);
     })
 
+  }
+
+  getPriceOfProvider(id: any){
+    this.orderService.getPriceOfUser(id).subscribe(data=>{
+      console.log(data)
+      // let priceOfHour = parseInt(data);
+      this.providerPrice = parseInt(data.toString());
+    })
   }
 
 }

@@ -32,14 +32,14 @@ const routes: Routes = [
     component: LoginComponent,
   },
 
-  { path: 'user/:userId', component: UserDashboardComponent,     
+  { path: 'user/:userId', component: UserDashboardComponent,
 
   },
   {
     path:"user/update/:userId",component: UserUpdateProfileComponent,
     canActivate:[UserGuard],
   },
- 
+
   {
     path: 'admin',
     component: AdminComponent,
