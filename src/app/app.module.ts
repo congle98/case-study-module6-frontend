@@ -59,6 +59,8 @@ import { environment } from 'src/environments/environment';
 import { UserRegisterProviderDialogComponent } from './pages/user/user-register-provider-dialog/user-register-provider-dialog.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
 import { OrderDialogComponent } from './pages/user/order-dialog/order-dialog.component';
+import { OrderUserComponent } from './pages/order/order-user/order-user.component';
+
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import { OrderDialogComponent } from './pages/user/order-dialog/order-dialog.com
     UserDashboardComponent,
     OderCreateComponent,
     ListComponent,
-    OrderDialogComponent
+    OrderDialogComponent,
+    OrderUserComponent
+    
 
 
 

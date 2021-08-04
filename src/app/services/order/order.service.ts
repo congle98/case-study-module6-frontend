@@ -31,6 +31,8 @@ export class OrderService {
       return null;
     }
   }
-
+  getOrderByUser(id: any): Observable<any>{
+    return this.http.get<any>(this.url+ "/list2/"+id);
+  }
 
 }
