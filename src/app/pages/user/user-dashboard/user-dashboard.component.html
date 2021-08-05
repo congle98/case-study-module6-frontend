@@ -86,6 +86,21 @@
             <span class="mr-20"></span><button mat-stroked-button (click)="cancelImg()"  color="warn" >Huỷ thay đổi</button>
           </div>
           <div class="mt-20">
+            <p>
+             Điện thoại : {{ userInformation.phone?userInformation.phone:""}}
+            </p>
+            <p>
+             Giới tính : {{ userInformation.gender?"nam":"nữ"}}
+            </p>
+            <p>
+             Nơi sống : {{ userInformation.city?userInformation.city.name:""}}
+            </p>
+            <p>
+             Chiều cao : {{ userInformation.height?userInformation.height:""}}
+            </p>
+            <p>
+             Cân nặng {{ userInformation.weight?userInformation.weight:""}}
+            </p>
             <h2><img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="">Sở thích</h2>
             <p>
               {{ userInformation.hobbies ? userInformation.hobbies : "" }}
@@ -143,26 +158,28 @@
             class="full-width"
             mat-raised-button
             color="accent"
-            (click)="openOrderDialog()"
+             (click)="createOrder()"
           >
             Thuê
           </button>
         </div>
         <div class="mt-20">
-          <button mat-button (click)="createOrder()">
+          <button *ngIf="!checkUser" mat-button (click)="openOrderDialog()"  >
             <img src="/assets/messageIcon.png" class="facebook-icon" alt="" />
           </button>
         </div>
 
         <!-- đây là chỗ phá -->
         <div class="mt-20" *ngIf="checkUser">
-          <button mat-button [routerLink]="['/order2']" routerLinkActive="router-link-active" >
-            list
+         <button mat-button [routerLink]="['/order2']" routerLinkActive="router-link-active" >
+          <img src="/assets/listIcon.png" class="facebook-icon" alt="">
+            Ds. đơn thuê
           </button>
         </div>
         <div class="mt-20" *ngIf="userInformation.provider && checkUser">
-          <button mat-button [routerLink]="['/order']" routerLinkActive="router-link-active" >
-            Xem danh sách đơn thuê
+         <button mat-button [routerLink]="['/order']" routerLinkActive="router-link-active" >
+          <img src="/assets/listIcon.png" class="facebook-icon" alt="">
+            Ds. được thuê
           </button>
         </div>
 

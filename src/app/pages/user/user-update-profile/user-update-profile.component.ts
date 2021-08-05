@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { CityService } from 'src/app/services/city/city.service';
 import Swal from 'sweetalert2';
@@ -53,7 +53,8 @@ export class UserUpdateProfileComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private cityService: CityService
+    private cityService: CityService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -101,7 +102,9 @@ export class UserUpdateProfileComponent implements OnInit {
     }
     this.userService.updateInformation(userRp).subscribe((success:any)=>{
       // this.userInformation= success;
-      Swal.fire("Thành công","Update thông tin thành công","success")
+      Swal.fire("Thành công","Update thông tin thành công","success");
+
+      this.router.navigate(["/user/"+this.userInformation.id]);
     })
   }
 }

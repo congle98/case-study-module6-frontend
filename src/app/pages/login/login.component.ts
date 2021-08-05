@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
-
+  hide = true;
   formLogin : FormGroup = new FormGroup({
     username: new FormControl(),
     password: new FormControl() 
