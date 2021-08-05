@@ -29,7 +29,8 @@
         class="my-card-home"
         (click)="userInformationPage(provider.userId)"
       >
-        <img mat-card-image style="height: 300px" [src]="provider.avatar" />
+        <div style="padding: relative;"><img mat-card-image style="height: 300px" [src]="provider.avatar" /></div>
+        <div class="my-price" ><h2>{{provider.priceByHour}} đ/h</h2></div>
         <mat-card-content>
           <h2 style="color: #fc4786">
             {{ provider.name }}
