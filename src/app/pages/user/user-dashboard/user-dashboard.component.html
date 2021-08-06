@@ -44,9 +44,48 @@
     </div>
     <div class="col-md-7">
       <mat-card>
-        <h1 style="font-size: 1.5rem; font-weight: 500">
+        <div style="display: flex;justify-content: space-between;">
+          <div>
+             <h1 style="font-size: 1.5rem; font-weight: 500">
           <img src="/assets/nameIcon.png" class="facebook-icon" alt=""> {{ userInformation.fullName }}
         </h1>
+          </div> 
+           <div class=" text-center">
+
+          <button
+
+            *ngIf="checkUser"
+            mat-raised-button
+            color="primary"
+            routerLink="/user/update/{{ user.id }}"
+          >
+            Cập nhật thông tin
+          </button>
+          <span class="ml-20"></span>
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="openDialogRegisterProvider()"
+
+            *ngIf="!userInformation.provider&&checkUser"
+          >
+            Đăng ký cung cấp dịch vụ
+          </button>
+
+
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="providerStatusOff(userInformation.id)"
+            *ngIf="userInformation.provider&&checkUser"
+          >
+            Nhưng cung cấp dịch vụ
+          </button>
+
+      </div>
+        </div>
+       
+      
         <div class="my-flex">
           <div>
             <h3>
@@ -112,41 +151,51 @@
                 <p style="color:#ff4596"><img src="/assets/serviceIcon.png" class="facebook-icon" alt="">: {{service.name}}</p>
             </div>
           </div>
+          <div *ngIf="userInformation.provider" class="mt-20">
+            <h2>Đánh giá</h2>
+            <div *ngFor="let feedBack of feedBacksOfProvider">
+              <div *ngIf="feedBack!=null" style="display:flex;justify-content: space-between;" class="mt-10">
+                <div  style="display:flex;">
+                  <span><img src="{{feedBack.avatarUrl?feedBack.avatarUrl:'/assets/avatarBase'}}" class="avatar-feedback" alt=""></span>
+                  <div class="ml-20">
+                    <h3 style="font-weight: 500;">{{feedBack.userName}}</h3>
+                     <p>{{feedBack.description}}</p>
+                  </div>
+                </div>
+                <div>
+        <span *ngIf="feedBack.starRating==1"><img src="/assets/starRating.png" class="info-icon" alt=""></span>
+      <span *ngIf="feedBack.starRating==2"><img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""></span>
+      <span *ngIf="feedBack.starRating==3"><img src="/assets/starRating.png" class="info-icon" alt=""> &nbsp;<img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""></span>
+      <span *ngIf="feedBack.starRating==4"><img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""> &nbsp;<img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""></span>
+      <span *ngIf="feedBack.starRating==5"><img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""> &nbsp;<img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""></span>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+          </div>
+          <div class="text-center">
+            <a
+              mat-button
+              (click)="backPageAll()"
+              mat-stroked-button color="warn"
+              aria-label="Previous"
+              *ngIf="pageFeedBack>0"
+            > 
+            <img src="/assets/previous.png" class="infor-icon" alt=""> <span class="sr-only"> Quay lại</span>
+            </a>
+         
+            <a
+              mat-button
+              (click)="nextPageAll()"
+              aria-label="Next"
+              mat-stroked-button color="warn"
+              *ngIf="pageFeedBack<totalPagesFeedBack-1"
+            >
+              <span class="sr-only">Xem tiếp </span> <img src="/assets/next.png" class="infor-icon" alt="">
+            </a>
+    </div>
+          </div>
         </div>
         <mat-divider></mat-divider>
-        <div class=" text-center mt-20">
-
-            <button
-
-              *ngIf="checkUser"
-              mat-raised-button
-              color="primary"
-              routerLink="/user/update/{{ user.id }}"
-            >
-              Cập nhật thông tin
-            </button>
-            <span class="ml-20"></span>
-            <button
-              mat-raised-button
-              color="accent"
-              (click)="openDialogRegisterProvider()"
-
-              *ngIf="!userInformation.provider&&checkUser"
-            >
-              Đăng ký cung cấp dịch vụ
-            </button>
-
-
-            <button
-              mat-raised-button
-              color="warn"
-              (click)="providerStatusOff(userInformation.id)"
-              *ngIf="userInformation.provider&&checkUser"
-            >
-              Nhưng cung cấp dịch vụ
-            </button>
-
-        </div>
       </mat-card>
     </div>
     <div class="col-md-2 text-center">

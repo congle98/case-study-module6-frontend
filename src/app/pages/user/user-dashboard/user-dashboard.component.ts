@@ -14,6 +14,8 @@ import { UserRegisterProviderDialogComponent } from '../user-register-provider-d
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OderCreateComponent } from '../../order/oder-create/oder-create.component';
+import { OrderService } from 'src/app/services/order/order.service';
+import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -30,6 +32,10 @@ export class UserDashboardComponent implements OnInit {
   imageUrl: any;
   providerId: any;
 
+  feedBacksOfProvider:any;
+  pageFeedBack=0;
+  totalPagesFeedBack=0;
+
   constructor(
     private loginService: LoginService,
     private activatedRoute: ActivatedRoute,
@@ -37,7 +43,9 @@ export class UserDashboardComponent implements OnInit {
     private storage: AngularFireStorage,
     private router: Router,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    
+    private feedBackService:FeedbackService
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +53,8 @@ export class UserDashboardComponent implements OnInit {
     let id = this.activatedRoute.snapshot.params.userId;
     console.log('id trên đường link' + id);
     this.getUserInformation(id);
+    this.getAllFeedBackByProvider(id,this.pageFeedBack);
+    
   }
 
   openDialogRegisterProvider() {
@@ -66,6 +76,7 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
+
   getUser() {
     if (this.loginService.getUser() != null) {
       this.user = this.loginService.getUser();
@@ -75,12 +86,6 @@ export class UserDashboardComponent implements OnInit {
     this.userService.getUserInformation(id).subscribe(
       (userInformation: any) => {
         this.userInformation = userInformation;
-        console.log( this.userInformation);
-
-        // if (userInformation == null) {
-        //   this.router.navigate(['/error']);
-        // } else {
-
         this.checkUserInit();
         this.getUserInformationAvatar(userInformation);
         // }
@@ -276,4 +281,24 @@ export class UserDashboardComponent implements OnInit {
       });
     }
   }
+
+  getAllFeedBackByProvider(id:any,page:any){
+    this.feedBackService.findAllFeedBackByProvider(id,page).subscribe((data:any)=>{
+      this.feedBacksOfProvider = data.content;
+      this.totalPagesFeedBack = data.totalPages;
+      console.log( data);
+  
+    })
+  }
+  nextPageAll() {
+    this.pageFeedBack += 1;
+    this.getAllFeedBackByProvider(this.userInformation.id,this.pageFeedBack);
+
+}
+
+backPageAll() {
+    this.pageFeedBack -= 1;
+    this.getAllFeedBackByProvider(this.userInformation.id,this.pageFeedBack);
+ 
+}
 }
