@@ -33,7 +33,7 @@
             <td>{{ item.day }}</td>
             <td>{{ item.provider.priceByHour * item.hour }}</td>
             <td>{{ item.status.name }}</td>
-            <td *ngIf="item.status.name=='COMPLETE'&&!item.feedback"><button mat-stroked-button color="accent" (click)="createFeedBack(item)">Tạo phản hồi</button></td>
+            <td *ngIf="item.status.id==3&&!item.feedback"><button mat-stroked-button color="accent" (click)="createFeedBack(item)">Tạo phản hồi</button></td>
             <td *ngIf="item.feedback"><button mat-stroked-button color="accent" (click)="showFeedBack(item.feedback)" >{{item.feedback.description.substring(0,15)+"...."}}</button></td>
 
           </tr>
