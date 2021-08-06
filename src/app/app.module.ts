@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatError, MatFormFieldModule} from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -60,6 +60,8 @@ import { UserRegisterProviderDialogComponent } from './pages/user/user-register-
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
 import { OrderDialogComponent } from './pages/user/order-dialog/order-dialog.component';
 import { OrderUserComponent } from './pages/order/order-user/order-user.component';
+import { OrderProviderComponent } from './pages/order/order-provider/order-provider.component';
+import { OrderDetailComponent } from './pages/order/order-detail/order-detail.component';
 
 
 @NgModule({
@@ -89,7 +91,9 @@ import { OrderUserComponent } from './pages/order/order-user/order-user.componen
     OderCreateComponent,
     ListComponent,
     OrderDialogComponent,
-    OrderUserComponent
+    OrderUserComponent,
+    OrderProviderComponent,
+    OrderDetailComponent
 
 
 
@@ -122,6 +126,10 @@ import { OrderUserComponent } from './pages/order/order-user/order-user.componen
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+
+
+
+
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,

@@ -40,7 +40,7 @@
                 <div class="my-flex">
                   <div>
                     <button
-                      *ngIf="item.status.name == 'WAITING'"
+                      *ngIf="item.status.id == 1"
                       mat-stroked-button
                       color="primary"
                       (click)="accept(item.id, item.status.name)"
@@ -50,10 +50,10 @@
                   </div>
                   <div>
                     <button
-                      *ngIf="item.status.name == 'WAITING'"
+                      *ngIf="item.status.id == 1"
                       mat-stroked-button
                       color="primary"
-                      (click)="decline(item.id, item.status.name)"
+                      (click)="decline(item.id, item.status.id)"
                     >
                       Từ chối
                     </button>
@@ -61,26 +61,26 @@
                 </div>
 
                 <button
-                  *ngIf="item.status.name == 'RECEIVED'"
+                  *ngIf="item.status.id == 2"
                   mat-stroked-button
                   color="primary"
-                  (click)="accept(item.id, item.status.name)"
+                  (click)="accept(item.id, item.status.id)"
                 >
-                  Hoàn thành
+                  Báo cáo
                 </button>
                 <button
-                  *ngIf="item.status.name == 'COMPLETE'"
+                  *ngIf="item.status.name == 2"
                   mat-stroked-button
                   color="primary"
-                  (click)="accept(item.id, item.status.name)"
+                  (click)="accept(item.id, item.status.id)"
                 >
                   Nhận tiền
                 </button>
                 <button
-                  *ngIf="item.status.name == 'COMPLETE'"
+                  *ngIf="item.status.id == 2"
                   mat-stroked-button
                   color="primary"
-                  (click)="accept(item.id, item.status.name)"
+                  (click)="accept(item.id, item.status.id)"
                 >
                   Báo cáo
                 </button>
