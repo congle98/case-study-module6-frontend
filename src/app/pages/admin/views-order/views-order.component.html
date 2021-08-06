@@ -1,0 +1,46 @@
+<mat-card class=" mt-20">
+  <mat-card-title>Danh sách tất cả đơn thuê</mat-card-title>
+  <div>
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Tên người thuê</th>
+          <th>Tên người cung cấp</th>
+          <th>Ngày thuê</th>
+          <th>Đơn giá</th>
+          <th>Trạng thái</th>
+          <th>Phản hồi</th>
+          <th>Trạng thái phản hồi</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{order.id}}</td>
+          <td>{{order.user.fullName}}</td>
+          <td>{{order.provider.fullName}}</td>
+          <td>{{order.day}}</td>
+          <td>{{order.totalPrice}}</td>
+          <td>{{order.status.name}}</td>
+          <td><a *ngIf="order.feedback" mat-button color="primary" (click)="openFeedBackDialog(order.feedback)">{{order.feedback.description.substring(0, 15)+"...."}}</a> </td>
+          <td *ngIf="order.feedback&&order.feedback.confirm==false" ><p style="color:#fc0814;">Chưa duyệt</p></td>
+          <td *ngIf="order.feedback&&order.feedback.confirm==true" > <p style="color:#0096fa;">Đã duyệt</p> </td>
+          <td *ngIf="!order.feedback" > Chưa có phản hồi</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <a mat-stroked-button (click)="backPage()" aria-label="Previous" *ngIf="page>0">
+      <img src="/assets/previous.png" class="infor-icon" alt=""> <span class="sr-only"> Quay lại</span>
+    </a>
+
+    <a mat-stroked-button (click)="nextPage()" aria-label="Next" *ngIf="page<totalPages-1">
+      <span class="sr-only">Xem tiếp </span> <img src="/assets/next.png" class="infor-icon" alt="">
+    </a>
+  </div>
+
+
+
+</mat-card>

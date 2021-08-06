@@ -1,0 +1,44 @@
+<mat-card class=" mt-20">
+
+  <mat-card-title>Danh sách tất cả người dùng</mat-card-title>
+  <div>
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Tên tài khoản</th>
+          <th>Email</th>
+          <th>Trạng thái</th>
+          <th>Số điện thoại</th>
+          <th>Ngày tạo</th>
+          <th>Hành động</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td *ngIf="user.accountStatus==true"><p style="color:#0096fa;" >Đang hoạt động</p> </td>
+          <td *ngIf="user.accountStatus==false"><p style="color:#fc0814;">Không hoạt động</p> </td>
+          <td>{{user.phone}}</td>
+          <td>{{user.joinDate}}</td>
+          <td><button mat-stroked-button color="warn">{{user.accountStatus==true?"Khoá tài khoản":"Mở tài khoản"}}</button> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <a mat-stroked-button (click)="backPage()" aria-label="Previous" *ngIf="page>0">
+      <img src="/assets/previous.png" class="infor-icon" alt=""> <span class="sr-only"> Quay lại</span>
+    </a>
+
+    <a mat-stroked-button (click)="nextPage()" aria-label="Next" *ngIf="page<totalPages-1">
+      <span class="sr-only">Xem tiếp </span> <img src="/assets/next.png" class="infor-icon" alt="">
+    </a>
+  </div>
+
+
+
+</mat-card>

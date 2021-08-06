@@ -9,7 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AdminComponent } from './pages/admin/admin.component';
+
 
 //material
 import { MatButtonModule } from '@angular/material/button';
@@ -60,6 +60,13 @@ import { UserRegisterProviderDialogComponent } from './pages/user/user-register-
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
 import { OrderDialogComponent } from './pages/user/order-dialog/order-dialog.component';
 import { OrderUserComponent } from './pages/order/order-user/order-user.component';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { AdminSidebarComponent } from './pages/admin/admin-sidebar/admin-sidebar.component';
+import { ViewUsersComponent } from './pages/admin/view-users/view-users.component';
+import { ViewsOrderComponent } from './pages/admin/views-order/views-order.component';
+import { FeedbackDetailDialogComponent } from './pages/admin/feedback-detail-dialog/feedback-detail-dialog.component';
+import { CreateFeedbackDialogComponent } from './pages/order/create-feedback-dialog/create-feedback-dialog.component';
+import { ViewFeedbackComponent } from './pages/order/view-feedback/view-feedback.component';
 import { OrderProviderComponent } from './pages/order/order-provider/order-provider.component';
 import { OrderDetailComponent } from './pages/order/order-detail/order-detail.component';
 
@@ -72,7 +79,7 @@ import { OrderDetailComponent } from './pages/order/order-detail/order-detail.co
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    AdminComponent,
+
 
     ProviderListComponent,
     ProviderCreateComponent,
@@ -91,6 +98,14 @@ import { OrderDetailComponent } from './pages/order/order-detail/order-detail.co
     OderCreateComponent,
     ListComponent,
     OrderDialogComponent,
+    OrderUserComponent,
+    AdminDashboardComponent,
+    AdminSidebarComponent,
+    ViewUsersComponent,
+    ViewsOrderComponent,
+    FeedbackDetailDialogComponent,
+    CreateFeedbackDialogComponent,
+    ViewFeedbackComponent,
     OrderUserComponent,
     OrderProviderComponent,
     OrderDetailComponent
@@ -126,10 +141,6 @@ import { OrderDetailComponent } from './pages/order/order-detail/order-detail.co
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-
-
-
-
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
