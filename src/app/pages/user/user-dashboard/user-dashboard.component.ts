@@ -75,7 +75,7 @@ export class UserDashboardComponent implements OnInit {
     this.userService.getUserInformation(id).subscribe(
       (userInformation: any) => {
         this.userInformation = userInformation;
-        console.log('id của userinformation' + this.userInformation.id);
+        console.log( this.userInformation);
 
         // if (userInformation == null) {
         //   this.router.navigate(['/error']);

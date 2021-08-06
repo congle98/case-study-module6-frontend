@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+      <div class="text-center">
+        <h2 style="font-weight: 500; color: #fc4ea5">Phản hồi</h2>
+        <div style="text-align: left">
+            <h3>Nội dung : <span>{{feedBack.description}}</span></h3>
+        <div>
+        <span style="font-size:1rem">Số sao đánh giá: </span><span *ngIf="feedBack.starRating==1"><img src="/assets/starRating.png" class="info-icon" alt=""></span>
+        <span *ngIf="feedBack.starRating==2"><img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""></span>
+        <span *ngIf="feedBack.starRating==3"><img src="/assets/starRating.png" class="info-icon" alt=""> &nbsp;<img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""></span>
+        <span *ngIf="feedBack.starRating==4"><img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""> &nbsp;<img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""></span>
+        <span *ngIf="feedBack.starRating==5"><img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""> &nbsp;<img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png" class="info-icon" alt=""></span>
+        </div>
+        <div class="mt-10">
+             <h3>Trạng thái : {{feedBack.confirm==true?"Đã duyệt":"Chưa duyệt"}}</h3>
+        </div>
+        </div>
+        
+       
+       
+      </div>
+    </div>
+  </div>
+
