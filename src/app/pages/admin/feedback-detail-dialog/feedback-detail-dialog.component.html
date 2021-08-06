@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+      <div class="text-center">
+        <h2 style="font-weight: 500; color: #fc4ea5">Phản hồi từ người dùng</h2>
+        <mat-divider></mat-divider>
+        <form class="mt-20">
+          <div class="my-dialog-order">
+                <h2>Số sao: {{feedBack.starRating}} </h2>
+                <h2>Nội dung : {{feedBack.description}} </h2>
+                <h2>Trạng thái: {{feedBack.confirm==false?"Chưa duyệt":"Đã duyệt"}} </h2>
+                <button mat-raised-button color="primary" (click)="changeStatusFeedBack(feedBack.id)">Thay đổi trạng thái</button>
+          </div>
+        </form> 
+      </div>
+    </div>
+  </div>

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
              this.loginService.loginStatusSubject.next(true);
            }
            else if(user.roles[0].authority=="ADMIN"){
-            this.router.navigate(["/admin"]);
+            this.router.navigate(["/admin/viewsUser"]);
               this.loginService.loginStatusSubject.next(true);
            }
         })

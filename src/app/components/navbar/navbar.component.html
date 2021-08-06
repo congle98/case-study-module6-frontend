@@ -20,7 +20,7 @@
       <div *ngIf="isLoggedIn && user != null && isAdmin">
         <a
           mat-button
-          routerLink="/admin"
+          routerLink="/admin/viewsUser"
           mat-button
           [matMenuTriggerFor]="menuAdmin"
         >
@@ -34,7 +34,13 @@
           />
         </a>
         <mat-menu #menuAdmin="matMenu">
-          <button class="my-mat-menu text-center" mat-menu-item>Item 2</button>
+          <button
+          class="my-mat-menu text-center"
+          mat-menu-item
+          (click)="userDashboard()"
+        >
+          {{ user.username }}
+        </button>
           <button
             class="my-mat-menu text-center"
             mat-menu-item
