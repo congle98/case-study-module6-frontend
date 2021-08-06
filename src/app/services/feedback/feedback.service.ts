@@ -13,4 +13,8 @@ export class FeedbackService {
   createFeedBack(feedbackCreateRequest:any){
     return this.httpClient.post(`${environment.baseUrl}/feedback/create`,feedbackCreateRequest);
   }
+
+  findAllFeedBackByProvider(providerId:any,page:any){
+    return this.httpClient.post(`${environment.baseUrl}/feedback/findAll/${providerId}`,page);
+  }
 }
