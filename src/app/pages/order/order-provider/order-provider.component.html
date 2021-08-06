@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <mat-card class="text-center">
+        <h2 style="font-weight: 500; color: #fc4ea5">
+          Lịch hẹn của bản với người cùng
+        </h2>
+        <table class="table table-hover full-width">
+          <tr>
+            <th>STT</th>
+            <th>Tên Người Thuê</th>
+            <th>Tên Người cung cấp dịch vụ</th>
+            <th>Địa Chỉ</th>
+            <th>Thời Gian Thuê</th>
+            <th>Giờ Bắt Đầu</th>
+            <th>Ngày Đặt Lịch</th>
+            <th>Thành Tiền</th>
+            <th>Trạng Thái</th>
+            <th colspan="2">Hoạt động</th>
+          </tr>
+          <tbody>
+          <tr *ngFor="let item of orderList; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>
+              <a routerLink="/user/{{ item.user.id }}">{{
+                item.user.fullName
+                }}</a>
+            </td>
+            <td>{{ item.provider.fullName }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.hour }}</td>
+            <td>{{ item.startTime }}</td>
+            <td>{{ item.day }}</td>
+            <td>{{ item.provider.priceByHour * item.hour }}</td>
+            <td>
+              {{ item.status.name }}
+            </td>
+
+            <td>
+              <div class="my-flex">
+                <div>
+                  <button
+                    *ngIf="item.status.id == 1"
+                    mat-stroked-button
+                    color="primary"
+                    (click)="accept(item.id, item.status.id)"
+                  >
+                    Đồng ý
+                  </button>
+                </div>
+                <div>
+                  <button
+                    *ngIf="item.status.id == 1"
+                    mat-stroked-button
+                    color="primary"
+                    (click)="decline(item.id, item.status.id)"
+                  >
+                    Từ chối
+                  </button>
+                </div>
+              </div>
+
+<!--              <button-->
+<!--                *ngIf="item.status.id == 2"-->
+<!--                mat-stroked-button-->
+<!--                color="primary"-->
+<!--                (click)="accept(item.id, item.status.id)"-->
+<!--              >-->
+<!--                Báo cáo-->
+<!--              </button>-->
+              <button
+                *ngIf="item.status.id == 2"
+                mat-stroked-button
+                color="primary"
+                (click)="accept(item.id, item.status.id)"
+              >
+                Nhận tiền
+              </button>
+              <button
+                *ngIf="item.status.id == 2"
+                mat-stroked-button
+                color="primary"
+                (click)="accept(item.id, item.status.id)"
+              >
+                Báo cáo
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </mat-card>
+    </div>
+  </div>
+</div>
+

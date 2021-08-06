@@ -17,6 +17,7 @@ import {ListComponent} from "./pages/order/list/list.component";
 import { OrderUserComponent } from './pages/order/order-user/order-user.component';
 import { ViewUsersComponent } from './pages/admin/view-users/view-users.component';
 import { ViewsOrderComponent } from './pages/admin/views-order/views-order.component';
+import {OrderProviderComponent} from "./pages/order/order-provider/order-provider.component";
 
 
 const routes: Routes = [
@@ -58,7 +59,7 @@ const routes: Routes = [
   },
   { path: 'error', component: ErrorComponent },
   { path: 'provider', component: ProviderEditComponent},
-  { path: 'order', component: ListComponent},
+  { path: 'order', component: OrderProviderComponent},
   { path: 'order2', component:OrderUserComponent},
   { path: '', component: HomeComponent },
 ];

@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <h2 style="font-weight: 500; color: #fc4ea5">Thông tin dịch vụ của bạn</h2>
+      <div>
+        <input
+          type="text"
+          style="width: 100%; height: 25px"
+          name="userId"
+          value="{{oderResponse.userId}}"
+
+        />
+      </div>
+
+      <div formGroupName="provider" name="provider">
+        <input
+          type="text"
+          style="width: 100%; height: 25px"
+          name="id"
+          value="{{oderResponse.id}}"
+          hidden
+        />
+      </div>
+
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Địa điểm gặp gỡ</mat-label>
+        <input
+          matInput
+          placeholder="address"
+          name="address"
+          formControlName="address">
+
+        <!--              id="address"-->
+        <!--  #inputAdd ="ngModel"-->
+        <!--  minlength="3"-->
+        <!--  maxlength="50"-->
+
+        <!--<mat-error *ngif="inputAdd.hasError('minlength')" >Độ dài chuỗi lớn hơn 2</mat-error>-->
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Thơi gian thuê</mat-label>
+        <input
+          matInput
+          placeholder="address"
+          name="hour"
+          type="number"
+          formControlName="hour">
+<!--          (change)="showTotalPrice()"-->
+
+
+        />
+        <mat-icon matSuffix>hour</mat-icon>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Thơi gian bắt đầu</mat-label>
+        <input
+          matInput
+          placeholder="address"
+          name="startTime"
+          type="time"
+          formControlName="startTime"
+          id=""
+        />
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Ngày Hẹn</mat-label>
+        <input
+          matInput
+          placeholder="address"
+          name="day"
+          type="date"
+          formControlName="day">
+<!--          (change)="showTotalPrice()"-->
+        />
+      </mat-form-field>
+
+
+      <!--            <mat-form-field appearance="outline" class="full-width" >-->
+      <!--              <mat-label>Trạng thái</mat-label>-->
+      <!--              <input matInput placeholder="address" name="status" type="date" formControlName="status" >-->
+      <!--            </mat-form-field>-->
+      <div>
+        <mat-card>
+<!--          <div class="mt-20" style="font-size: 25px; color: #f55193">Tổng Tiền : {{totalPrice}}vnd</div>-->
+        </mat-card>
+      </div>
+
+      <div class="example-button-container" style="text-align: center">
+        <button
+          mat-flat-button
+          color="accent"
+          type="submit">
+<!--          (click)="createOrder()"-->
+
+          Create Order
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

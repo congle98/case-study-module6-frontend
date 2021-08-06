@@ -13,11 +13,11 @@ export class OrderService {
 
   saveOrder(order: any): Observable<any>{
     console.log("da vao function");
-    return this.http.post<any>(this.url+"/createOrder", order);
+    return this.http.post<any>(this.url+"/orders/create", order);
 
   }
   getOrderByProvider(id: any): Observable<any>{
-    return this.http.get<any>(this.url+ "/list/"+id);
+    return this.http.get<any>(this.url+ "/orders/orderByProvider/"+id);
   }
   getUser() {
     let userStr = localStorage.getItem("user");
@@ -32,7 +32,7 @@ export class OrderService {
     }
   }
   getOrderByUser(id: any): Observable<any>{
-    return this.http.get<any>(this.url+ "/list2/"+id);
+    return this.http.get<any>(this.url+ "/orders/orderByUser/"+id);
   }
 
 
@@ -46,5 +46,9 @@ export class OrderService {
 
   cancelOrder(id:any, status: any){
     return this.http.put(this.url + "/orders/decline/" +id, status);
+  }
+
+  getOrderById(id:any){
+    return this.http.get(this.url + "/orders/findById/" +id);
   }
 }

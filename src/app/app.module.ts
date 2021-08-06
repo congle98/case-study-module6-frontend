@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatError, MatFormFieldModule} from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -67,6 +67,8 @@ import { ViewsOrderComponent } from './pages/admin/views-order/views-order.compo
 import { FeedbackDetailDialogComponent } from './pages/admin/feedback-detail-dialog/feedback-detail-dialog.component';
 import { CreateFeedbackDialogComponent } from './pages/order/create-feedback-dialog/create-feedback-dialog.component';
 import { ViewFeedbackComponent } from './pages/order/view-feedback/view-feedback.component';
+import { OrderProviderComponent } from './pages/order/order-provider/order-provider.component';
+import { OrderDetailComponent } from './pages/order/order-detail/order-detail.component';
 
 
 @NgModule({
@@ -77,7 +79,7 @@ import { ViewFeedbackComponent } from './pages/order/view-feedback/view-feedback
     LoginComponent,
     RegisterComponent,
     HomeComponent,
- 
+
 
     ProviderListComponent,
     ProviderCreateComponent,
@@ -103,7 +105,10 @@ import { ViewFeedbackComponent } from './pages/order/view-feedback/view-feedback
     ViewsOrderComponent,
     FeedbackDetailDialogComponent,
     CreateFeedbackDialogComponent,
-    ViewFeedbackComponent
+    ViewFeedbackComponent,
+    OrderUserComponent,
+    OrderProviderComponent,
+    OrderDetailComponent
 
 
 

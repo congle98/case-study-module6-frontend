@@ -5,38 +5,42 @@
         <h2 style="font-weight: 500; color: #fc4ea5">
           Lịch hẹn của bạn với người cung cấp
         </h2>
-      
-          <table class=" table table-hover full-width">
-            <tr>
-              <th>STT</th>
-              <th>Tên Người Thuê</th>
-              <th>Tên Đơn Thuê</th>
-              <th>Địa Chỉ</th>
-              <th>Thời Gian Thuê</th>
-              <th>Giờ Bắt Đầu</th>
-              <th>Ngày Đặt Lịch</th>
-              <th>Thành Tiền</th>
-              <th>Trạng Thái</th>
-              <th>Phản hồi</th>
-            </tr>
-            <tbody>
-               <tr *ngFor="let item of orderList; index as i">
-              <td>{{ i + 1 }}</td>
-              <td>{{ item.user.fullName }}</td>
-              <td>{{ item.provider.fullName }}</td>
-              <td>{{ item.address }}</td>
-              <td>{{ item.hour }}</td>
-              <td>{{ item.startTime }}</td>
-              <td>{{ item.day }}</td>
-              <td>{{ item.provider.priceByHour * item.hour }}</td>
-              <td>{{ item.status.name }}</td>
-              <td *ngIf="item.status.name=='COMPLETE'&&!item.feedback"><button mat-stroked-button color="accent" (click)="createFeedBack(item)">Tạo phản hồi</button></td>
-              <td *ngIf="item.feedback"><button mat-stroked-button color="accent" (click)="showFeedBack(item.feedback)" >{{item.feedback.description.substring(0,15)+"...."}}</button></td>
-            </tr>
-            </tbody>
-           
-          </table>
-    
+
+        <table class=" table table-hover full-width">
+          <tr>
+            <th>STT</th>
+            <th>Tên Người Thuê</th>
+            <th>Tên người cung cấp dịch vụ</th>
+            <th>Địa Chỉ</th>
+            <th>Thời Gian Thuê</th>
+            <th>Giờ Bắt Đầu</th>
+            <th>Ngày Đặt Lịch</th>
+            <th>Thành Tiền</th>
+            <th>Trạng Thái</th>
+          </tr>
+          <tbody>
+          <tr *ngFor="let item of orderList; index as i">
+            <td>
+              <a routerLink="/user/{{ item.provider.id }}">{{ i+1 }}</a>
+            </td>
+            <td>{{ item.user.fullName }}</td>
+            <td>
+              <a routerLink="/user/{{ item.provider.id }}">{{ item.provider.fullName }}</a>
+            </td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.hour }}</td>
+            <td>{{ item.startTime }}</td>
+            <td>{{ item.day }}</td>
+            <td>{{ item.provider.priceByHour * item.hour }}</td>
+            <td>{{ item.status.name }}</td>
+            <td *ngIf="item.status.name=='COMPLETE'&&!item.feedback"><button mat-stroked-button color="accent" (click)="createFeedBack(item)">Tạo phản hồi</button></td>
+            <td *ngIf="item.feedback"><button mat-stroked-button color="accent" (click)="showFeedBack(item.feedback)" >{{item.feedback.description.substring(0,15)+"...."}}</button></td>
+
+          </tr>
+          </tbody>
+
+        </table>
+
       </mat-card>
     </div>
   </div>
