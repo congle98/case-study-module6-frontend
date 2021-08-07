@@ -24,7 +24,7 @@
           <td *ngIf="user.accountStatus==false"><p style="color:#fc0814;">Không hoạt động</p> </td>
           <td>{{user.phone}}</td>
           <td>{{user.joinDate}}</td>
-          <td><button mat-stroked-button color="warn">{{user.accountStatus==true?"Khoá tài khoản":"Mở tài khoản"}}</button> </td>
+          <td><button mat-stroked-button color="warn" (click)="changeStatus(user.id)">{{user.accountStatus==true?"Khoá tài khoản":"Mở tài khoản"}}</button> </td>
         </tr>
       </tbody>
     </table>

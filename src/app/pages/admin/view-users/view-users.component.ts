@@ -33,4 +33,15 @@ export class ViewUsersComponent implements OnInit {
     this.getAllUsers();
   }
 
+  changeStatus(id:any){
+    this.adminService.changeStatusUser(id).subscribe((data:any)=>{
+      for (let i = 0;i<=this.users.length;i++){
+        if (this.users[i].id == id){
+          this.users[i].accountStatus = !this.users[i].accountStatus;
+          console.log(this.users[i].accountStatus);
+        }
+      }
+    })
+  }
+
 }
