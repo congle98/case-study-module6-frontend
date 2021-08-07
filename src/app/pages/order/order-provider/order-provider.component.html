@@ -43,7 +43,7 @@
                     *ngIf="item.status.id == 1"
                     mat-stroked-button
                     color="primary"
-                    (click)="accept(item.id, item.status.id)"
+                    (click)="accept(item)"
                   >
                     Đồng ý
                   </button>
@@ -60,30 +60,14 @@
                 </div>
               </div>
 
-<!--              <button-->
-<!--                *ngIf="item.status.id == 2"-->
-<!--                mat-stroked-button-->
-<!--                color="primary"-->
-<!--                (click)="accept(item.id, item.status.id)"-->
-<!--              >-->
-<!--                Báo cáo-->
-<!--              </button>-->
               <button
-                *ngIf="item.status.id == 2"
+                *ngIf="item.status.id == 3"
                 mat-stroked-button
                 color="primary"
-                (click)="accept(item.id, item.status.id)"
-              >
+                (click)="payment(item) ">
                 Nhận tiền
               </button>
-              <button
-                *ngIf="item.status.id == 2"
-                mat-stroked-button
-                color="primary"
-                (click)="accept(item.id, item.status.id)"
-              >
-                Báo cáo
-              </button>
+
             </td>
           </tr>
           </tbody>

@@ -20,13 +20,13 @@ export class LoginService {
   }
 
   login(user:any){
-  
+
     return this.http.post(`${environment.baseUrl}/auth/login`,user);
 
   }
 
   setTokenToStorage(token:any){
-  
+
     localStorage.setItem('token',token);
     return true;
   }
@@ -72,7 +72,7 @@ export class LoginService {
     localStorage.setItem("userInformation",JSON.stringify(userInformation));
   }
   getUserInformation(){
-    
+
       let userInformationStr = localStorage.getItem("userInformation");
       if(userInformationStr!==null){
         return JSON.parse(userInformationStr);
@@ -93,5 +93,5 @@ export class LoginService {
     return this.http.post(`${environment.baseUrl}/auth/register`,user)
   }
 
-  
+
 }

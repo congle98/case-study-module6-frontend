@@ -7,6 +7,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { CreateFeedbackDialogComponent } from '../create-feedback-dialog/create-feedback-dialog.component';
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-order-user',
   templateUrl: './order-user.component.html',
@@ -17,7 +18,8 @@ export class OrderUserComponent implements OnInit {
   orderList: any ;
   id: any;
 
-  constructor(private orderService:OrderService,public dialog: MatDialog) { }
+  constructor(private orderService:OrderService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.id=this.orderService.getUser()
@@ -39,4 +41,12 @@ export class OrderUserComponent implements OnInit {
     });
   }
 
+  accept(item: any) {
+    console.log("đây là :", item);
+    this.orderService.acceptStatus(item.id, item.status.id).subscribe((data) => {
+      console.log("chuyen trang thai");
+      Swal.fire("Thành công", "Giao dịch thành công", "success");
+      this.ngOnInit();
+    });
+  }
 }
