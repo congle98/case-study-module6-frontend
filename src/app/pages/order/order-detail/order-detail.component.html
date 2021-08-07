@@ -55,38 +55,17 @@
           <br>
           <div text-font-15 >
 
-<!--            <table>-->
-<!--              <tr>-->
-<!--                <td>Địa điểm gặp gỡ</td>-->
-<!--                <td>{{oderResponse.address}}</td>-->
-<!--              </tr>-->
 
-<!--              <tr>-->
-<!--                <td>Thơi gian thuê</td>-->
-<!--                <td>{{oderResponse.address}}</td>-->
-<!--              </tr>-->
-
-<!--              <tr>-->
-<!--                <td>Thời gian bắt đầu</td>-->
-<!--                <td>{{oderResponse.startTime}}</td>-->
-<!--              </tr>-->
-
-<!--              <tr>-->
-<!--                <td>Ngày hẹn</td>-->
-<!--                <td>{{oderResponse.day}}</td>-->
-<!--              </tr>-->
-
-<!--            </table>-->
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Địa điểm gặp gỡ</mat-label>
-              <input  matInput type="text" value="{{oderResponse.address}}" disabled>
+              <input  matInput type="text" [(ngModel)]="oderResponse.address" [disabled]="!statusEdit">
             </mat-form-field>
 
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Thơi gian thuê</mat-label>
-              <input  matInput type="text" value="{{oderResponse.hour}}" disabled>
+              <input  matInput type="number" [(ngModel)]="oderResponse.hour" [disabled]="!statusEdit" (change)="payment()">
               <mat-icon matSuffix>hour</mat-icon>
             </mat-form-field>
 
@@ -94,19 +73,30 @@
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Thơi gian bắt đầu</mat-label>
-              <input matInput type="text" value="{{oderResponse.startTime}}" disabled>
+              <input matInput type="time" [(ngModel)]="oderResponse.startTime" [disabled]="!statusEdit">
             </mat-form-field>
 
 
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Ngày Hẹn</mat-label>
-              <input  matInput type="text" value="{{oderResponse.day}}" disabled>
+              <input  matInput type="date" [(ngModel)]="oderResponse.day" [disabled]="!statusEdit">
 
             </mat-form-field>
 
             <div>
-              <mat-card><div class="mt-20"  style="font-size: 25px; color: #f55193; text-align: center">Tổng Tiền : {{oderResponse.totalPrice}}vnd</div></mat-card>
+              <mat-card><div class="mt-20"  style="font-size: 20px;  text-align: center">Tổng Tiền :{{oderResponse.totalPrice}} vnd</div></mat-card>
+            </div>
+            <div>
+              <mat-card>
+                <div class="text-center">
+                  <button (click)="cancel()" mat-stroked-button color="accent"  *ngIf="oderResponse.status.id==1 && !statusEdit">Hủy Dịch vụ</button>
+                  <button (click)="editInf()"  mat-stroked-button color="accent" *ngIf="oderResponse.status.id==1 && !statusEdit" >Sửa thông tin</button>
+                  <button   mat-stroked-button color="accent" *ngIf="oderResponse.status.id==2 && !statusEdit" >Hoàn thành</button>
+                  <button   mat-stroked-button color="accent" *ngIf="oderResponse.status.id==3 && !statusEdit" >Phản hồi</button>
+                  <button  (click)="editOrder()" mat-stroked-button color="accent" *ngIf="oderResponse.status.id==1 && statusEdit" >Xác nhận</button>
+                </div>
+              </mat-card>
             </div>
 
           </div>
