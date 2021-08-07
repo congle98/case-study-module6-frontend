@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProviderHomeService {
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient) {
 
   }
 
@@ -17,5 +17,8 @@ export class ProviderHomeService {
 
   getAllProviderByViews(){
     return this.httpClient.get(`${environment.baseUrl}/home/allProviderForViews`);
+  }
+  getAllProviderHomeByViews(page?:number){
+    return this.httpClient.get(`${environment.baseUrl}/home/findAllByViews?page=`+page);
   }
 }
