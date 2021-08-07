@@ -28,10 +28,8 @@ const routes: Routes = [
   {
     path:"home",
     component:HomeComponent
-  }
-  ,
-
-  {
+  },
+ {
     path: 'login',
     component: LoginComponent,
   },
@@ -61,6 +59,7 @@ const routes: Routes = [
   { path: 'provider', component: ProviderEditComponent},
   { path: 'order', component: OrderProviderComponent},
   { path: 'order2', component:OrderUserComponent},
+  
   { path: '', component: HomeComponent },
 ];
 

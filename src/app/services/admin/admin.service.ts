@@ -20,4 +20,7 @@ export class AdminService {
   changeStatusFeedBack(feedbackId:any){
     return this.httpClient.put(`${environment.baseUrl}/feedback/changeStatus`,feedbackId);
   }
+  changeStatusUser(id:any){
+    return this.httpClient.put(`${environment.baseUrl}/user/changeStatus`,id);
+  }
 }
