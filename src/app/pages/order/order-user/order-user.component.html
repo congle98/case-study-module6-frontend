@@ -22,7 +22,7 @@
           <tbody>
           <tr *ngFor="let item of orderList; index as i">
             <td>
-              <a routerLink="/user/{{ item.provider.id }}">{{ i+1 }}</a>
+              <a routerLink="/order/{{ item.id }}">Đơn{{ i+1 }}</a>
             </td>
             <td>{{ item.user.fullName }}</td>
             <td>
