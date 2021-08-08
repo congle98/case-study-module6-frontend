@@ -49,12 +49,12 @@ export class UserDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.getUser();
     let id = this.activatedRoute.snapshot.params.userId;
     console.log('id trên đường link' + id);
     this.getUserInformation(id);
     this.getAllFeedBackByProvider(id,this.pageFeedBack);
-    
   }
 
   openDialogRegisterProvider() {

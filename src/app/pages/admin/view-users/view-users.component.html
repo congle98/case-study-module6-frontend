@@ -9,6 +9,7 @@
           <th>Tên tài khoản</th>
           <th>Email</th>
           <th>Trạng thái</th>
+          <th>Trạng thái Email</th>
           <th>Số điện thoại</th>
           <th>Ngày tạo</th>
           <th>Hành động</th>
@@ -22,6 +23,8 @@
           <td>{{user.email}}</td>
           <td *ngIf="user.accountStatus==true"><p style="color:#0096fa;" >Đang hoạt động</p> </td>
           <td *ngIf="user.accountStatus==false"><p style="color:#fc0814;">Không hoạt động</p> </td>
+          <td *ngIf="user.isVerifyEmail==true"><p style="color:#0096fa;" >Đã kích hoạt</p> </td>
+          <td *ngIf="user.isVerifyEmail==false"><p style="color:#fc0814;">Chưa kích hoạt</p> </td>
           <td>{{user.phone}}</td>
           <td>{{user.joinDate}}</td>
           <td><button mat-stroked-button color="warn" (click)="changeStatus(user.id)">{{user.accountStatus==true?"Khoá tài khoản":"Mở tài khoản"}}</button> </td>

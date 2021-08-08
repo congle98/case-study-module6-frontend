@@ -16,3 +16,59 @@
 .my-mat-menu{
     width: 200px ;
 }
+
+.search {
+    position: relative;
+    width: 40%;
+    min-width: 170px;
+    top:10px
+}
+
+.search input {
+
+    height: 50px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid #fa5285;
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px
+}
+
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 40px;
+    width: 20%;
+    background: #fa5285;
+}
+
+.search-result{
+    position:absolute;
+    top: 50px;
+    background-color: #faf7f8;
+    min-width: 200px;
+    width: 80%;
+    border-radius: 10px;
+}
+.search-result-item{
+    width: 100%;
+    height: 70px;
+}
+.search-result-item:hover{
+    background-color:#d8ebe9;
+    cursor: pointer;
+}
+.search-icon{
+   position:absolute;
+   right: 10px;
+   bottom: 12px;
+}
