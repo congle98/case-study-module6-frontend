@@ -54,7 +54,8 @@ export class UserDashboardComponent implements OnInit {
     let id = this.activatedRoute.snapshot.params.userId;
     console.log('id trên đường link' + id);
     this.getUserInformation(id);
-    this.getAllFeedBackByProvider(id,this.pageFeedBack);
+    this.getAllFeedBackByProvider(id,this.pageFeedBack);  
+   
   }
 
   openDialogRegisterProvider() {

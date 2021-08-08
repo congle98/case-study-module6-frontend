@@ -11,3 +11,20 @@
       padding-right: 5px;
       
 }
+
+.search-button{
+    border-radius: 20px;
+   
+    color: #919090;
+    border: 1px solid #3d3d3d;
+
+}
+.search-button:hover{
+    color: #3d3d3d;
+}
+
+.search-accept{
+    font-size: 1rem;
+    padding: 0px 10px;
+    border-radius: 20px;
+}
