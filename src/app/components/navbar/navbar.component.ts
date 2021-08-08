@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 import { SearchService } from 'src/app/services/search/search.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   
 
-  constructor(public loginService: LoginService, private router: Router,private searchService:SearchService) { }
+  constructor(public loginService: LoginService, private router: Router,private searchService:SearchService,private userService: UserService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.loginService.isLoggedIn();
@@ -60,7 +61,9 @@ export class NavbarComponent implements OnInit {
     }
   }
   userDashboard(){
-    this.router.navigate(["/user/"+this.user.id]);
+    this.router.navigate(["/user/"+this.user.id]).then(() => {
+      window.location.reload();
+    });
   }
 
   searchByFullName(){
@@ -81,9 +84,13 @@ export class NavbarComponent implements OnInit {
   }
 
   viewProfile(id:any){
-    this.router.navigate(["/user/"+id]);
+    this.userService.userStatusSubject.next(true);
+    this.router.navigate(["/user/"+id]) .then(() => {
+      window.location.reload();
+    });
     this.searchValue="";
-    this.searchResult=null;
+  
+  
   }
 
   
