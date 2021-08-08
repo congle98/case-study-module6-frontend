@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  userStatusSubject = new Subject<Boolean>();
+  // userStatusSubject = new Subject<Boolean>();
   constructor(private httpClient:HttpClient) { }
 
   getUserInformation(userId:any){

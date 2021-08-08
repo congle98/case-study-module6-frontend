@@ -84,8 +84,9 @@ export class NavbarComponent implements OnInit {
   }
 
   viewProfile(id:any){
-    this.userService.userStatusSubject.next(true);
-    this.router.navigate(["/user/"+id]) .then(() => {
+ 
+    this.router.navigate(["/user/"+id]) 
+    .then(() => {
       window.location.reload();
     });
     this.searchValue="";

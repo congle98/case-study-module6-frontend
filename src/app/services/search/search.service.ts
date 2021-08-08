@@ -12,4 +12,7 @@ export class SearchService {
   searchByFullName(keywords:any){
     return this.httpClient.get(`${environment.baseUrl}/profile/searchByFullName/${keywords}`);
   }
+  searchFilter(searchFilter:any){
+    return this.httpClient.post(`${environment.baseUrl}/home/search/`,searchFilter);
+  }
 }
