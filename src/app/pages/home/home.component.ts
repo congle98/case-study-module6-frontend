@@ -62,9 +62,9 @@ export class HomeComponent implements OnInit {
     this.searchService.searchFilter(this.searchFilter).subscribe((data)=>{
       console.log(data);
       this.searchList=data;
-     this.searchFilter.city="";
-     this.searchFilter.price="";
-     this.searchFilter.gender="";
+    //  this.searchFilter.city="";
+    //  this.searchFilter.price="";
+    //  this.searchFilter.gender="";
     });
   }
 

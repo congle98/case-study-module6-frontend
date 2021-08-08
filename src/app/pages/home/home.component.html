@@ -21,7 +21,7 @@
       <div><button  class="search-accept" (click)="searchFilterRequest()" mat-raised-button color="accent" mat-button> <span><img src="/assets/searchButton.png" class="facebook-icon"></span> Tìm kiếm</button></div>
     </div>
   </div>
-  <div class="row" *ngIf="searchList" >
+  <div class="row" *ngIf="searchList" style="margin-bottom: 70px" >
     <div style="display: flex; justify-content:space-between;">
         <div>
       <h1 style="color: #fc4786; font-weight: 500; font-size: 2rem">{{searchList.length>0?"Kết quả":"Không có kết quả"}}</h1>
@@ -131,7 +131,7 @@
     </div>
 
   </div>
-  <div class="row" style="margin-top: 100px">
+  <div class="row" style="margin-top: 70px">
     <div style="display: flex; justify-content:space-between;">
       <div>
         <h1 style="color: #fc4786; font-weight: 500; font-size: 2rem">Views</h1>
