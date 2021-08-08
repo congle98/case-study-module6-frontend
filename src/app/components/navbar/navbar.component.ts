@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
+import { SearchService } from 'src/app/services/search/search.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +15,14 @@ export class NavbarComponent implements OnInit {
   user:any;
   isUser=false;
   isAdmin=false;
+  searchValue="";
+  searchResult:any;
   
  
 
   
 
-  constructor(public loginService: LoginService, private router: Router) { }
+  constructor(public loginService: LoginService, private router: Router,private searchService:SearchService,private userService: UserService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.loginService.isLoggedIn();
@@ -57,7 +61,39 @@ export class NavbarComponent implements OnInit {
     }
   }
   userDashboard(){
-    this.router.navigate(["/user/"+this.user.id]);
+    this.router.navigate(["/user/"+this.user.id]).then(() => {
+      window.location.reload();
+    });
   }
+
+  searchByFullName(){
+    setTimeout(()=>{
+      this.getResult();
+    },1500);
+  }
+
+
+  getResult(){
+    if(this.searchValue.trim()==''){
+      this.searchResult=null;
+    }
+   this.searchService.searchByFullName(this.searchValue).subscribe((data)=>{
+      this.searchResult = data;
+      console.log(this.searchResult);
+    })
+  }
+
+  viewProfile(id:any){
+    this.userService.userStatusSubject.next(true);
+    this.router.navigate(["/user/"+id]) .then(() => {
+      window.location.reload();
+    });
+    this.searchValue="";
+  
+  
+  }
+
+  
+ 
 
 }

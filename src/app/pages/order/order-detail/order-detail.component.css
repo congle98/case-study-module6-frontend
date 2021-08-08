@@ -1,0 +1,17 @@
+.row {
+  display: flex;
+}
+.text-center{
+  font-size: 25px;
+  border-width: medium;
+  font-style: normal;
+}
+.text-weight{
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.mat-form-field {
+  font-size: 20px;
+}

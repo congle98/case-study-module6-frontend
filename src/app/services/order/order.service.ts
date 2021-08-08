@@ -51,4 +51,14 @@ export class OrderService {
   getOrderById(id:any){
     return this.http.get(this.url + "/orders/findById/" +id);
   }
+
+  paymentOrder(payment: any){
+    return this.http.put(this.url + "/profile/paymentOder", payment);
+  }
+
+  editOrder(oder:any){
+    return this.http.put(this.url + "/orders/edit/" +oder.id, oder);
+  }
+
+
 }
