@@ -1,109 +1,112 @@
 <div class="container">
   <div class="row">
-    <div class="text-center">
-      <h2 style="font-weight: 500; color: #fc4ea5">Thông tin dịch vụ của bạn</h2>
-      <div>
-        <input
-          type="text"
-          style="width: 100%; height: 25px"
-          name="userId"
-          value="{{oderResponse.userId}}"
+    <div class="col-md-12">
+      <mat-card>
+        <h2 class="text-center">CHI TIẾT ĐƠN THUÊ</h2>
+      </mat-card>
 
-        />
-      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row" >
 
-      <div formGroupName="provider" name="provider">
-        <input
-          type="text"
-          style="width: 100%; height: 25px"
-          name="id"
-          value="{{oderResponse.id}}"
-          hidden
-        />
-      </div>
-
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Địa điểm gặp gỡ</mat-label>
-        <input
-          matInput
-          placeholder="address"
-          name="address"
-          formControlName="address">
-
-        <!--              id="address"-->
-        <!--  #inputAdd ="ngModel"-->
-        <!--  minlength="3"-->
-        <!--  maxlength="50"-->
-
-        <!--<mat-error *ngif="inputAdd.hasError('minlength')" >Độ dài chuỗi lớn hơn 2</mat-error>-->
-      </mat-form-field>
-
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Thơi gian thuê</mat-label>
-        <input
-          matInput
-          placeholder="address"
-          name="hour"
-          type="number"
-          formControlName="hour">
-<!--          (change)="showTotalPrice()"-->
-
-
-        />
-        <mat-icon matSuffix>hour</mat-icon>
-      </mat-form-field>
-
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Thơi gian bắt đầu</mat-label>
-        <input
-          matInput
-          placeholder="address"
-          name="startTime"
-          type="time"
-          formControlName="startTime"
-          id=""
-        />
-      </mat-form-field>
-
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Ngày Hẹn</mat-label>
-        <input
-          matInput
-          placeholder="address"
-          name="day"
-          type="date"
-          formControlName="day">
-<!--          (change)="showTotalPrice()"-->
-        />
-      </mat-form-field>
-
-
-      <!--            <mat-form-field appearance="outline" class="full-width" >-->
-      <!--              <mat-label>Trạng thái</mat-label>-->
-      <!--              <input matInput placeholder="address" name="status" type="date" formControlName="status" >-->
-      <!--            </mat-form-field>-->
-      <div>
+      <div class="col-md-4" float-left >
         <mat-card>
-<!--          <div class="mt-20" style="font-size: 25px; color: #f55193">Tổng Tiền : {{totalPrice}}vnd</div>-->
+          <div class="text-center">Thông tin Đối tác</div>
+          <div style="text-align: center">
+            <img src="{{oderResponse.provider.image[0].url}}" class="avatar-profile mt-10" >
+          </div>
+
+          <div class="mt-20 border text-weight" >
+            {{oderResponse.provider.fullName}}
+          </div>
+
+          <div class="mt-20">
+            <p>
+              Điện thoại : {{ oderResponse.provider.phone?oderResponse.provider.phone:""}}
+            </p>
+            <p>
+              Giới tính : {{ oderResponse.provider.gender?"nam":"nữ"}}
+            </p>
+            <p>
+              Nơi sống : {{ oderResponse.provider.city?oderResponse.provider.city.name:""}}
+            </p>
+            <p>
+              Chiều cao : {{ oderResponse.provider.height?oderResponse.provider.height:""}}
+            </p>
+            <p>
+              Cân nặng {{ oderResponse.provider.weight?oderResponse.provider.weight:""}}
+            </p>
+            <h2><img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="">Sở thích</h2>
+            <p>
+              {{ oderResponse.hobbies ? oderResponse.hobbies : "" }}
+            </p>
+          </div>
+
         </mat-card>
       </div>
 
-      <div class="example-button-container" style="text-align: center">
-        <button
-          mat-flat-button
-          color="accent"
-          type="submit">
-<!--          (click)="createOrder()"-->
+      <div class="col-md-8 float-left">
+        <mat-card>
+          <div class="text-center">Thông tin dịch vụ</div>
+          <br>
+          <div text-font-15 >
 
-          Create Order
-        </button>
+
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Địa điểm gặp gỡ</mat-label>
+              <input  matInput type="text" [(ngModel)]="oderResponse.address" [disabled]="!statusEdit">
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Thơi gian thuê</mat-label>
+              <input  matInput type="number" [(ngModel)]="oderResponse.hour" [disabled]="!statusEdit" (change)="payment()">
+              <mat-icon matSuffix>hour</mat-icon>
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Thơi gian bắt đầu</mat-label>
+              <input matInput type="time" [(ngModel)]="oderResponse.startTime" [disabled]="!statusEdit">
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Ngày Hẹn</mat-label>
+              <input  matInput type="date" [(ngModel)]="oderResponse.day" [disabled]="!statusEdit">
+
+            </mat-form-field>
+
+            <div>
+              <mat-card><div class="mt-20"  style="font-size: 20px;  text-align: center">Tổng Tiền :{{oderResponse.totalPrice}} vnd</div></mat-card>
+            </div>
+            <div>
+              <mat-card>
+                <div class="text-center">
+                  <button (click)="cancel()" mat-stroked-button color="accent"  *ngIf="oderResponse.status.id==1 && !statusEdit">Hủy Dịch vụ</button>
+                  <button (click)="editInf()"  mat-stroked-button color="accent" *ngIf="oderResponse.status.id==1 && !statusEdit" >Sửa thông tin</button>
+                  <button   mat-stroked-button color="accent" *ngIf="oderResponse.status.id==2 && !statusEdit" >Hoàn thành</button>
+                  <button   mat-stroked-button color="accent" *ngIf="oderResponse.status.id==3 && !statusEdit" >Phản hồi</button>
+                  <button  (click)="editOrder()" mat-stroked-button color="accent" *ngIf="oderResponse.status.id==1 && statusEdit" >Xác nhận</button>
+                </div>
+              </mat-card>
+            </div>
+
+          </div>
+     </mat-card>
+
       </div>
 
+
     </div>
+
   </div>
 </div>
 
