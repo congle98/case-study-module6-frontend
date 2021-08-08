@@ -49,4 +49,13 @@ export class OrderUserComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  cancel(item: any) {
+    this.orderService.cancelOrder(item.id, item.status.id).subscribe((data) => {
+      console.log("chuyen trang thai");
+      Swal.fire("HỦy thành công", "Giao dịch bị hủy", "success");
+      this.ngOnInit();
+    });
+
+  }
 }

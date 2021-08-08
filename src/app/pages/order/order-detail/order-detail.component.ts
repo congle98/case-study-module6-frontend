@@ -20,6 +20,8 @@ export class OrderDetailComponent implements OnInit {
 
   statusEdit = false;
   idStatus:any;
+  currentDay="2021-08-08";
+
 
   constructor(private oderService: OrderService,
               private active: ActivatedRoute,
@@ -28,17 +30,38 @@ export class OrderDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+
     this.id = this.active.snapshot.params.id;
     this.oderService.getOrderById(this.id).subscribe(data=>{
       this.oderResponse = data;
       console.log(this.oderResponse)
       this.idStatus = this.oderResponse.status.id;
-      console.log(this.idStatus)
+      // console.log(this.idStatus)
+
+
     });
 
 
   }
 
+  getDate(){
+    let today = new Date();
+    let year= today.getFullYear();
+    let month= today.getMonth();
+    let monthStr ="";
+    let day= today.getDate();
+    let daythStr="";
+    if(month<10){
+      monthStr ="0"+ (month+1).toString();
+    }
+    if(day<10){
+      daythStr="0"+ day.toString();
+    }
+    let dayString =year +'-'+ monthStr +'-'+daythStr ;
+    this.currentDay=dayString;
+    console.log(this.currentDay);
+  }
 
   cancel() {
     this.oderService.cancelOrder(this.id, this.idStatus).subscribe(()=>{
@@ -48,28 +71,36 @@ export class OrderDetailComponent implements OnInit {
   }
 
   editInf() {
+    this.getDate();
     this.statusEdit=true;
+
 
   }
   editOrder() {
     console.log(this.oderResponse);
-    let orderEdit ={
-      id: this.oderResponse.id,
-      user: { id: this.oderResponse.user.id},
-      provider: { id: this.oderResponse.provider.id},
-      address: this.oderResponse.address,
-      hour: this.oderResponse.hour,
-      startTime: this.oderResponse.startTime,
-      day: this.oderResponse.day,
-      totalPrice: this.oderResponse.totalPrice,
-      status: {id: this.oderResponse.status.id}
+    if(this.oderResponse.totalPrice > this.oderResponse.user.money){
+      Swal.fire("Thất bại", "Giá trị đơn hàng cao hơn số tiền bạn có", "error");
+      this.ngOnInit();
+    }else{
+     let orderEdit ={
+        id: this.oderResponse.id,
+        user: { id: this.oderResponse.user.id},
+        provider: { id: this.oderResponse.provider.id},
+        address: this.oderResponse.address,
+        hour: this.oderResponse.hour,
+        startTime: this.oderResponse.startTime,
+        day: this.oderResponse.day,
+        totalPrice: this.oderResponse.totalPrice,
+        status: {id: this.oderResponse.status.id}
+      }
+
+      this.oderService.editOrder(orderEdit).subscribe(()=>{
+        this.statusEdit=false
+        Swal.fire("Thành công", "Đơn dã được sửa thành công", "success");
+        this.ngOnInit();
+      })
     }
 
-    this.oderService.editOrder(orderEdit).subscribe(()=>{
-      this.statusEdit=false
-      Swal.fire("Thành công", "Đơn dã được sửa thành công", "success");
-      this.ngOnInit();
-    })
   }
 
 
@@ -107,7 +138,7 @@ export class OrderDetailComponent implements OnInit {
     let userStr = localStorage.getItem("user");
     if (userStr !== null) {
       let user = JSON.parse(userStr)
-      console.log(user.id)
+      // console.log(user.id)
       return user.id;
 
     } else {
@@ -133,7 +164,7 @@ export class OrderDetailComponent implements OnInit {
         providerId: this.oderResponse.provider.id,
         money: this.oderResponse.totalPrice
       }
-      console.log(paymentRequest);
+      // console.log(paymentRequest);
       this.oderService.paymentOrder(paymentRequest).subscribe(data => {
         console.log("da cong tien");
         this.accept();
@@ -145,5 +176,10 @@ export class OrderDetailComponent implements OnInit {
         });
       });
     }
+  }
+
+  printInput(inputAdd: any) {
+    console.log(inputAdd);
+
   }
 }

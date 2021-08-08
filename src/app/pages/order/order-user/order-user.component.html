@@ -32,8 +32,9 @@
             <td>{{ item.hour }}</td>
             <td>{{ item.startTime }}</td>
             <td>{{ item.day }}</td>
-            <td>{{ item.provider.priceByHour * item.hour }}</td>
+            <td>{{ item.totalPrice }}</td>
             <td>{{ item.status.name }}</td>
+            <td *ngIf="item.status.id=='1'"><button mat-stroked-button color="accent" (click)="cancel(item)">Hủy</button>
             <td *ngIf="item.status.id=='2'"><button mat-stroked-button color="accent" (click)="accept(item)">Hoàn thành</button>
 
 
