@@ -37,7 +37,7 @@
             <td *ngIf="item.status.id=='2'"><button mat-stroked-button color="accent" (click)="accept(item)">Hoàn thành</button>
 
 
-            <td *ngIf="item.status.id=='3'&&!item.feedback"><button  mat-stroked-button color="accent" (click)="createFeedBack(item)">Tạo phản hồi</button></td>
+            <td *ngIf="(item.status.id=='3'&&!item.feedback)||(item.status.id=='4'&&!item.feedback)"><button  mat-stroked-button color="accent" (click)="createFeedBack(item)">Tạo phản hồi</button></td>
             <td *ngIf="item.feedback"><button  mat-stroked-button color="accent" (click)="showFeedBack(item.feedback)" >{{item.feedback.description.substring(0,15)+"...."}}</button></td>
 
           </tr>
