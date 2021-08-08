@@ -54,10 +54,11 @@ export class OrderDetailComponent implements OnInit {
     let daythStr="";
     if(month<10){
       monthStr ="0"+ (month+1).toString();
-    }
+    }else monthStr= (month+1).toString();
     if(day<10){
       daythStr="0"+ day.toString();
-    }
+    }else daythStr= day.toString();
+
     let dayString =year +'-'+ monthStr +'-'+daythStr ;
     this.currentDay=dayString;
     console.log(this.currentDay);

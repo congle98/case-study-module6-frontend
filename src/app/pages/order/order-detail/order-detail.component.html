@@ -97,7 +97,7 @@
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Địa điểm gặp gỡ</mat-label>
                 <input matInput type="text" [(ngModel)]="oderResponse.address" [disabled]="!statusEdit" ngModel
-                       #inputAdd="ngModel" minlength="3"  maxlength="30" (change)="printInput(inputAdd)">
+                       #inputAdd="ngModel" minlength="3"  maxlength="30" (change)="printInput(inputAdd)" required>
                               <mat-error *ngIf="inputAdd.errors!=null">Độ dài chuỗi lớn hơn 3 </mat-error>
 <!--                              <mat-error *ngIf="inputAdd.valueChanges.hasError!=null">Độ dài chuỗi lớn hơn 3 </mat-error>-->
               </mat-form-field>
@@ -106,14 +106,14 @@
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Thơi gian thuê</mat-label>
                 <input matInput type="number" [(ngModel)]="oderResponse.hour" [disabled]="!statusEdit"
-                       (change)="payment()" #inputHour="ngModel" min="1" max="8">
+                       (change)="payment()" #inputHour="ngModel" min="1" max="8" required>
 
               </mat-form-field>
 
 
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Thơi gian bắt đầu</mat-label>
-                <input matInput type="time" [(ngModel)]="oderResponse.startTime" [disabled]="!statusEdit">
+                <input matInput type="time" [(ngModel)]="oderResponse.startTime" [disabled]="!statusEdit" #inputTime="ngModel" required>
 
               </mat-form-field>
 
@@ -121,7 +121,7 @@
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Ngày Hẹn</mat-label>
                 <input matInput type="date" [(ngModel)]="oderResponse.day" [disabled]="!statusEdit" #inputDay="ngModel"
-                       min="{{currentDay}}">
+                       min="{{currentDay}}" required>
 
               </mat-form-field>
 
@@ -143,7 +143,11 @@
                             *ngIf="oderResponse.status.id==1 && !statusEdit">Sửa thông tin
                     </button>
                     <button (click)="editOrder()" mat-stroked-button color="accent"
-                            *ngIf="oderResponse.status.id==1 && statusEdit">Xác nhận
+                            *ngIf="oderResponse.status.id==1 && statusEdit"
+                            [disabled]="inputAdd.invalid ">
+<!--                            [disabled]="inputAdd.invalid && inputHour.invalid && inputDay.invalid && inputTime.invalid">-->
+
+                      Xác nhận
                     </button>
                     <button (click)="complete()" mat-stroked-button color="accent"
                             *ngIf="oderResponse.status.id==2 && !statusEdit">Hoàn thành
