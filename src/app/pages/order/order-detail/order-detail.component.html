@@ -13,7 +13,7 @@
     <br>
     <div class="row" >
 
-      <div class="col-md-4" float-left >
+      <div  *ngIf="oderResponse.user.id==getAccount() " class="col-md-4" float-left >
         <mat-card>
           <div class="text-center">Thông tin Đối tác</div>
           <div style="text-align: center">
@@ -40,10 +40,47 @@
             <p>
               Cân nặng {{ oderResponse.provider.weight?oderResponse.provider.weight:""}}
             </p>
-            <h2><img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="">Sở thích</h2>
+<!--            <h2><img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="">Sở thích</h2>-->
+<!--            <p>-->
+<!--              {{ oderResponse.hobbies ? oderResponse.hobbies : "" }}-->
+<!--            </p>-->
+          </div>
+
+        </mat-card>
+      </div>
+
+
+      <div *ngIf="oderResponse.provider.id==getAccount()"     class="col-md-4" float-left >
+        <mat-card>
+          <div class="text-center">Thông tin Đối tác</div>
+          <div style="text-align: center">
+            <img src="{{oderResponse.user.image[0].url}}" class="avatar-profile mt-10" >
+          </div>
+
+          <div class="mt-20 border text-weight" >
+            {{oderResponse.user.fullName}}
+          </div>
+
+          <div class="mt-20">
             <p>
-              {{ oderResponse.hobbies ? oderResponse.hobbies : "" }}
+              Điện thoại : {{ oderResponse.user.phone?oderResponse.user.phone:""}}
             </p>
+            <p>
+              Giới tính : {{ oderResponse.user.gender?"nam":"nữ"}}
+            </p>
+            <p>
+              Nơi sống : {{ oderResponse.user.city?oderResponse.user.city.name:""}}
+            </p>
+            <p>
+              Chiều cao : {{ oderResponse.user.height?oderResponse.user.height:""}}
+            </p>
+            <p>
+              Cân nặng {{ oderResponse.user.weight?oderResponse.user.weight:""}}
+            </p>
+            <!--            <h2><img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="">Sở thích</h2>-->
+            <!--            <p>-->
+            <!--              {{ oderResponse.hobbies ? oderResponse.hobbies : "" }}-->
+            <!--            </p>-->
           </div>
 
         </mat-card>
@@ -89,12 +126,21 @@
             </div>
             <div>
               <mat-card>
-                <div class="text-center">
+
+                <div *ngIf="oderResponse.user.id==getAccount() "class="text-center">
                   <button (click)="cancel()" mat-stroked-button color="accent"  *ngIf="oderResponse.status.id==1 && !statusEdit">Hủy Dịch vụ</button>
                   <button (click)="editInf()"  mat-stroked-button color="accent" *ngIf="oderResponse.status.id==1 && !statusEdit" >Sửa thông tin</button>
-                  <button   mat-stroked-button color="accent" *ngIf="oderResponse.status.id==2 && !statusEdit" >Hoàn thành</button>
-                  <button   mat-stroked-button color="accent" *ngIf="oderResponse.status.id==3 && !statusEdit" >Phản hồi</button>
                   <button  (click)="editOrder()" mat-stroked-button color="accent" *ngIf="oderResponse.status.id==1 && statusEdit" >Xác nhận</button>
+                  <button  (click)="complete()"  mat-stroked-button color="accent" *ngIf="oderResponse.status.id==2 && !statusEdit" >Hoàn thành</button>
+                  <button  (click)="createFeedBack()" mat-stroked-button color="accent" *ngIf="oderResponse.status.id==3 && !statusEdit && !oderResponse.feedback" >Phản hồi</button>
+                  <button *ngIf="oderResponse.feedback " mat-stroked-button color="accent" (click)="showFeedBack(oderResponse.feedback)" >{{oderResponse.feedback.description.substring(0,15)+"...."}}</button>
+                </div>
+                <div *ngIf="oderResponse.provider.id==getAccount() " class="text-center">
+                  <button (click)="cancel()" mat-stroked-button color="accent"  *ngIf="oderResponse.status.id==1 && !statusEdit">Hủy Dịch vụ</button>
+                  <button (click)="accept()" mat-stroked-button color="accent"  *ngIf="oderResponse.status.id==1 && !statusEdit">Đồng ý</button>
+                  <button  (click)="pament()"  mat-stroked-button color="accent" *ngIf="oderResponse.status.id==3 && !statusEdit" >Nhận tiền</button>
+                  <button *ngIf="oderResponse.feedback " mat-stroked-button color="accent" (click)="showFeedBack(oderResponse.feedback)" >{{oderResponse.feedback.description.substring(0,15)+"...."}}</button>
+
                 </div>
               </mat-card>
             </div>

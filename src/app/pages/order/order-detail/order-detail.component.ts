@@ -3,6 +3,10 @@ import {OrderService} from "../../../services/order/order.service";
 import {ActivatedRoute} from "@angular/router";
 import Swal from "sweetalert2";
 import {FormGroup} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {CreateFeedbackDialogComponent} from "../create-feedback-dialog/create-feedback-dialog.component";
+import {ViewFeedbackComponent} from "../view-feedback/view-feedback.component";
+import {LoginService} from "../../../services/login/login.service";
 
 
 @Component({
@@ -15,22 +19,31 @@ export class OrderDetailComponent implements OnInit {
   id: any;
 
   statusEdit = false;
+  idStatus:any;
 
   constructor(private oderService: OrderService,
-              private active: ActivatedRoute) { }
+              private active: ActivatedRoute,
+              public dialog: MatDialog,
+              public loginService: LoginService) { }
 
   ngOnInit(): void {
+
     this.id = this.active.snapshot.params.id;
     this.oderService.getOrderById(this.id).subscribe(data=>{
       this.oderResponse = data;
       console.log(this.oderResponse)
+      this.idStatus = this.oderResponse.status.id;
+      console.log(this.idStatus)
     });
+
+
   }
 
 
   cancel() {
-    this.oderService.cancelOrder(this.id, this.oderResponse.status).subscribe(()=>{
+    this.oderService.cancelOrder(this.id, this.idStatus).subscribe(()=>{
       Swal.fire("Hủy thành công", "Bạn đã hủy đơn", "success");
+      this.ngOnInit();
     })
   }
 
@@ -55,11 +68,82 @@ export class OrderDetailComponent implements OnInit {
     this.oderService.editOrder(orderEdit).subscribe(()=>{
       this.statusEdit=false
       Swal.fire("Thành công", "Đơn dã được sửa thành công", "success");
+      this.ngOnInit();
     })
   }
 
 
   payment() {
     this.oderResponse.totalPrice=this.oderResponse.provider.priceByHour*this.oderResponse.hour;
+  }
+
+  complete() {
+    this.oderService.acceptStatus(this.id, this.idStatus).subscribe(()=>{
+      Swal.fire("Thành công", "Đơn của bạn đã hoàn thành", "success");
+      this.ngOnInit();
+    })
+  }
+
+  createFeedBack(){
+    this.dialog.open(CreateFeedbackDialogComponent, {
+      data: this.oderResponse
+    });
+    window.onload;
+  }
+  reply() {
+    this.oderService.acceptStatus(this.id, this.idStatus).subscribe(()=>{
+      Swal.fire("Thành công", "Đơn của bạn đã hoàn thành", "success");
+      this.ngOnInit();
+    })
+  }
+
+  showFeedBack(feedBack:any){
+    this.dialog.open(ViewFeedbackComponent, {
+      data:feedBack
+    });
+  }
+
+  getAccount(){
+    let userStr = localStorage.getItem("user");
+    if (userStr !== null) {
+      let user = JSON.parse(userStr)
+      console.log(user.id)
+      return user.id;
+
+    } else {
+      // this.logout();
+      return null;
+    }
+  }
+
+  accept() {
+    this.oderService.acceptStatus(this.id, this.idStatus).subscribe(()=>{
+      Swal.fire("Thành công", "Giao dịch thành công", "success");
+      this.ngOnInit()
+    })
+
+
+  }
+
+  pament() {
+    console.log(this.idStatus)
+    if (this.idStatus == 3) {
+      const paymentRequest = {
+        userId: this.oderResponse.user.id,
+        providerId: this.oderResponse.provider.id,
+        money: this.oderResponse.totalPrice
+      }
+      console.log(paymentRequest);
+      this.oderService.paymentOrder(paymentRequest).subscribe(data => {
+        console.log("da cong tien");
+        this.accept();
+        this.loginService.getCurrentUser().subscribe((user: any) => {
+          this.loginService.setUser(user);
+          this.loginService.loginStatusSubject.next(true);
+
+
+        });
+      });
+    }
   }
 }
