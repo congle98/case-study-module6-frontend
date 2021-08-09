@@ -13,31 +13,36 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
   styleUrls: ['./oder-create.component.css']
 })
 export class OderCreateComponent implements OnInit {
-  formOder: any = new FormGroup({
+  public formOder: FormGroup= new FormGroup({
     id: new FormControl(),
     userId: new FormControl(),
     providerInformationId: new FormControl(),
 
     address: new FormControl("", [
-                  Validators.maxLength(100),
-                  Validators.minLength(3)]),
+      Validators.maxLength(100),
+      Validators.minLength(3)]),
     hour: new FormControl("1",Validators.min(1)),
     startTime: new FormControl(require),
     day: new FormControl(),
-    totalPrice: new FormControl(),
+    totalPrice: new FormControl()
 
   })
   userId?: any;
   providerId: any;
   providerPrice: any;
   totalPrice=0;
+  currentDay="2021-08-08"
 
-  constructor(private orderService: OrderService,
+  constructor(
+
+
+
+              private orderService: OrderService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               @Inject(MAT_DIALOG_DATA) public provider_Id: any
-  ) {
-  }
+  )
+  {  }
 
   ngOnInit(): void {
     this.userId = this.getUser();
@@ -47,6 +52,7 @@ export class OderCreateComponent implements OnInit {
     console.log(this.providerId)
     this.formOder.controls["providerInformationId"].setValue(this.providerId);
     this.getPriceOfProvider(this.provider_Id);
+    this.getDate();
 
   }
 
@@ -96,5 +102,24 @@ export class OderCreateComponent implements OnInit {
     console.log(this.formOder.controls["hour"].value);
     this.totalPrice = this.providerPrice*this.formOder.controls["hour"].value
     this.formOder.controls["totalPrice"].setValue(this.totalPrice)
+  }
+
+  getDate(){
+    let today = new Date();
+    let year= today.getFullYear();
+    let month= today.getMonth();
+    let monthStr ="";
+    let day= today.getDate();
+    let daythStr="";
+    if(month<10){
+      monthStr ="0"+ (month+1).toString();
+    }else monthStr= (month+1).toString();
+    if(day<10){
+      daythStr="0"+ day.toString();
+    }else daythStr= day.toString();
+
+    let dayString =year +'-'+ monthStr +'-'+daythStr ;
+    this.currentDay=dayString;
+    console.log(this.currentDay);
   }
 }

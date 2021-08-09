@@ -20,18 +20,19 @@
           </tr>
           <tbody>
           <tr *ngFor="let item of orderList; index as i">
-            <td>{{ i + 1 }}</td>
+            <td>
+              <a routerLink="/order/{{ item.id }}">Đơn{{ i + 1 }}</a></td>
             <td>
               <a routerLink="/user/{{ item.user.id }}">{{
                 item.user.fullName
-                }}</a>
-            </td>
+                }}</a></td>
+
             <td>{{ item.provider.fullName }}</td>
             <td>{{ item.address }}</td>
             <td>{{ item.hour }}</td>
             <td>{{ item.startTime }}</td>
             <td>{{ item.day }}</td>
-            <td>{{ item.provider.priceByHour * item.hour }}</td>
+            <td>{{ item.totalPrice }}</td>
             <td>
               {{ item.status.name }}
             </td>
