@@ -19,6 +19,7 @@ import { ViewUsersComponent } from './pages/admin/view-users/view-users.componen
 import { ViewsOrderComponent } from './pages/admin/views-order/views-order.component';
 import {OrderProviderComponent} from "./pages/order/order-provider/order-provider.component";
 import {OrderDetailComponent} from "./pages/order/order-detail/order-detail.component";
+import { ChatComponent } from './pages/chat/chat.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,9 @@ const routes: Routes = [
   },
 
   { path: 'user/:userId', component: UserDashboardComponent,
+    children:[{
+      path:"chat/:userId",component: ChatComponent
+    }]
 
   },
   {
@@ -61,7 +65,7 @@ const routes: Routes = [
   { path: 'order', component: OrderProviderComponent},
   { path: 'order2', component:OrderUserComponent},
   { path: 'order/:id', component:OrderDetailComponent},
-
+  { path: 'chat/:userId', component: ChatComponent },
   { path: '', component: HomeComponent },
 ];
 
