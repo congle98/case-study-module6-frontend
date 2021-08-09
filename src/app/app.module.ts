@@ -69,6 +69,7 @@ import { CreateFeedbackDialogComponent } from './pages/order/create-feedback-dia
 import { ViewFeedbackComponent } from './pages/order/view-feedback/view-feedback.component';
 import { OrderProviderComponent } from './pages/order/order-provider/order-provider.component';
 import { OrderDetailComponent } from './pages/order/order-detail/order-detail.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import { OrderDetailComponent } from './pages/order/order-detail/order-detail.co
     ViewFeedbackComponent,
     OrderUserComponent,
     OrderProviderComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    ChatComponent
 
 
 

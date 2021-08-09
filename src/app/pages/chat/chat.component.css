@@ -1,0 +1,25 @@
+
+
+
+  .my-chatbox{
+      position:fixed;
+      bottom:0px;
+      right: 50px;
+      width: 330px;
+      
+
+  }
+  
+ .message-history{
+     max-height:310px;
+     overflow: auto;
+ } 
+
+ .my-card-message{
+    box-shadow:  0 3px 10px rgb(157 158 158 / 1) !important;
+ }
+ #off-message:active  #card-message{
+    display: hidden;
+ }
+
+ 

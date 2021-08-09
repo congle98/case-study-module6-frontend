@@ -213,7 +213,7 @@
           </button>
         </div>
         <div class="mt-20">
-          <button *ngIf="!checkUser" mat-button (click)="openOrderDialog()"  >
+          <button *ngIf="!checkUser" mat-button (click)="chat()"  >
             <img src="/assets/messageIcon.png" class="facebook-icon" alt="" />
           </button>
         </div>
@@ -236,3 +236,4 @@
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>

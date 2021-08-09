@@ -1,0 +1,116 @@
+<!-- <div class="container py-5 px-4">
+    <div class="row rounded-lg overflow-hidden shadow">
+     
+      <div class="col-5 px-0">
+        <div class="bg-white">
+  
+          <div class="bg-gray px-4 py-2 bg-light">
+            <p class="h5 mb-0 py-1">Recent</p>
+          </div>
+  
+          <div class="messages-box">
+            <div class="list-group rounded-0" *ngIf="selectedUser">
+            
+                <div class="media align-items-center"><img src="data:image/jpeg;base64,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"
+                    alt="user" width="50" class="rounded-circle">
+                  <div class="media-body ml-4">
+                    <div class="d-flex align-items-center justify-content-between ">
+                      <h6 class="mb-0">{{selectedUser.fullName}}</h6>
+                    </div>
+                  </div>
+                </div>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-7 px-0" *ngIf="selectedUser !== null">
+        
+        <div class="px-4 py-5 chat-box bg-white">
+         
+          
+          <div *ngFor="let msg of messageHistory">
+          
+            <div class="media w-50 mb-3" *ngIf="msg.from !== user.id && msg.from === selectedUser.id">
+                <h2>{{selectedUser.fullName}}</h2>
+              <img
+                src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50"
+                class="rounded-circle">
+              <div class="media-body ml-3">
+                <div class="bg-light rounded py-2 px-3 mb-2">
+                  <p class="text-small mb-0 text-muted">{{msg.message}}</p>
+                </div>
+              </div>
+            </div>
+  
+           
+            <div class="media w-50 ml-auto mb-3" *ngIf="msg.from === user.id && msg.to === selectedUser.id">
+              <div class="media-body">
+                <div class="bg-primary rounded py-2 px-3 mb-2">
+                  <p class="text-small mb-0 text-white">{{msg.message}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="bg-light">
+          <div class="input-group">
+            <input [(ngModel)]="message" type="text" placeholder="Type a message"
+              class="form-control rounded-0 border-0 py-4 bg-light">
+            <div class="input-group-append">
+              <button (click)="sendMessage()" class="btn btn-link">Send</button>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div> -->
+
+<div id="card-message" class="my-chatbox my-card-message" *ngIf="selectedUser">
+    <mat-card style="height:450px">
+        <div (click)="viewProfile(selectedUser.userId)" class="mb-10 my-flex " style="line-height:50px">
+            <div><img [src]="selectedUser.avatar" class="my-avatar" alt=""></div> 
+            <div style="font-size:1rem; font-weight:500"> &nbsp;{{selectedUser.name}}</div>
+            <div style="position:absolute; top:0px; right: 0px;"><button (click)="offMessage()" style="font-size: 1.7rem;" mat-button >x</button></div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="message-history">
+            <div *ngFor="let msg of messageHistory">
+
+                <div *ngIf="msg.from !== user.userId && msg.from === selectedUser.userId">
+
+
+                    <div class="my-flex  mt-10" style="line-height: 50px;">
+
+                        <div><img [src]="selectedUser.avatar" alt="user" class="my-avatar"></div>
+                        <div>  &nbsp; : {{msg.message}}</div>
+
+                    </div>
+                </div>
+                <div *ngIf="msg.from === user.userId && msg.to === selectedUser.userId">
+                    <div class="my-flex mt-10" style="line-height: 50px;" >
+                        <div>
+                            <img [src]="user.avatar" alt="user" class="my-avatar">
+                        </div>
+                        <div>
+                            &nbsp; : {{msg.message}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="position: absolute; bottom:5px; width:90% ;">
+            <form  (ngSubmit)="sendMessage()">
+                <div  >
+                    <input  class="form-control" name="message" autocomplete="off" [(ngModel)]="message" type="text"
+                        placeholder="Aa">
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>
