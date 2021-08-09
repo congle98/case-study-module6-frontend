@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit {
   public messageHistory= new Array<any>();
 
   public user:any;
+  public hiden=false;
  
 
   public webSocketEndPoint = 'http://localhost:8080/chat';
@@ -28,12 +29,14 @@ export class ChatComponent implements OnInit {
     this.Id = +this.route.snapshot.params.userId;
     this.userService.getSelectUserChat(this.Id).subscribe((data)=>{
       this.onUserSelect(data);
+      this.hiden=true;
     })
     this.userService.getSelectUserChat(this.loginService.getUser().id).subscribe((data)=>{
       this.user = data;
-      this.topic = '/topic/' + this.user.userId;
-      this.connect();
+      
     })
+    this.topic = '/topic/' + this.loginService.getUser().id;
+      this.connect();
   
   
    
@@ -48,7 +51,16 @@ export class ChatComponent implements OnInit {
         // After connection subscribe to the topic
         if(this.stompClient!=undefined){
            this.stompClient.subscribe( this.topic, (event:any) => {
+             console.log("day la evedefdfdf fdfdnt cua tao",event);
           this.onMessageReceived(event.body);
+          let mesagess = JSON.parse(event.body);
+          if(this.loginService.getUser().id ==  mesagess.to)  {
+            this.userService.getSelectUserChat(mesagess.from).subscribe((data)=>{
+              this.onUserSelect(data);
+              this.hiden=true;;
+            })
+            console.log("ahihi");
+          }
         });
         }
        
@@ -93,10 +105,7 @@ export class ChatComponent implements OnInit {
   }
 
   offMessage(){
-   let card =  document.getElementById('card-message');
-   if(card!=null){
-    card.style.visibility = "hidden";
-   }
+    this.hiden=false;
   }
 
   viewProfile(userId:any){

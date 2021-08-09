@@ -33,15 +33,11 @@
               matInput
               placeholder="address"
               name="address"
-              formControlName="address">
-
-<!--              id="address"-->
-            <!--  #inputAdd ="ngModel"-->
-            <!--  minlength="3"-->
-            <!--  maxlength="50"-->
-
-            <!--<mat-error *ngif="inputAdd.hasError('minlength')" >Độ dài chuỗi lớn hơn 2</mat-error>-->
+              formControlName="address"
+            required
+            />
           </mat-form-field>
+
 
 
 
@@ -54,8 +50,9 @@
             type="number"
             formControlName="hour"
             (change)="showTotalPrice()"
-
-
+            min="1"
+            max="8"
+            required
           />
           <mat-icon matSuffix>hour</mat-icon>
         </mat-form-field>
@@ -70,7 +67,7 @@
             name="startTime"
             type="time"
             formControlName="startTime"
-            id=""
+            required
           />
         </mat-form-field>
 
@@ -84,7 +81,9 @@
             name="day"
             type="date"
             formControlName="day"
+            min="{{this.currentDay}}"
             (change)="showTotalPrice()"
+            required
           />
         </mat-form-field>
 
@@ -103,6 +102,7 @@
             color="accent"
             type="submit"
             (click)="createOrder()"
+            [disabled]="formOder.invalid"
           >
             Create Order
           </button>

@@ -70,7 +70,7 @@
     </div>
   </div> -->
 
-<div id="card-message" class="my-chatbox my-card-message" *ngIf="selectedUser">
+<div id="card-message" class="my-chatbox my-card-message" *ngIf="hiden">
     <mat-card style="height:450px">
         <div (click)="viewProfile(selectedUser.userId)" class="mb-10 my-flex " style="line-height:50px">
             <div><img [src]="selectedUser.avatar" class="my-avatar" alt=""></div> 

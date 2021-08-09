@@ -12,9 +12,11 @@ import { SearchService } from 'src/app/services/search/search.service';
 export class HomeComponent implements OnInit {
   allProvider: any;
   allProviderByViews: any;
+  allProviderByRentals:any;
   pageAll = 0;
   pageAll2 = 0;
   totalPagesAll = 0;
+  pageAll3=0;
 
   searchFilter={
     gender:"",
@@ -35,6 +37,7 @@ export class HomeComponent implements OnInit {
     this.getAllUserPageAll();
     this.getAllUserByViewsPageAll();
     this.getAllCities();
+    this.getAllUserByRentalsPageAll(); 
   }
 
   // getAllProviderByVews() {
@@ -82,6 +85,15 @@ export class HomeComponent implements OnInit {
         this.allProvider = data.content;
       });
   }
+  getAllUserByRentalsPageAll() {
+    //có paging thì phải .content
+    this.providerHomeService
+      .getAllProviderHomeByRentals(this.pageAll3)
+      .subscribe((data: any) => {
+      
+        this.allProviderByRentals = data.content;
+      });
+  }
 
   nextPageAll(event: any) {
       this.pageAll += 1;
@@ -113,6 +125,17 @@ export class HomeComponent implements OnInit {
   backPageAll2(event: any) {
     this.pageAll2 -= 1;
     this.getAllUserByViewsPageAll();
+    event.preventDefault();
+  }
+  nextPageAll3(event: any) {
+    this.pageAll3 += 1;
+    this.getAllUserByRentalsPageAll();
+    event.preventDefault();
+  }
+
+  backPageAll3(event: any) {
+    this.pageAll3 -= 1;
+    this.getAllUserByRentalsPageAll();
     event.preventDefault();
   }
 }
