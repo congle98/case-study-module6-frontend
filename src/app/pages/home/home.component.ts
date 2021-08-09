@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CityService } from 'src/app/services/city/city.service';
 import { ProviderHomeService } from 'src/app/services/provider-home/provider-home.service';
+import { SearchService } from 'src/app/services/search/search.service';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +15,26 @@ export class HomeComponent implements OnInit {
   pageAll = 0;
   pageAll2 = 0;
   totalPagesAll = 0;
+
+  searchFilter={
+    gender:"",
+    city:"",
+    price:""
+  }
+  searchList:any;
+
+  cities: any;
   constructor(
     private providerHomeService: ProviderHomeService,
-    private router: Router
+    private router: Router,
+    private cityService:CityService,
+    private searchService:SearchService
   ) {}
 
   ngOnInit(): void {
     this.getAllUserPageAll();
-    this.getAllUserByViewsPageAll()
+    this.getAllUserByViewsPageAll();
+    this.getAllCities();
   }
 
   // getAllProviderByVews() {
@@ -28,6 +42,31 @@ export class HomeComponent implements OnInit {
   //     this.allProviderByViews = providers;
   //   });
   // }
+
+  getAllCities(){
+    this.cityService.getAllCity().subscribe((cities)=>{
+      this.cities = cities;
+    })
+  }
+
+  setGenderSearch(gender:any){
+    this.searchFilter.gender = gender;
+  }
+  setAddressSearch(city:any){
+    this.searchFilter.city = city;
+  }
+  setPriceSearch(price:any){
+    this.searchFilter.price = price;
+  }
+  searchFilterRequest(){
+    this.searchService.searchFilter(this.searchFilter).subscribe((data)=>{
+      console.log(data);
+      this.searchList=data;
+    //  this.searchFilter.city="";
+    //  this.searchFilter.price="";
+    //  this.searchFilter.gender="";
+    });
+  }
 
   userInformationPage(userInforId: any) {
     console.log(userInforId);
