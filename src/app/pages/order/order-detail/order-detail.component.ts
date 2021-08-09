@@ -22,6 +22,9 @@ export class OrderDetailComponent implements OnInit {
   idStatus:any;
   currentDay="2021-08-08";
 
+  avatarUrl:any ;
+  avatarProvider:any ;
+
 
   constructor(private oderService: OrderService,
               private active: ActivatedRoute,
@@ -39,6 +42,11 @@ export class OrderDetailComponent implements OnInit {
       this.idStatus = this.oderResponse.status.id;
       // console.log(this.idStatus)
 
+
+      // this.avatarUrl = this.oderResponse.user.image[0].url
+      // this.avatarProvider = this.oderResponse.provider.image[0].url
+      this.getAvatarProvider();
+      this.getAvatar();
 
     });
 
@@ -181,6 +189,29 @@ export class OrderDetailComponent implements OnInit {
 
   printInput(inputAdd: any) {
     console.log(inputAdd);
+
+  }
+  getAvatar(){
+    let data =this.oderResponse.user.image
+      console.log(data);
+      for (let i = 0; i < data.length ; i++) {
+        if(data[i].categoryImage.id==1){
+          this.avatarUrl = data[i].url
+          console.log(this.avatarUrl)
+        }
+      }
+
+  }
+
+  getAvatarProvider(){
+    let data =this.oderResponse.provider.image
+      console.log(data);
+      for (let i = 0; i < data.length ; i++) {
+        if(data[i].categoryImage.id==1){
+          this.avatarProvider = data[i].url
+          console.log(this.avatarProvider)
+        }
+      }
 
   }
 }

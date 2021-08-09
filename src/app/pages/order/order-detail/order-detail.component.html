@@ -17,7 +17,7 @@
         <mat-card>
           <div class="text-center">Thông tin Đối tác</div>
           <div style="text-align: center">
-            <img src="{{oderResponse.provider.image[0].url}}" class="avatar-profile mt-10">
+            <img src="{{avatarProvider}}" class="avatar-profile mt-10">
           </div>
 
           <div class="mt-20 border text-weight">
@@ -40,10 +40,17 @@
             <p>
               Cân nặng {{ oderResponse.provider.weight ? oderResponse.provider.weight : ""}}
             </p>
-            <!--            <h2><img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="">Sở thích</h2>-->
-            <!--            <p>-->
-            <!--              {{ oderResponse.hobbies ? oderResponse.hobbies : "" }}-->
-            <!--            </p>-->
+                        <h2><img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="">Sở thích</h2>
+                        <p>
+                          {{ oderResponse.provider.hobbies ? oderResponse.provider.hobbies : "" }}
+                        </p>
+          </div>
+          <div *ngIf="oderResponse.services" class="mt-20">
+            <h2>Dịch vụ đi kèm</h2>
+            <div *ngFor="let service of oderResponse.services">
+              <p style="color:#ff4596"><img src="/assets/serviceIcon.png" class="facebook-icon"
+                                            alt="">: {{service.name}}</p>
+            </div>
           </div>
 
         </mat-card>
@@ -54,7 +61,7 @@
         <mat-card>
           <div class="text-center">Thông tin Đối tác</div>
           <div style="text-align: center">
-            <img src="{{oderResponse.user.image[0].url}}" class="avatar-profile mt-10">
+            <img src="{{avatarUrl}}" class="avatar-profile mt-10">
           </div>
 
           <div class="mt-20 border text-weight">
