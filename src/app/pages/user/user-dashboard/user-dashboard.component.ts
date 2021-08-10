@@ -187,13 +187,17 @@ export class UserDashboardComponent implements OnInit {
       (userInformation: any) => {
         let user = this.loginService.getUser();
 
-        user.avatar.url = this.userInformationAvatar;
+      
 
         this.userInformation = userInformation;
         this.loginService.setUser(user);
         this.avatarFile = undefined;
         Swal.fire('Thành công', 'Update thành công!', 'success');
         this.loginService.loginStatusSubject.next(true);
+        if(user.avatar!=undefined){
+           user.avatar.url = this.userInformationAvatar;
+        }
+       
       },
       (error) => {}
     );
