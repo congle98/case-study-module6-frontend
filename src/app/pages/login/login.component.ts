@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
 
   hide = true;
   formLogin : FormGroup = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl() 
+    username: new FormControl('',[Validators.minLength(6),Validators.required]),
+    password: new FormControl('',[Validators.minLength(6),Validators.required])
   })
 
   constructor(private loginService: LoginService , private snack: MatSnackBar, private router:Router ) { }
