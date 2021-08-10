@@ -21,6 +21,8 @@ textColor="#fc5397"
               <input matInput placeholder="UserName" name="username" formControlName="username">
               <mat-icon matSuffix>person</mat-icon>
               <mat-hint>Hint</mat-hint>
+              <mat-error *ngIf="formLogin.controls['username'].hasError('required')">Tài khoản không được để trống</mat-error>
+              <mat-error *ngIf="formLogin.controls['username'].hasError('minlength')">Tài khoản cần có ít nhất 6 kí tự</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline"  class="full-width">
@@ -29,11 +31,13 @@ textColor="#fc5397"
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
+              <mat-error *ngIf="formLogin.controls['password'].hasError('required')">Mật khẩu không được để trống</mat-error>
+              <mat-error *ngIf="formLogin.controls['password'].hasError('minlength')">Mật khẩu cần có ít nhất 6 kí tự</mat-error>
             </mat-form-field>
            
   
             <div class="example-button-container"> 
-              <button mat-flat-button color="accent"type="submit" (click)="login()">
+              <button mat-flat-button color="accent"type="submit" (click)="login()" [disabled]="formLogin.invalid">
                 Đăng nhập
                 <mat-icon>login</mat-icon>
               </button>
