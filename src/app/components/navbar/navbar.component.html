@@ -25,7 +25,7 @@
         Đăng nhập
       </a>
       <div *ngIf="isLoggedIn && user != null && isAdmin">
-        <a mat-button routerLink="/admin/viewsUser" mat-button [matMenuTriggerFor]="menuAdmin">
+        <a mat-button  mat-button [matMenuTriggerFor]="menuAdmin">
           Xin chào Admin: {{ user.username }}
 
 
@@ -35,6 +35,9 @@
           <button class="my-mat-menu text-center" mat-menu-item (click)="userDashboard()">
             {{ user.username }}
           </button>
+          <a class="my-mat-menu text-center" mat-menu-item routerLink="/admin/viewsUser">
+            Quản lý
+          </a>
           <button class="my-mat-menu text-center" mat-menu-item (click)="logout()">
             Thoát
           </button>
