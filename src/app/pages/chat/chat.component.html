@@ -3,7 +3,7 @@
 <div id="card-message" class="my-chatbox my-card-message" *ngIf="hiden">
     <mat-card style="height:450px">
         <div (click)="viewProfile(selectedUser.userId)" class="mb-10 my-flex hover-pointer" style="line-height:50px">
-            <div><img [src]="selectedUser.avatar" class="my-avatar" alt=""></div> 
+            <div><img [src]="selectedUser.avatar?selectedUser.avatar:'/assets/avatarBase.jpg'" class="my-avatar" alt=""></div> 
             <div style="font-size:1rem; font-weight:500"> &nbsp;{{selectedUser.name}}</div>
             <div style="position:absolute; top:0px; right: 0px;"><button (click)="offMessage()" style="font-size: 1.7rem;" mat-button >x</button></div>
         </div>
