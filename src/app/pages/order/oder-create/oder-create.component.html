@@ -69,6 +69,7 @@
             formControlName="startTime"
             required
           />
+          <mat-error *ngIf="formOder.controls['address'].hasError('minlength')">Sai định dạng địa chỉ</mat-error>
         </mat-form-field>
 
 
