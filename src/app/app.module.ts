@@ -70,6 +70,7 @@ import { ViewFeedbackComponent } from './pages/order/view-feedback/view-feedback
 import { OrderProviderComponent } from './pages/order/order-provider/order-provider.component';
 import { OrderDetailComponent } from './pages/order/order-detail/order-detail.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { ImgDialogComponent } from './pages/user/img-dialog/img-dialog.component';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import { ChatComponent } from './pages/chat/chat.component';
     OrderUserComponent,
     OrderProviderComponent,
     OrderDetailComponent,
-    ChatComponent
+    ChatComponent,
+    ImgDialogComponent
 
 
 

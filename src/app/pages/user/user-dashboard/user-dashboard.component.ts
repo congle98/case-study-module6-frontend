@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { OderCreateComponent } from '../../order/oder-create/oder-create.component';
 import { OrderService } from 'src/app/services/order/order.service';
 import { FeedbackService } from 'src/app/services/feedback/feedback.service';
+import { ImgDialogComponent } from '../img-dialog/img-dialog.component';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -61,6 +62,11 @@ export class UserDashboardComponent implements OnInit {
   openDialogRegisterProvider() {
     this.dialog.open(UserRegisterProviderDialogComponent, {
       data: this.userInformation.id,
+    });
+  }
+  openDialogImgProvider(url:any) {
+    this.dialog.open(ImgDialogComponent, {
+      data:url,
     });
   }
 
