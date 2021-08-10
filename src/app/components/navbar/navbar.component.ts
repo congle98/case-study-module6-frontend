@@ -17,16 +17,20 @@ export class NavbarComponent implements OnInit {
   isAdmin=false;
   searchValue="";
   searchResult:any;
-  
- 
 
-  
+
+
+
 
   constructor(public loginService: LoginService, private router: Router,private searchService:SearchService,private userService: UserService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.loginService.isLoggedIn();
-    this.user = this.loginService.getUser();
+    this.loginService.getCurrentUser().subscribe(user=>{
+      this.loginService.setUser(user);
+      this.user = this.loginService.getUser();
+    })
+
     if(this.isLoggedIn){
       this.getRole();
     }
@@ -36,7 +40,7 @@ export class NavbarComponent implements OnInit {
       if(this.isLoggedIn){
         this.getRole();
       }
-      
+
     })
   }
 
@@ -45,7 +49,7 @@ export class NavbarComponent implements OnInit {
     this.isUser=false;
     this.isAdmin=false;
     this.router.navigate(["/login"]);
-   
+
 
   }
 
@@ -84,17 +88,17 @@ export class NavbarComponent implements OnInit {
   }
 
   viewProfile(id:any){
- 
-    this.router.navigate(["/user/"+id]) 
+
+    this.router.navigate(["/user/"+id])
     .then(() => {
       window.location.reload();
     });
     this.searchValue="";
-  
-  
+
+
   }
 
-  
- 
+
+
 
 }
