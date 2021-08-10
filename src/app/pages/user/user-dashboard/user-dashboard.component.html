@@ -3,7 +3,8 @@
     <div class="col-md-3 text-center mb-20">
       <mat-card class="my-card card-backround">
         <img
-          class="avatar-profile mt-10"
+          class="avatar-profile mt-10 img-hover"
+          (click)="openDialogImgProvider(userInformationAvatar)"
           [src]="
             userInformationAvatar
               ? userInformationAvatar
@@ -118,7 +119,7 @@
             *ngFor="let img of userInformation.image"
           >
             <button *ngIf="checkUser" mat-button class="button-in-img" (click)="deleteImage(img.id)">Xoá</button>
-            <img class="image-infor" [src]="img.url" alt=""/>
+            <img class="image-infor img-hover" (click)="openDialogImgProvider(img.url)" [src]="img.url" alt=""/>
           </div>
           <div *ngIf="checkUser" class="mt-10">
             <button mat-stroked-button color="primary" (click)="imgInput.click()">Thêm ảnh</button>
@@ -131,7 +132,7 @@
           </div>
           <div class="mt-20">
             <p>
-              Điện thoại : {{ userInformation.phone ? userInformation.phone : ""}}
+              Điện thoại : {{ userInformation.user.phone ? userInformation.user.phone : ""}}
             </p>
             <p>
               Giới tính : {{ userInformation.gender ? "nam" : "nữ"}}
@@ -143,7 +144,7 @@
               Chiều cao : {{ userInformation.height ? userInformation.height : ""}}
             </p>
             <p>
-              Cân nặng {{ userInformation.weight ? userInformation.weight : ""}}
+              Cân nặng : {{ userInformation.weight ? userInformation.weight+' kg' : ""}}
             </p>
             <h2><img src="/assets/hobbiesIcon.png" class="facebook-icon" alt="">Sở thích</h2>
             <p>
