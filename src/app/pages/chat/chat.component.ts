@@ -34,9 +34,10 @@ export class ChatComponent implements OnInit {
     })
     this.userService.getSelectUserChat(this.loginService.getUser().id).subscribe((data)=>{
       this.user = data;
-       this.topic = '/topic/' + this.loginService.getUser().id;
+      if(this.user!=null){
+        this.topic = '/topic/' + this.loginService.getUser().id;
       this.connect();
-
+      }
     })
   
   

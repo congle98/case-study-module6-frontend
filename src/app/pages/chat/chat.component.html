@@ -16,7 +16,7 @@
 
                     <div class="my-flex  mt-10" style="line-height: 50px;">
 
-                        <div><img [src]="selectedUser.avatar?selectedUser.avatar:'/assets/avatarBase.jpg'" alt="user" class="my-avatar"></div>
+                        <div><img [src]="selectedUser.avatar?selectedUser.avatar:'/assets/avatarBase.jpg'" alt="user" class="avatar-select"></div>
                         <div>  &nbsp; : {{msg.message}}</div>
 
                     </div>
@@ -24,7 +24,7 @@
                 <div *ngIf="msg.from === user.userId && msg.to === selectedUser.userId">
                     <div class="my-flex mt-10" style="line-height: 50px;" >
                         <div>
-                            <img [src]="user.avatar?user.avatar:'/assets/avatarBase.jpg'" alt="user" class="my-avatar">
+                            <img [src]="user.avatar?user.avatar:'/assets/avatarBase.jpg'" alt="user" class="avatar-user">
                         </div>
                         <div>
                             &nbsp; : {{msg.message}}
