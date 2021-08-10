@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let order of orders, index as i">
-          <td><a routerLink="/order/{{order.id}}" >Đơn{{i +1}}</a></td>
+          <td><a routerLink="/order/{{order.id}}" >{{ order.id}}</a></td>
           <td>{{order.user.fullName}}</td>
           <td>{{order.provider.fullName}}</td>
           <td>{{order.day}}</td>

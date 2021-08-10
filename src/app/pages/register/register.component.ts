@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.formRegister.value);
     this.loginService.addUser(this.formRegister.value).subscribe((success) => {
       Swal.fire("Thành công","Đã tạo tài khoản thành công,Xin mời bạn kiểm tra email để xác nhận tài khoản","success");
-      this.formRegister.reset();
+      // this.formRegister.reset();
     })
   }
 }
