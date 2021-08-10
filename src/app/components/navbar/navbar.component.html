@@ -16,7 +16,7 @@
             </div>
           </div>
       </div>
-    
+
     </div>
 
   <div class="my-toolbar-items">
@@ -46,8 +46,8 @@
       <!-- ngáo -->
       <div *ngIf="isLoggedIn && user != null && isUser">
         <a mat-button [matMenuTriggerFor]="menuUser" mat-button>
-          <mat-icon>paid</mat-icon>
-          <span style="margin-right: 10px">{{ user.money ? user.money : 0 }} đ</span>
+<!--          <mat-icon>paid</mat-icon>-->
+          <span style="margin-right: 10px">{{ user.money ? (user.money | number:'1.0-2') : 0 }} VND</span>
           <img class="my-avatar" src="{{ !user.avatar ? 'assets/avatarBase.jpg' : user.avatar.url }}" alt="" />
         </a>
         <mat-menu #menuUser="matMenu">

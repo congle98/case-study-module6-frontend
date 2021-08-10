@@ -81,7 +81,7 @@
               (click)="providerStatusOff(userInformation.id)"
               *ngIf="userInformation.provider&&checkUser"
             >
-              Nhưng cung cấp dịch vụ
+              Ngừng cung cấp dịch vụ
             </button>
 
           </div>
@@ -221,7 +221,7 @@
     <div class="col-md-2 text-center">
       <mat-card>
         <div *ngIf="userInformation.provider">
-          <h1 class="princeByHour">{{ userInformation.priceByHour }} đồng/h</h1>
+          <h1 class="princeByHour">{{ userInformation.priceByHour  | number:'1.0-2'}} đ/h</h1>
           <button
             *ngIf="!checkUser"
             class="full-width"

@@ -100,7 +100,8 @@ export class OrderDetailComponent implements OnInit {
         startTime: this.oderResponse.startTime,
         day: this.oderResponse.day,
         totalPrice: this.oderResponse.totalPrice,
-        status: {id: this.oderResponse.status.id}
+        status: {id: this.oderResponse.status.id},
+        services: this.oderResponse.services
       }
 
       this.oderService.editOrder(orderEdit).subscribe(()=>{
