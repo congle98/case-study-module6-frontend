@@ -17,16 +17,15 @@ textColor="#fc5397"
           <form [formGroup]="formLogin" class="form-register">
             <h3>Form Login </h3>
             <mat-form-field appearance="outline" class="full-width" >
-              <mat-label>Username</mat-label>
+              <mat-label>Tài khoản</mat-label>
               <input matInput placeholder="UserName" name="username" formControlName="username">
               <mat-icon matSuffix>person</mat-icon>
-              <mat-hint>Hint</mat-hint>
               <mat-error *ngIf="formLogin.controls['username'].hasError('required')">Tài khoản không được để trống</mat-error>
               <mat-error *ngIf="formLogin.controls['username'].hasError('minlength')">Tài khoản cần có ít nhất 6 kí tự</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline"  class="full-width">
-              <mat-label>Fill form field</mat-label>
+              <mat-label>Mật khẩu</mat-label>
               <input matInput matInput [type]="hide ? 'password' : 'text'" placeholder="Password" name="password" formControlName="password">
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
