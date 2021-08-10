@@ -11,33 +11,40 @@
             <mat-label>Username</mat-label>
             <input matInput placeholder="UserName" name="username" formControlName="username">
             <mat-icon matSuffix>person</mat-icon>
-
+            <mat-error *ngIf="formRegister.controls['username'].hasError('required')">Tài khoản không được để trống</mat-error>
+            <mat-error *ngIf="formRegister.controls['username'].hasError('minlength')">Tài khoản cần có ít nhất 6 kí tự</mat-error>
           </mat-form-field>
           <br>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Enter your password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password">
+
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            
+            <mat-error *ngIf="formRegister.controls['password'].hasError('required')">Mật khẩu không được để trống</mat-error>
+            <mat-error *ngIf="formRegister.controls['password'].hasError('minlength')">Mật khẩu cần có ít nhất 6 kí tự</mat-error>
           </mat-form-field>
           <br>
           <mat-form-field appearance="outline"  class="full-width">
             <mat-label>Fill form field</mat-label>
             <input matInput placeholder="email" formControlName="email" #email >
             <mat-icon matSuffix>email</mat-icon>
-            <mat-error *ngIf="email.checkValidity()">Diền đúng định dạng email</mat-error>
+            <mat-error *ngIf="formRegister.controls['email'].hasError('required')">Email không được để trống</mat-error>
+            <mat-error *ngIf="formRegister.controls['email'].hasError('email')">Bạn đã nhập sai định dạng email, Ví dụ abc@gmail.com</mat-error>
           </mat-form-field>
           <br>
           <mat-form-field appearance="outline"  class="full-width" >
             <mat-label>Fill form field</mat-label>
             <input matInput placeholder="phone" formControlName="phone">
             <mat-icon matSuffix>phone_iphone</mat-icon>
-
+            <mat-error *ngIf="formRegister.controls['phone'].hasError('required')">Số điện thoại không được để trống</mat-error>
+            <mat-error *ngIf="formRegister.controls['phone'].hasError('pattern')">Sai định dạng số điện thoại, Ví dụ 0123456789</mat-error>
           </mat-form-field>
 
           <div class="example-button-container">
-            <button mat-flat-button color="accent"type="submit" (click)="createAccount()">
+            <button mat-flat-button color="accent"type="submit" (click)="createAccount()" [disabled]="formRegister.invalid">
               Đăng ký
             </button>
           </div>
