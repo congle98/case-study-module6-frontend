@@ -62,5 +62,9 @@ export class UserService {
     }
   }
 
+  getSelectUserChat(userId:any){
+    return this.httpClient.get(`${environment.baseUrl}/user/selectUserChat/${userId}`);
+  }
+
 
 }

@@ -302,4 +302,9 @@ backPageAll() {
     this.getAllFeedBackByProvider(this.userInformation.id,this.pageFeedBack);
  
 }
+chat() {
+  
+    this.router.navigate([`user/${this.user.id}/chat/${this.userInformation.id}`]);
+  
+}
 }

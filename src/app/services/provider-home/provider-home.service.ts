@@ -21,4 +21,7 @@ export class ProviderHomeService {
   getAllProviderHomeByViews(page?:number){
     return this.httpClient.get(`${environment.baseUrl}/home/findAllByViews?page=`+page);
   }
+  getAllProviderHomeByRentals(page?:number){
+    return this.httpClient.get(`${environment.baseUrl}/home/findAllByRentals?page=`+page);
+  }
 }

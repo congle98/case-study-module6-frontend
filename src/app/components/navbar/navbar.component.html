@@ -7,7 +7,7 @@
 
   <div class="search my-flex" >
     <input (keyup)="searchByFullName()"  [(ngModel)]="searchValue"  type="text" class="form-control"
-      placeholder="Nhập chữ cái bất kỳ"><div class="search-icon"><img src="/assets/searchIcon.png" class="facebook-icon" alt=""></div>
+      placeholder="..."><div class="search-icon"><img src="/assets/searchIcon.png" class="facebook-icon" alt=""></div>
 
       <div class="search-result" *ngIf="searchResult" >
           <div *ngFor="let result of searchResult; let i = index" >
