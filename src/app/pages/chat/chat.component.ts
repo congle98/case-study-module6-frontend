@@ -30,13 +30,15 @@ export class ChatComponent implements OnInit {
     this.userService.getSelectUserChat(this.Id).subscribe((data)=>{
       this.onUserSelect(data);
       this.hiden=true;
+      
     })
     this.userService.getSelectUserChat(this.loginService.getUser().id).subscribe((data)=>{
       this.user = data;
-      
-    })
-    this.topic = '/topic/' + this.loginService.getUser().id;
+       this.topic = '/topic/' + this.loginService.getUser().id;
       this.connect();
+
+    })
+  
   
   
    
@@ -52,7 +54,7 @@ export class ChatComponent implements OnInit {
         if(this.stompClient!=undefined){
            this.stompClient.subscribe( this.topic, (event:any) => {
              console.log("day la evedefdfdf fdfdnt cua tao",event);
-          this.onMessageReceived(event.body);
+          
           let mesagess = JSON.parse(event.body);
           if(this.loginService.getUser().id ==  mesagess.to)  {
             this.userService.getSelectUserChat(mesagess.from).subscribe((data)=>{
@@ -61,6 +63,7 @@ export class ChatComponent implements OnInit {
             })
             console.log("ahihi");
           }
+          this.onMessageReceived(event.body);
         });
         }
        
