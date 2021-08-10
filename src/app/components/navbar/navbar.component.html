@@ -16,7 +16,7 @@
             </div>
           </div>
       </div>
-    
+
     </div>
 
   <div class="my-toolbar-items">
@@ -25,7 +25,7 @@
         Đăng nhập
       </a>
       <div *ngIf="isLoggedIn && user != null && isAdmin">
-        <a mat-button routerLink="/admin/viewsUser" mat-button [matMenuTriggerFor]="menuAdmin">
+        <a mat-button  mat-button [matMenuTriggerFor]="menuAdmin">
           Xin chào Admin: {{ user.username }}
 
 
@@ -35,6 +35,9 @@
           <button class="my-mat-menu text-center" mat-menu-item (click)="userDashboard()">
             {{ user.username }}
           </button>
+          <a class="my-mat-menu text-center" mat-menu-item routerLink="/admin/viewsUser">
+            Quản lý
+          </a>
           <button class="my-mat-menu text-center" mat-menu-item (click)="logout()">
             Thoát
           </button>
@@ -43,8 +46,8 @@
       <!-- ngáo -->
       <div *ngIf="isLoggedIn && user != null && isUser">
         <a mat-button [matMenuTriggerFor]="menuUser" mat-button>
-          <mat-icon>paid</mat-icon>
-          <span style="margin-right: 10px">{{ user.money ? user.money : 0 }} đ</span>
+<!--          <mat-icon>paid</mat-icon>-->
+          <span style="margin-right: 10px">{{ user.money ? (user.money | number:'1.0-2') : 0 }} VND</span>
           <img class="my-avatar" src="{{ !user.avatar ? 'assets/avatarBase.jpg' : user.avatar.url }}" alt="" />
         </a>
         <mat-menu #menuUser="matMenu">

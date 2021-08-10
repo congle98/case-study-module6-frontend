@@ -22,4 +22,8 @@
     display: hidden;
  }
 
+ .hover-pointer:hover{
+     cursor: pointer;
+ }
+
  

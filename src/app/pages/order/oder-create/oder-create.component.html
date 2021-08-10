@@ -93,7 +93,7 @@
         <!--              <input matInput placeholder="address" name="status" type="date" formControlName="status" >-->
         <!--            </mat-form-field>-->
         <div>
-          <mat-card><div class="mt-20" style="font-size: 25px; color: #f55193">Tổng Tiền : {{totalPrice}}vnd</div></mat-card>
+          <mat-card><div class="mt-20" style="font-size: 25px; color: #f55193">Tổng Tiền : {{totalPrice | number:'1.0-2'}}VND</div></mat-card>
         </div>
 
         <div class="example-button-container" style="text-align: center">
