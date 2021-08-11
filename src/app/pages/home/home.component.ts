@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
 
   userInformationPage(userInforId: any) {
     console.log(userInforId);
-    this.router.navigate(['/user/'+userInforId]);
+    this.router.navigate([]).then(result => {  window.open('/user/'+userInforId, '_blank'); });;
   }
 
   getAllUserPageAll() {

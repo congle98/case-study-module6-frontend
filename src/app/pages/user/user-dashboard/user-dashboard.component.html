@@ -167,28 +167,29 @@
                              class="avatar-feedback" alt=""></span>
                   <div class="ml-20">
                     <h3 style="font-weight: 500;">{{feedBack.userName}}</h3>
-                    <p>{{feedBack.description}}</p>
+                    <p>{{feedBack.createDate| date: 'short' }}</p>
+                    <p style="font-weight: 500; font-size:0.95rem">{{feedBack.description}}</p>
                   </div>
                 </div>
                 <div>
-                  <span *ngIf="feedBack.starRating==1"><img src="/assets/starRating.png" class="info-icon"
+                  <span *ngIf="feedBack.starRating==1"><img src="/assets/hRating.png" class="hRating-icon"
                                                             alt=""></span>
-                  <span *ngIf="feedBack.starRating==2"><img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img
-                    src="/assets/starRating.png" class="info-icon" alt=""></span>
-                  <span *ngIf="feedBack.starRating==3"><img src="/assets/starRating.png" class="info-icon" alt=""> &nbsp;<img
-                    src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png"
-                                                                                      class="info-icon" alt=""></span>
-                  <span *ngIf="feedBack.starRating==4"><img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img
-                    src="/assets/starRating.png" class="info-icon" alt=""> &nbsp;<img src="/assets/starRating.png"
-                                                                                      class="info-icon"
+                  <span *ngIf="feedBack.starRating==2"><img src="/assets/hRating.png" class="hRating-icon" alt="">&nbsp; <img
+                    src="/assets/hRating.png" class="hRating-icon" alt=""></span>
+                  <span *ngIf="feedBack.starRating==3"><img src="/assets/hRating.png" class="hRating-icon" alt=""> &nbsp;<img
+                    src="/assets/hRating.png" class="hRating-icon" alt="">&nbsp; <img src="/assets/hRating.png"
+                                                                                      class="hRating-icon" alt=""></span>
+                  <span *ngIf="feedBack.starRating==4"><img src="/assets/hRating.png" class="hRating-icon" alt="">&nbsp; <img
+                    src="/assets/hRating.png" class="hRating-icon" alt=""> &nbsp;<img src="/assets/hRating.png"
+                                                                                      class="hRating-icon"
                                                                                       alt="">&nbsp; <img
-                    src="/assets/starRating.png" class="info-icon" alt=""></span>
-                  <span *ngIf="feedBack.starRating==5"><img src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img
-                    src="/assets/starRating.png" class="info-icon" alt=""> &nbsp;<img src="/assets/starRating.png"
-                                                                                      class="info-icon"
+                    src="/assets/hRating.png" class="hRating-icon" alt=""></span>
+                  <span *ngIf="feedBack.starRating==5"><img src="/assets/hRating.png" class="hRating-icon" alt="">&nbsp; <img
+                    src="/assets/hRating.png" class="hRating-icon" alt=""> &nbsp;<img src="/assets/hRating.png"
+                                                                                      class="hRating-icon"
                                                                                       alt="">&nbsp; <img
-                    src="/assets/starRating.png" class="info-icon" alt="">&nbsp; <img src="/assets/starRating.png"
-                                                                                      class="info-icon" alt=""></span>
+                    src="/assets/hRating.png" class="hRating-icon" alt="">&nbsp; <img src="/assets/hRating.png"
+                                                                                      class="hRating-icon" alt=""></span>
                 </div>
               </div>
               <mat-divider></mat-divider>

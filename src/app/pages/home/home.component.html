@@ -3,25 +3,29 @@
     <div class="my-flex" style="justify-content:space-around ;">
       <div class="my-flex">
         <div class="mr-10">
-          <button class="search-button " mat-button
+          <button class="search-button " mat-button [style]="searchFilter.gender?'color:#fcfcfc; background-color:#fc4997; border:none':''"
                   [matMenuTriggerFor]="menuGender">{{searchFilter.gender ? searchFilter.gender : "Giới tính"}}</button>
           <mat-menu #menuGender="matMenu">
+            <button mat-menu-item (click)="setGenderSearch('')">Tất cả</button>
             <button mat-menu-item (click)="setGenderSearch('Nam')">Nam</button>
             <button mat-menu-item (click)="setGenderSearch('Nữ')">Nữ</button>
           </mat-menu>
         </div>
         <div class="mr-10">
-          <button class="search-button" mat-button
+          <button class="search-button" mat-button  [style]="searchFilter.city?'color:#fcfcfc; background-color:#fc4997; border:none':''"
                   [matMenuTriggerFor]="menuAddress">{{searchFilter.city ? searchFilter.city : "Sống tại"}}</button>
           <mat-menu #menuAddress="matMenu">
+            <button (click)="setAddressSearch('')"
+                    mat-menu-item>Tất cả</button>
             <button *ngFor="let city of cities" (click)="setAddressSearch(city.name)"
                     mat-menu-item>{{city.name}}</button>
           </mat-menu>
         </div>
         <div class="mr-10">
-          <button class="search-button" mat-button
+          <button class="search-button" mat-button [style]="searchFilter.price?'color:#fcfcfc; background-color:#fc4997; border:none':''"
                   [matMenuTriggerFor]="menuPrice">{{searchFilter.price ? 'dưới ' + searchFilter.price + 'đ' : "Khoảng giá"}}</button>
           <mat-menu #menuPrice="matMenu">
+            <button (click)="setPriceSearch(null)" mat-menu-item>Tất cả</button>
             <button (click)="setPriceSearch(100000)" mat-menu-item>dưới 100.000đ</button>
             <button (click)="setPriceSearch(300000)" mat-menu-item>dưới 300.000đ</button>
             <button (click)="setPriceSearch(500000)" mat-menu-item>dưới 500.000đ</button>
@@ -175,6 +179,7 @@
       </div>
     </div>
     <div class="col-md-3 mt-20" *ngFor="let provider of allProviderByViews">
+      
       <mat-card
         class="my-card-home"
         (click)="userInformationPage(provider.userId)"
