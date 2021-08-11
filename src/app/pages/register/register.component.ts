@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
       Swal.fire("Thành công","Đã tạo tài khoản thành công, Xin mời bạn kiểm tra email để xác nhận tài khoản","success");
       this.formRegister.reset();
     },(error)=>{
-      Swal.fire("Thất bại","Đã tạo tài khoản đã tồn tại ","error");
+      Swal.fire("Thất bại","Tài khoản đã tồn tại ","error");
       this.formRegister.reset();
 
     })
