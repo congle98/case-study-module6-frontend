@@ -11,7 +11,9 @@ export class UserService {
   constructor(private httpClient:HttpClient) { }
 
   getUserInformation(userId:any){
+    console.log(`${environment.baseUrl}/profile/view/${userId}`);
     return this.httpClient.get(`${environment.baseUrl}/profile/view/${userId}`);
+    
   }
   setView(userInformationId:any){
     return this.httpClient.put(`${environment.baseUrl}/profile/addviews`,userInformationId);
