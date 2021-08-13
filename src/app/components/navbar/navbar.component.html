@@ -33,7 +33,7 @@
         </a>
         <mat-menu #menuAdmin="matMenu">
           <button class="my-mat-menu text-center" mat-menu-item (click)="userDashboard()">
-            {{ user.username }}
+            Quản lý tài khoản
           </button>
           <a class="my-mat-menu text-center" mat-menu-item routerLink="/admin/viewsUser">
             Quản lý
@@ -52,7 +52,7 @@
         </a>
         <mat-menu #menuUser="matMenu">
           <button class="my-mat-menu text-center" mat-menu-item (click)="userDashboard()">
-            {{ user.username }}
+            Quản lý tài khoản
           </button>
           <button class="my-mat-menu text-center" mat-menu-item (click)="logout()">
             Thoát

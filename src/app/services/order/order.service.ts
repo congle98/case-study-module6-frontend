@@ -7,7 +7,7 @@ import {environment} from "../../../environments/environment";
   providedIn: 'root'
 })
 export class OrderService {
-  url="http://localhost:8080"
+  url=`${environment.baseUrl}`;
   constructor(private http: HttpClient) { }
 
 
